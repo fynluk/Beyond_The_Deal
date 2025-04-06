@@ -13,7 +13,7 @@ def initDatabase(db, stock):
         logging.info("Database for Stock: " + stock.ticker + " already exists")
     else:
         logging.info("Database for Stock: " + stock.ticker + " will be created")
-        query = "CREATE TABLE `" + stock.ticker + "` (Date VARCHAR(20), Open FLOAT, High FLOAT, Low FLOAT, Close FLOAT, Volume FLOAT)"
+        query = "CREATE TABLE `" + stock.ticker + "` (Date VARCHAR(20), Open DECIMAL(16, 2), High DECIMAL(16, 2), Low DECIMAL(16, 2), Close DECIMAL(16, 2), Volume DECIMAL(16, 2))"
         cursor.execute(query)
 
 class SqlHandler:
