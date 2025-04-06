@@ -1,11 +1,5 @@
-import os
-import sys
-import importlib
-import refinitiv.dataplatform as rdp
 import yaml
 import logging
-import json
-from IPython.display import display
 from crawler.refinitive_crawler import RefinitivHandler
 from crawler.sql_crawler import SqlHandler
 from Data.deal import Deal

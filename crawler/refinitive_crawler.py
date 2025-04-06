@@ -21,7 +21,7 @@ class RefinitivHandler:
         try:
             name = rdp.convert_symbols(ticker).loc[ticker, "DocumentTitle"].split(",", 1)[0]
         except:
-            logging.error("Ticker may be wrong: " + ticker)
+            logging.warning("Ticker may be wrong: " + ticker)
         if name is None:
             logging.error("Name from ticker " + ticker + " not found")
             return "N/A"

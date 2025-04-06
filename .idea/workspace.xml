@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* update workspace.xml">
-      <change afterPath="$PROJECT_DIR$/Configuration/deals.yaml" afterDir="false" />
+    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* refine classes stock/deal&#10;* created deal list&#10;* create sql tables if nec.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/deal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data/deal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/stock.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data/stock.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crawler/refinitive_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/refinitive_crawler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawler/sql_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/sql_crawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742198780820</updated>
       <workItem from="1742198781944" duration="23019000" />
-      <workItem from="1742915038413" duration="16865000" />
+      <workItem from="1742915038413" duration="18040000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -157,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743938470874</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="* refine classes stock/deal&#10;* created deal list&#10;* create sql tables if nec.">
+      <option name="closed" value="true" />
+      <created>1743946066911</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743946066911</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,9 +172,10 @@
     <MESSAGE value="add Objects Stock &amp; Deal" />
     <MESSAGE value="* Init SQL/Refinitive Handler&#10;* Rebuild main function" />
     <MESSAGE value="* update workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="* update workspace.xml" />
+    <MESSAGE value="* refine classes stock/deal&#10;* created deal list&#10;* create sql tables if nec." />
+    <option name="LAST_COMMIT_MESSAGE" value="* refine classes stock/deal&#10;* created deal list&#10;* create sql tables if nec." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1743945868105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1743946223710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
