@@ -16,6 +16,19 @@ class RefinitivHandler:
         except:
             logging.error("Refinitive Bridge connection failed")
 
+    def getName(self, ticker):
+        name = str()
+        try:
+            name = rdp.convert_symbols(ticker).loc[ticker, "DocumentTitle"].split(",", 1)[0]
+        except:
+            logging.error("Ticker may be wrong: " + ticker)
+        if name is None:
+            logging.error("Name from ticker " + ticker + " not found")
+            return "N/A"
+        else:
+            return name
+
+
     def testus(self):
         test2 = rdp.HistoricalPricing.get_summaries('VOD.L',
                                                    interval=rdp.Intervals.DAILY,
@@ -24,3 +37,6 @@ class RefinitivHandler:
                                                    fields=['MKT_OPEN', 'MKT_HIGH', 'MKT_LOW', 'HIGH_1', 'TRDPRC_1',
                                                            'TRNOVR_UNS'])
         return test2
+
+    def init(self, deals):
+        pass

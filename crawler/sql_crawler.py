@@ -1,5 +1,20 @@
 import mysql.connector
 import logging
+from IPython.core.display_functions import display
+
+def initDatabase(db, stock):
+    cursor = db.db.cursor(buffered=True)
+    cursor.execute("SHOW TABLES")
+    check = False
+    for x in cursor:
+        if x[0] == stock.ticker:
+            check = True
+    if check:
+        logging.info("Database for Stock: " + stock.ticker + " already exists")
+    else:
+        logging.info("Database for Stock: " + stock.ticker + " will be created")
+        query = "CREATE TABLE `" + stock.ticker + "` (Date VARCHAR(20), Open FLOAT, High FLOAT, Low FLOAT, Close FLOAT, Volume FLOAT)"
+        cursor.execute(query)
 
 class SqlHandler:
     def __init__(self, config):
@@ -10,6 +25,10 @@ class SqlHandler:
                 password=config.get("sql", {}).get("PASSWORD"),
                 database=config.get("sql", {}).get("DATABASE"),
             )
-            self.cursor = self.db.cursor()
         except:
             logging.error("SQL Bridge connection failed")
+
+    def init(self, deals):
+        for deal in deals:
+            initDatabase(self, deal.buyer)
+            initDatabase(self, deal.target)

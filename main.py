@@ -8,11 +8,35 @@ import json
 from IPython.display import display
 from crawler.refinitive_crawler import RefinitivHandler
 from crawler.sql_crawler import SqlHandler
+from Data.deal import Deal
+from Data.stock import Stock
 
 def load_config(file_path="Configuration/config.yaml"):
     with open(file_path, "r", encoding="utf-8") as file:
         config = yaml.safe_load(file)
     return config
+
+def load_deals(ref, file_path="Configuration/deals.yaml"):
+    with open(file_path, "r", encoding="utf-8") as file:
+        dealDict = yaml.safe_load(file).get("Deals")
+    deals = []
+    for x in dealDict:
+        stockB = Stock(
+            ref.getName(x.get("buyer")),
+            x.get("buyer"))
+        stockT = Stock(
+            ref.getName(x.get("target")),
+            x.get("target"))
+
+        deal = Deal(
+            stockB,
+            stockT,
+            x.get("aDate"),
+            "0"
+        )
+        logging.info("Found Deal: " + str(deal))
+        deals.append(deal)
+    return deals
 
 def main():
     logging.basicConfig(level=logging.INFO, filename="runtime.log", filemode="w",
@@ -23,7 +47,12 @@ def main():
     ref = RefinitivHandler(config)
     logging.info("Init SQL Bridge")
     sql = SqlHandler(config)
-
+    logging.info("Loading Deals")
+    deals = load_deals(ref)
+    logging.info("Creating Database Tables")
+    sql.init(deals)
+    logging.info("Get historical prices")
+    ref.init(deals)
 
 if __name__ == "__main__":
     #display(test.data.df)
