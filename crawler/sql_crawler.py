@@ -1,6 +1,15 @@
-import yaml
+import mysql.connector
+import logging
 
-with open("Configuration/config.yaml", "r", encoding="utf-8") as file:
-    config = yaml.safe_load(file)
-
-def check_prices(stock_name):
+class SqlHandler:
+    def __init__(self, config):
+        try:
+            self.db = mysql.connector.connect(
+                host=config.get("sql", {}).get("HOST"),
+                user=config.get("sql", {}).get("USER"),
+                password=config.get("sql", {}).get("PASSWORD"),
+                database=config.get("sql", {}).get("DATABASE"),
+            )
+            self.cursor = self.db.cursor()
+        except:
+            logging.error("SQL Bridge connection failed")
