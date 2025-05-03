@@ -4,6 +4,7 @@ from crawler.refinitive_crawler import RefinitivHandler
 from crawler.sql_crawler import SqlHandler
 from Data.deal import Deal
 from Data.stock import Stock
+import Math.plot as plt
 
 def load_config(file_path="Configuration/config.yaml"):
     with open(file_path, "r", encoding="utf-8") as file:
@@ -44,9 +45,9 @@ def main():
     logging.info("Loading Deals")
     deals = load_deals(ref)
     logging.info("Creating Database Tables")
-    sql.init(deals)
-    logging.info("Get historical prices")
-    ref.init(deals)
+    sql.init(ref, deals)
+    logging.info("Get Historical Data")
+    ref.getPrices(sql)
 
 if __name__ == "__main__":
     #display(test.data.df)
