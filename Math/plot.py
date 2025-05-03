@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 from collections import Counter
 
+#TODO ADD Diagramm  x-Axis: P&L on Share Price after aDate in % for the Target
+#                   y-Axis: P&L on Share Price after aDate in % for the Buyer -> Any Findings?
+
 def plot_columns(data, cons):
     # Count name frequencies
     name_counts = Counter(data)
