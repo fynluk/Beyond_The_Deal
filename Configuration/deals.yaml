@@ -1,4 +1,76 @@
 Deals:
   - buyer: LVMH.PA
-    target: TIF.N
+    target: TIF.N^A21
     aDate: 2020-10-27
+  - buyer: CELG.O^K19
+    target: BMY
+    aDate: 2019-01-03
+  - buyer: ABBV.K
+    target: WCRX.O^J13
+    aDate: 2019-06-25
+  - buyer: SPGI.K
+    target: INFO.K^B22
+    aDate: 2020-11-30
+  - buyer: AZN.L
+    target: ALXN.O^G21
+    aDate: 2020-12-12
+  - buyer: OXY
+    target: APC^H19
+    aDate: 2019-04-24
+  - buyer: AMD.O
+    target: XLNX.O^B22
+    aDate: 2020-10-27
+  - buyer: FIS
+    target: WP^G19
+    aDate: 2019-03-18
+  - buyer: CRM
+    target: WORK.K^G21
+    aDate: 2020-12-01
+  - buyer: TFC
+    target: STI^L19
+    aDate: 2019-02-07
+  - buyer: GPN
+    target: TSS^I19
+    aDate: 2019-05-28
+  - buyer: FI
+    target: FDC^G19
+    aDate: 2019-01-16
+  - buyer: ADI.O
+    target: MXIM.O^H21
+    aDate: 2020-07-13
+  - buyer: GILD.O
+    target: IMMU.O^J20
+    aDate: 2020-09-13
+  - buyer: TDOC.K
+    target: LVGO.O^K20
+    aDate: 2020-08-05
+  - buyer: CRM
+    target: DATA.K^H19
+    aDate: 2019-06-10
+  - buyer: SHLG.DE
+    target: VAR^D21
+    aDate: 2020-08-02
+  - buyer: CNC
+    target: WCG^A20
+    aDate: 2019-03-27
+  - buyer: 1180.SE
+    target: 1090.SE^D21
+    aDate: 2020-06-25
+  - buyer: BMY
+    target: MYOK.O^K20
+    aDate: 2020-10-05
+  - buyer: MS
+    target: ETFC.O^J20
+    aDate: 2020-02-20
+  - buyer: PLD
+    target: LPT^B20
+    aDate: 2019-10-27
+  - buyer: PFE
+    target: ARRY.O^G19
+    aDate: 2019-06-17
+  - buyer: NEM
+    target: G.OMG^D19
+    aDate: 2019-01-14
+  - buyer: IFXGn.DE
+    target: 0I5Q.L^K20
+    aDate: 2019-06-03
