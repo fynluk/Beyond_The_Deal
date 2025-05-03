@@ -29,16 +29,6 @@ class RefinitivHandler:
         else:
             return name
 
-
-    def testus(self):
-        test2 = rdp.HistoricalPricing.get_summaries('VOD.L',
-                                                   interval=rdp.Intervals.DAILY,
-                                                   start="2025-01-01",
-                                                   end="2025-02-01",
-                                                   fields=['MKT_OPEN', 'MKT_HIGH', 'MKT_LOW', 'HIGH_1', 'TRDPRC_1',
-                                                           'TRNOVR_UNS'])
-        return test2
-
     def getPrices(self, sql):
         tickers = sql.getTickers()
         for ticker in tickers:
