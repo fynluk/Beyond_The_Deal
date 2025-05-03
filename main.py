@@ -46,7 +46,7 @@ def main():
     deals = load_deals(ref)
     logging.info("Creating Database Tables")
     sql.init(ref, deals)
-    logging.info("Get Historical Data")
+    logging.info("Get and Upload Historical Data")
     ref.getPrices(sql)
 
 if __name__ == "__main__":
