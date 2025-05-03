@@ -48,6 +48,8 @@ def main():
     sql.init(ref, deals)
     logging.info("Get and Upload Historical Data")
     ref.getPrices(sql)
+    # TODO (Housekeeping?) Is enough data available for every Deal/Stock?
+    # TODO (Uneffected SharePrice) Start with the Monte-Carlo-Simulation
 
 if __name__ == "__main__":
     #display(test.data.df)
