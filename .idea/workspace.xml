@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Build sql.init()&#10;* Build ref.getPrices()">
+    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add requirements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +112,7 @@
       <workItem from="1742198781944" duration="23019000" />
       <workItem from="1742915038413" duration="25318000" />
       <workItem from="1746036293445" duration="936000" />
-      <workItem from="1746085116719" duration="14674000" />
+      <workItem from="1746085116719" duration="16867000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -217,7 +218,47 @@
       <option name="project" value="LOCAL" />
       <updated>1746299124297</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="* Delete unnec. functions">
+      <option name="closed" value="true" />
+      <created>1746299550266</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1746299550266</updated>
+    </task>
+    <task id="LOCAL-00015" summary="* Add TODOS">
+      <option name="closed" value="true" />
+      <created>1746300087188</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746300087188</updated>
+    </task>
+    <task id="LOCAL-00016" summary="* Rename sth">
+      <option name="closed" value="true" />
+      <created>1746300860244</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1746300860244</updated>
+    </task>
+    <task id="LOCAL-00017" summary="* Add TODOS">
+      <option name="closed" value="true" />
+      <created>1746301015951</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1746301015951</updated>
+    </task>
+    <task id="LOCAL-00018" summary="* Add requirements">
+      <option name="closed" value="true" />
+      <created>1746301341538</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1746301341538</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +277,11 @@
     <MESSAGE value="* Rebuild the getPrices() function&#10;* Get historical Data from all tickers" />
     <MESSAGE value="* Drafted getTickers&#10;* Build Upload Function for historical Data" />
     <MESSAGE value="* Build sql.init()&#10;* Build ref.getPrices()" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Build sql.init()&#10;* Build ref.getPrices()" />
+    <MESSAGE value="* Delete unnec. functions" />
+    <MESSAGE value="* Rename sth" />
+    <MESSAGE value="* Add TODOS" />
+    <MESSAGE value="* Add requirements" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Add requirements" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1746298219219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
