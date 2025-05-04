@@ -63,9 +63,9 @@ def main():
         logging.info("Skip mode active – skipping table creation and data upload.")
 
     logging.info("Create Intervals")
-    int_5_buyer = deals[0].buyer.get_interval(sql, deals[0].announcement_date, 5)
+    int_5_buyer = deals[0].buyer.get_interval(sql, deals[0].announcement_date, 5, False)
     plt.show_interval(int_5_buyer, deals[0].buyer)
-    int_5_target = deals[0].target.get_interval(sql, deals[0].announcement_date, 5)
+    int_5_target = deals[0].target.get_interval(sql, deals[0].announcement_date, 5, False)
     plt.show_interval(int_5_target, deals[0].target)
 
     # TODO (Housekeeping?) Is enough data available for every Deal/Stock?

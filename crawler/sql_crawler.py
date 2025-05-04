@@ -75,7 +75,7 @@ class SqlHandler:
             cursor.execute(insert_query, (date, open, high, low, close, vol))
             self.db.commit()
 
-    def get_interval(self, ticker, aDate, interval):
+    def get_interval(self, ticker, aDate, interval, bool_abs):
         cursor = self.db.cursor()
 
         # Convert aDate from String to pd.Timestamp
@@ -104,11 +104,19 @@ class SqlHandler:
         start_index = center_index - interval
         end_index = center_index + interval + 1
 
-        # Create Interval with Values
+        # Create Interval with Values (abs or rel)
         subset = df.iloc[start_index:end_index].reset_index(drop=True)
-        result = {}
         relative_position = interval * -1
-        for index, row in subset.iterrows():
-            result[relative_position] = row['Open']
-            relative_position = relative_position + 1
-        return result
+        if bool_abs:
+            result_abs = {}
+            for index, row in subset.iterrows():
+                result_abs[relative_position] = row['Open']
+                relative_position = relative_position + 1
+            return result_abs
+        else:
+            zero_value = df.iloc[center_index]["Open"]
+            result_rel = {}
+            for index, row in subset.iterrows():
+                result_rel[relative_position] = row['Open'] / zero_value
+                relative_position = relative_position + 1
+            return result_rel
