@@ -1,3 +1,4 @@
+import sys
 import yaml
 import logging
 from crawler.refinitive_crawler import RefinitivHandler
@@ -35,19 +36,30 @@ def load_deals(ref, file_path="Configuration/deals.yaml"):
 
 def main():
     logging.basicConfig(level=logging.INFO, filename="runtime.log", filemode="w",
-                    format="%(asctime)s %(levelname)s %(message)s")
+                        format="%(asctime)s %(levelname)s %(message)s")
     logging.info("Load Configuration")
     config = load_config()
-    logging.info("Init Refinitive Bridge")
+
+    logging.info("Init Refinitiv Bridge")
     ref = RefinitivHandler(config)
+
     logging.info("Init SQL Bridge")
     sql = SqlHandler(config)
+
     logging.info("Loading Deals")
     deals = load_deals(ref)
-    logging.info("Creating Database Tables")
-    sql.init(ref, deals)
-    logging.info("Get and Upload Historical Data")
-    ref.getPrices(sql)
+
+    # Prüfen, ob 'skip' als Argument übergeben wurde
+    skip = len(sys.argv) > 1 and sys.argv[1].lower() == "skip"
+
+    if not skip:
+        logging.info("Creating Database Tables")
+        sql.init(ref, deals)
+
+        logging.info("Get and Upload Historical Data")
+        ref.getPrices(sql)
+    else:
+        logging.info("Skip mode active – skipping table creation and data upload.")
     # TODO (Housekeeping?) Is enough data available for every Deal/Stock?
     # TODO (Uneffected SharePrice) Start with the Monte-Carlo-Simulation
 
