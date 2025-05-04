@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Refine Dates to export">
+    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Created Skeleton for Monte-Carlo-Simulation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Math/plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Math/plot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main skip">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main skip" type="PythonConfigurationType" factoryName="Python">
       <module name="Beyond_The_Deal" />
       <option name="ENV_FILES" value="" />
@@ -141,7 +140,7 @@
       <workItem from="1742198781944" duration="23019000" />
       <workItem from="1742915038413" duration="25318000" />
       <workItem from="1746036293445" duration="936000" />
-      <workItem from="1746085116719" duration="24646000" />
+      <workItem from="1746085116719" duration="29730000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -327,7 +326,31 @@
       <option name="project" value="LOCAL" />
       <updated>1746368466045</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="* Added interval function to get share prices around the aDate">
+      <option name="closed" value="true" />
+      <created>1746370331820</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1746370331820</updated>
+    </task>
+    <task id="LOCAL-00025" summary="* Added the possibility to show intervals in rel. change">
+      <option name="closed" value="true" />
+      <created>1746372095215</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1746372095215</updated>
+    </task>
+    <task id="LOCAL-00026" summary="* Created Skeleton for Monte-Carlo-Simulation">
+      <option name="closed" value="true" />
+      <created>1746372143624</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1746372143624</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,10 +378,13 @@
     <MESSAGE value="* Fix Date for deal" />
     <MESSAGE value="* Created function to get Intervals from sql" />
     <MESSAGE value="* Refine Dates to export" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Refine Dates to export" />
+    <MESSAGE value="* Added interval function to get share prices around the aDate" />
+    <MESSAGE value="* Added the possibility to show intervals in rel. change" />
+    <MESSAGE value="* Created Skeleton for Monte-Carlo-Simulation" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Created Skeleton for Monte-Carlo-Simulation" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1746369629949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main_skip.coverage" NAME="main skip Coverage Results" MODIFIED="1746369811037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1746372678977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main_skip.coverage" NAME="main skip Coverage Results" MODIFIED="1746372012281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

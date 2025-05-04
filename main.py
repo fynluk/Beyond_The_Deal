@@ -72,16 +72,8 @@ def main():
 
     # TODO (Housekeeping?) Is enough data available for every Deal/Stock?
     # TODO (Uneffected SharePrice) Start with the Monte-Carlo-Simulation
+    sql.db.close()
 
 if __name__ == "__main__":
-    #display(test.data.df)
-    #print(list(test.data.df.columns.values))
-    #print(test.data.df.index)
-    #print(test.data.df.iloc[0].name.day)
-    #print(test.data.df.iloc[0].name.month)
-    #print(test.data.df.iloc[0].name.year)
-    #print(type(test.data.df.iloc[0].name))
-    #print(test.data.df.to_dict())))
-    #print(yaml.dump(test.data.df.to_dict(), default_flow_style=False))
     #rdp.close_session()
     main()
