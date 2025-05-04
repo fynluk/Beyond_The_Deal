@@ -37,8 +37,8 @@ class RefinitivHandler:
                 universe=ticker,
                 interval= rdp.Intervals.DAILY,
                 start="2018-07-01",
-                #end="2021-01-01",
-                count=365*3,
+                end="2021-06-30",
+                #count=365*3,
                 fields=['OPEN_PRC', 'HIGH_1', 'LOW_1', 'TRDPRC_1', 'ACVOL_UNS']
             )
             if data.data.df is not None:
