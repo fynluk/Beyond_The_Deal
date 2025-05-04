@@ -68,6 +68,8 @@ def main():
     int_5_target = deals[0].target.get_interval(sql, deals[0].announcement_date, 5, False)
     plt.show_interval(int_5_target, deals[0].target)
 
+    logging.info("Calculate Unaffected Share-Price")
+
     # TODO (Housekeeping?) Is enough data available for every Deal/Stock?
     # TODO (Uneffected SharePrice) Start with the Monte-Carlo-Simulation
 
