@@ -1,6 +1,6 @@
 import mysql.connector
 import logging
-
+import pandas as pd
 import pandas._libs.missing
 from IPython.core.display_functions import display
 
@@ -74,3 +74,41 @@ class SqlHandler:
                     """
             cursor.execute(insert_query, (date, open, high, low, close, vol))
             self.db.commit()
+
+    def get_interval(self, ticker, aDate, interval):
+        cursor = self.db.cursor()
+
+        # Convert aDate from String to pd.Timestamp
+        if isinstance(aDate, pd.Timestamp):
+            aDate = aDate.strftime("%Y-%m-%d")
+
+        # Get Prices for Ticker from Database
+        query = f"""
+                SELECT Date, Open FROM `{ticker}`
+                ORDER BY Date
+            """
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        cursor.close()
+
+        # Convert SQL-Query to DataFrame
+        df = pd.DataFrame(rows, columns=["Date", "Open"])
+        df["Date"] = pd.to_datetime(df["Date"]).dt.date
+
+        # Find aDate and get Index
+        try:
+            center_index = df.index[df["Date"] == pd.to_datetime(aDate).date()][0]
+        except IndexError:
+            raise ValueError(f"Datum {aDate} nicht in Datenbank für Ticker {ticker} enthalten.")
+
+        start_index = center_index - interval
+        end_index = center_index + interval + 1
+
+        # Create Interval with Values
+        subset = df.iloc[start_index:end_index].reset_index(drop=True)
+        result = {}
+        relative_position = interval * -1
+        for index, row in subset.iterrows():
+            result[relative_position] = row['Open']
+            relative_position = relative_position + 1
+        return result

@@ -1,4 +1,5 @@
 import sys
+from typing import List
 import yaml
 import logging
 from crawler.refinitive_crawler import RefinitivHandler
@@ -15,7 +16,7 @@ def load_config(file_path="Configuration/config.yaml"):
 def load_deals(ref, file_path="Configuration/deals.yaml"):
     with open(file_path, "r", encoding="utf-8") as file:
         dealDict = yaml.safe_load(file).get("Deals")
-    deals = []
+    deals: List [Deal] = []
     for x in dealDict:
         stockB = Stock(
             ref.getName(x.get("buyer")),
@@ -60,6 +61,11 @@ def main():
         ref.getPrices(sql)
     else:
         logging.info("Skip mode active – skipping table creation and data upload.")
+
+    logging.info("Create Intervals")
+    test = deals[0].buyer.get_interval(sql, deals[0].announcement_date, 2)
+    print(test)
+
     # TODO (Housekeeping?) Is enough data available for every Deal/Stock?
     # TODO (Uneffected SharePrice) Start with the Monte-Carlo-Simulation
 

@@ -1,3 +1,4 @@
+import logging
 
 class Stock:
     def __init__(self, name: str, ticker: str):
@@ -6,3 +7,8 @@ class Stock:
 
     def __repr__(self):
         return f"Stock({self.name}, {self.ticker})"
+
+    def get_interval(self, sql, aDate, interval):
+        logging.info("Fetching Interval for Stock: " + self.ticker + " with length: " + str(interval*2))
+        result = sql.get_interval(self.ticker, aDate, interval)
+        return result
