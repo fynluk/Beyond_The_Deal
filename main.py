@@ -13,6 +13,11 @@ def load_config(file_path="Configuration/config.yaml"):
         config = yaml.safe_load(file)
     return config
 
+def load_statistics(file_path="Configuration/statistics.yaml"):
+    with open(file_path, "r", encoding="utf-8") as file:
+        config = yaml.safe_load(file).get("imaa", [])
+    return config
+
 def load_deals(ref, file_path="Configuration/deals.yaml"):
     with open(file_path, "r", encoding="utf-8") as file:
         dealDict = yaml.safe_load(file).get("Deals")
@@ -36,6 +41,10 @@ def load_deals(ref, file_path="Configuration/deals.yaml"):
     return deals
 
 def main():
+    logging.info("Create Statistic Charts")
+    data = load_statistics()
+    plt.imaa(data)
+
     logging.basicConfig(level=logging.INFO, filename="runtime.log", filemode="w",
                         format="%(asctime)s %(levelname)s %(message)s")
     logging.info("Load Configuration")
@@ -63,10 +72,10 @@ def main():
         logging.info("Skip mode active – skipping table creation and data upload.")
 
     logging.info("Create Intervals")
-    int_5_buyer = deals[0].buyer.get_interval(sql, deals[0].announcement_date, 5, False)
-    plt.show_interval(int_5_buyer, deals[0].buyer)
-    int_5_target = deals[0].target.get_interval(sql, deals[0].announcement_date, 5, False)
-    plt.show_interval(int_5_target, deals[0].target)
+    int_5_buyer = deals[1].buyer.get_interval(sql, deals[1].announcement_date, 20, True)
+    plt.show_interval(int_5_buyer, deals[1].buyer)
+    int_5_target = deals[1].target.get_interval(sql, deals[1].announcement_date, 20, True)
+    plt.show_interval(int_5_target, deals[1].target)
 
     logging.info("Calculate Unaffected Share-Price")
 

@@ -47,3 +47,30 @@ def show_interval(interval_dict, stock):
     plt.grid(axis='y')
     plt.tight_layout()
     plt.show()
+
+
+def imaa(data):
+    years = [entry["year"] for entry in data]
+    number_of_deals = [entry["number_of_deals"] for entry in data]
+    deal_volume = [entry["ma_value_billion_usd"] for entry in data]
+
+    fig, ax1 = plt.subplots(figsize=(8, 5))
+
+    ax1.bar(years, number_of_deals, color='#FF9E00', alpha=0.8)
+    ax1.set_xlabel('Year')
+    ax1.set_ylabel('Number of Deals')
+    ax1.tick_params(axis='y', labelcolor='#002750')
+    ax1.set_ylim(0, 75000)
+    ax1.set_yticks(range(0, 75001, 10000))
+
+    ax2 = ax1.twinx()
+    ax2.plot(years, deal_volume, color='#002750')
+    ax2.set_ylabel('Transaction Volume in bil. USD')
+    ax2.tick_params(axis='y', labelcolor='#002750')
+    ax2.set_ylim(0, 6000)
+    ax2.set_yticks(range(0, 6001, 1000))
+
+    #plt.title('asdf')
+    plt.tight_layout()
+    plt.grid(True)
+    plt.show()
