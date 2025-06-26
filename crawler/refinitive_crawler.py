@@ -1,3 +1,4 @@
+import progressbar
 import refinitiv.dataplatform as rdp
 import logging
 import datetime
@@ -31,18 +32,23 @@ class RefinitivHandler:
 
     def getPrices(self, sql):
         tickers = sql.getTickers()
-        for ticker in tickers:
+
+        bar = progressbar.ProgressBar(widgets=[
+            'Get historical prices and upload: ', progressbar.Counter(), '/', str(len(tickers)), ' ', progressbar.Percentage(), ' ', progressbar.Bar(fill="."), ' ', progressbar.ETA()
+        ])
+        for ticker in bar(tickers):
             logging.info("Getting prices for ticker " + ticker)
             data = rdp.HistoricalPricing.get_summaries(
                 universe=ticker,
                 interval= rdp.Intervals.DAILY,
-                start="2018-07-01",
+                start="2009-07-01",
                 end="2021-06-30",
                 #count=365*3,
                 fields=['OPEN_PRC', 'HIGH_1', 'LOW_1', 'TRDPRC_1', 'ACVOL_UNS']
             )
             if data.data.df is not None:
                 logging.info("Upload Data for Ticker: " + ticker)
+                historical_data = []
                 for timestamp, row in data.data.df.iterrows():
                     date = str(timestamp.date())
                     open = row['OPEN_PRC']
@@ -50,7 +56,8 @@ class RefinitivHandler:
                     low = row['LOW_1']
                     close = row['TRDPRC_1']
                     vol = row['ACVOL_UNS']
-                    sql.uploadData(ticker, date, open, high, low, close, vol)
+                    historical_data.append((date, open, high, low, close, vol))
+                sql.uploadData(ticker, historical_data)
 
             else:
                 logging.warning("No Historical Data for Ticker: " + ticker)
