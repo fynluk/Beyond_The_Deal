@@ -3,6 +3,9 @@ import logging
 import pandas as pd
 import pandas._libs.missing
 from IPython.core.display_functions import display
+import progressbar
+from numpy.distutils.misc_util import quote_args
+
 
 def initDatabase(db, stock):
     cursor = db.db.cursor(buffered=True)
@@ -15,7 +18,7 @@ def initDatabase(db, stock):
         logging.info("Database for Stock: " + stock.ticker + " already exists")
     else:
         logging.info("Database for Stock: " + stock.ticker + " will be created")
-        query = "CREATE TABLE `" + stock.ticker + "` (Date VARCHAR(20), Open DECIMAL(16, 2), High DECIMAL(16, 2), Low DECIMAL(16, 2), Close DECIMAL(16, 2), Volume DECIMAL(16, 2))"
+        query = "CREATE TABLE `" + stock.ticker + "` (Date VARCHAR(20), Open DECIMAL(16, 2), High DECIMAL(16, 2), Low DECIMAL(16, 2), Close DECIMAL(16, 2), Volume DECIMAL(16, 2), PRIMARY KEY (Date))"
         cursor.execute(query)
 
 class SqlHandler:
@@ -31,7 +34,10 @@ class SqlHandler:
             logging.error("SQL Bridge connection failed")
 
     def init(self, ref,  deals):
-        for deal in deals:
+        bar = progressbar.ProgressBar(widgets=[
+            'Create DB Tables for each Deal: ', progressbar.Counter(), '/', str(len(deals)), ' ', progressbar.Percentage(), ' ', progressbar.Bar(fill="."), ' ', progressbar.ETA()
+        ])
+        for deal in bar(deals):
             initDatabase(self, deal.buyer)
             initDatabase(self, deal.target)
 
@@ -47,33 +53,34 @@ class SqlHandler:
                 tickersToFetch.append(ticker)
         return tickersToFetch
 
-    def uploadData(self, ticker, date, open, high, low, close, vol):
+    def uploadData(self, ticker, tupel):
         # Check whether Data exists for the date
         cursor = self.db.cursor(buffered=True)
-        check_query = f"SELECT 1 FROM `{ticker}` WHERE `Date` = %s LIMIT 1"
-        cursor.execute(check_query, (date,))
-        exists = cursor.fetchone()
-        if exists:
-            # Datapoint exists
-            pass
-        else:
-            # If value has type pd.NA use Value 0.0
-            def sanitize(value):
-                return 0.0 if type(value) == pandas._libs.missing.NAType else value
+        # If value has type pd.NA use Value 0.0
+        def sanitize(value):
+            return 0.0 if type(value) == pandas._libs.missing.NAType else value
 
-            # Werte bereinigen
-            open = sanitize(open)
-            high = sanitize(high)
-            low = sanitize(low)
-            close = sanitize(close)
-            vol = sanitize(vol)
+        # Bereite Daten für das Insert vor
+        sanitized_data = []
+        for (date, open, high, low, close, vol) in tupel:
+            sanitized_row = (
+                str(date),  # Sicherstellen, dass Datum ein String ist
+                float(sanitize(open)),
+                float(sanitize(high)),
+                float(sanitize(low)),
+                float(sanitize(close)),
+                int(float(sanitize(vol)))
+            )
+            sanitized_data.append(sanitized_row)
 
-            insert_query = f"""
-                        INSERT INTO `{ticker}` (Date, Open, High, Low, Close, Volume)
-                        VALUES (%s, %s, %s, %s, %s, %s)
-                    """
-            cursor.execute(insert_query, (date, open, high, low, close, vol))
-            self.db.commit()
+        # Query mit Platzhaltern
+        query = f"INSERT IGNORE INTO `{ticker}` (Date, Open, High, Low, Close, Volume) VALUES (%s, %s, %s, %s, %s, %s);"
+
+        # Jetzt mit executemany alle Datensätze einfügen
+        #print(query)
+        #print(sanitized_data)
+        cursor.executemany(query, sanitized_data)
+        self.db.commit()
 
     def get_interval(self, ticker, aDate, interval, bool_abs):
         cursor = self.db.cursor()
