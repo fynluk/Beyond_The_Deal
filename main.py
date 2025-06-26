@@ -1,5 +1,6 @@
 import sys
 from typing import List
+import progressbar
 import yaml
 import logging
 from crawler.refinitive_crawler import RefinitivHandler
@@ -22,7 +23,11 @@ def load_deals(ref, file_path="Configuration/deals.yaml"):
     with open(file_path, "r", encoding="utf-8") as file:
         dealDict = yaml.safe_load(file).get("Deals")
     deals: List [Deal] = []
-    for x in dealDict:
+
+    bar = progressbar.ProgressBar(widgets=[
+        'Load Deals: ', progressbar.Counter(), '/', str(len(dealDict)), ' ', progressbar.Percentage(), ' ', progressbar.Bar(fill="."), ' ', progressbar.ETA()
+    ])
+    for x in bar(dealDict):
         stockB = Stock(
             ref.getName(x.get("buyer")),
             x.get("buyer"))
@@ -43,10 +48,8 @@ def load_deals(ref, file_path="Configuration/deals.yaml"):
 def main():
     logging.info("Create Statistic Charts")
     data = load_statistics()
-    plt.imaa(data)
+    #plt.imaa(data)
 
-    logging.basicConfig(level=logging.INFO, filename="runtime.log", filemode="w",
-                        format="%(asctime)s %(levelname)s %(message)s")
     logging.info("Load Configuration")
     config = load_config()
 
@@ -72,10 +75,24 @@ def main():
         logging.info("Skip mode active – skipping table creation and data upload.")
 
     logging.info("Create Intervals")
-    int_5_buyer = deals[1].buyer.get_interval(sql, deals[1].announcement_date, 20, True)
-    plt.show_interval(int_5_buyer, deals[1].buyer)
-    int_5_target = deals[1].target.get_interval(sql, deals[1].announcement_date, 20, True)
-    plt.show_interval(int_5_target, deals[1].target)
+    intervals_buyer: List = []
+    intervals_target: List = []
+    for deal in deals:
+        intervals_buyer.append(deal.buyer.get_interval(sql, deal.announcement_date, 20, True))
+        intervals_target.append(deal.target.get_interval(sql, deal.announcement_date, 20, True))
+    #plt.show_interval(intervals_buyer[0], deals[0].buyer)
+    #plt.show_interval(intervals_target[0], deals[0].target)
+    return_buyer: List = []
+    return_target: List = []
+    for int in intervals_buyer:
+        return_int = (int[20]- int[-20]) / int[-20]
+        return_buyer.append(return_int)
+    for int in intervals_target:
+        return_int = (int[20]- int[-20]) / int[-20]
+        return_target.append(return_int)
+    print(return_buyer)
+    plt.show_returns(return_target, deals)
+
 
     logging.info("Calculate Unaffected Share-Price")
 
@@ -84,5 +101,7 @@ def main():
     sql.db.close()
 
 if __name__ == "__main__":
-    #rdp.close_session()
+    logging.basicConfig(level=logging.WARNING, filename="runtime.log", filemode="w",
+                        format="%(asctime)s %(levelname)s %(message)s")
+
     main()
