@@ -113,6 +113,7 @@ def show_returns(returns, deals):
 
     # Y-Achse auf Prozentformat setzen
     plt.gca().yaxis.set_major_formatter(mtick.PercentFormatter(1.0))  # 1.0 == 100%
+    plt.ylim(-0.2, 2.0)
 
     plt.tight_layout()
     plt.show()

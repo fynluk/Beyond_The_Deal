@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add IMAA Statistic&#10;* Create Plot of Statistic">
-      <change afterPath="$PROJECT_DIR$/Configuration/deals_old.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Configuration/tickers.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/excel_to_yaml.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/get_ticker.py" afterDir="false" />
+    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add progress bar&#10;* rearrange parts&#10;* use new plot">
+      <change afterPath="$PROJECT_DIR$/scripts/ef.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/get_ESG.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Configuration/deals.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Configuration/deals.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Math/plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Math/plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawler/refinitive_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/refinitive_crawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crawler/sql_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/sql_crawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +51,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.ef load.executor": "Run",
+    "Python.ef.executor": "Run",
     "Python.excel_to_yaml.executor": "Run",
+    "Python.get_ESG.executor": "Run",
     "Python.get_ticker.executor": "Run",
     "Python.main skip.executor": "Run",
     "Python.main.executor": "Run",
@@ -82,7 +81,53 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.ef load">
+    <configuration name="ef load" type="PythonConfigurationType" factoryName="Python">
+      <module name="Beyond_The_Deal" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/ef.py" />
+      <option name="PARAMETERS" value="--load_from_file" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ef" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Beyond_The_Deal" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/ef.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="excel_to_yaml" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Beyond_The_Deal" />
       <option name="ENV_FILES" value="" />
@@ -98,6 +143,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/excel_to_yaml.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="get_ESG" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Beyond_The_Deal" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/get_ESG.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -177,12 +245,17 @@
     </configuration>
     <list>
       <item itemvalue="Python.main skip" />
+      <item itemvalue="Python.ef load" />
+      <item itemvalue="Python.ef" />
+      <item itemvalue="Python.get_ESG" />
       <item itemvalue="Python.excel_to_yaml" />
       <item itemvalue="Python.get_ticker" />
       <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ef" />
+        <item itemvalue="Python.get_ESG" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.excel_to_yaml" />
         <item itemvalue="Python.get_ticker" />
@@ -209,7 +282,11 @@
       <workItem from="1742915038413" duration="25318000" />
       <workItem from="1746036293445" duration="936000" />
       <workItem from="1746085116719" duration="59203000" />
-      <workItem from="1750838668601" duration="23023000" />
+      <workItem from="1750838668601" duration="68791000" />
+      <workItem from="1754293430791" duration="46253000" />
+      <workItem from="1755336157168" duration="2474000" />
+      <workItem from="1755826444400" duration="2318000" />
+      <workItem from="1757262020047" duration="5269000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -435,22 +512,85 @@
       <option name="project" value="LOCAL" />
       <updated>1748089037394</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="* Add Deals from 2010 to 2020&#10;* Add old Deals as Backup file">
+      <option name="closed" value="true" />
+      <created>1750965545958</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965545958</updated>
+    </task>
+    <task id="LOCAL-00030" summary="* Create Script that builds deals.yaml from a excel file">
+      <option name="closed" value="true" />
+      <created>1750965573001</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965573001</updated>
+    </task>
+    <task id="LOCAL-00031" summary="* Get (Refinitive) Tickers from CUSIP ID script">
+      <option name="closed" value="true" />
+      <created>1750965602066</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965602066</updated>
+    </task>
+    <task id="LOCAL-00032" summary="* Creates an Graph + Boxplots for every year">
+      <option name="closed" value="true" />
+      <created>1750965631461</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965631461</updated>
+    </task>
+    <task id="LOCAL-00033" summary="* Add Progress Bar">
+      <option name="closed" value="true" />
+      <created>1750965644269</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965644269</updated>
+    </task>
+    <task id="LOCAL-00034" summary="* Add some libs">
+      <option name="closed" value="true" />
+      <created>1750965652170</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965652170</updated>
+    </task>
+    <task id="LOCAL-00035" summary="* Add progressbar&#10;* Rebuild upload function to regain speed">
+      <option name="closed" value="true" />
+      <created>1750965679849</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965679849</updated>
+    </task>
+    <task id="LOCAL-00036" summary="* input for script">
+      <option name="closed" value="true" />
+      <created>1750965694083</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965694083</updated>
+    </task>
+    <task id="LOCAL-00037" summary="* Add progress bar&#10;* rearrange parts&#10;* use new plot">
+      <option name="closed" value="true" />
+      <created>1750965737918</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1750965737918</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add Objects Stock &amp; Deal" />
-    <MESSAGE value="* Init SQL/Refinitive Handler&#10;* Rebuild main function" />
-    <MESSAGE value="* update workspace.xml" />
-    <MESSAGE value="* refine classes stock/deal&#10;* created deal list&#10;* create sql tables if nec." />
-    <MESSAGE value="* remove unnec. imports" />
-    <MESSAGE value="* change sql data types from float to decimal" />
-    <MESSAGE value="Add more Deals" />
-    <MESSAGE value="* Created a skeleton to use mathplotlib&#10;* Added a Barchart for all the Fields from the rdf query" />
-    <MESSAGE value="* Rebuild the getPrices() function&#10;* Get historical Data from all tickers" />
     <MESSAGE value="* Drafted getTickers&#10;* Build Upload Function for historical Data" />
     <MESSAGE value="* Build sql.init()&#10;* Build ref.getPrices()" />
     <MESSAGE value="* Delete unnec. functions" />
@@ -467,12 +607,24 @@
     <MESSAGE value="* Created Skeleton for Monte-Carlo-Simulation" />
     <MESSAGE value="* Housekeeping" />
     <MESSAGE value="* Add IMAA Statistic&#10;* Create Plot of Statistic" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Add IMAA Statistic&#10;* Create Plot of Statistic" />
+    <MESSAGE value="* Add Deals from 2010 to 2020&#10;* Add old Deals as Backup file" />
+    <MESSAGE value="* Create Script that builds deals.yaml from a excel file" />
+    <MESSAGE value="* Get (Refinitive) Tickers from CUSIP ID script" />
+    <MESSAGE value="* Creates an Graph + Boxplots for every year" />
+    <MESSAGE value="* Add Progress Bar" />
+    <MESSAGE value="* Add some libs" />
+    <MESSAGE value="* Add progressbar&#10;* Rebuild upload function to regain speed" />
+    <MESSAGE value="* input for script" />
+    <MESSAGE value="* Add progress bar&#10;* rearrange parts&#10;* use new plot" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Add progress bar&#10;* rearrange parts&#10;* use new plot" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1750965390987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1751017686038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$excel_to_yaml.coverage" NAME="excel_to_yaml Coverage Results" MODIFIED="1750958253438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef.coverage" NAME="ef Coverage Results" MODIFIED="1757267190758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ticker.coverage" NAME="get_ticker Coverage Results" MODIFIED="1750957828433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main_skip.coverage" NAME="main skip Coverage Results" MODIFIED="1750843038984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ESG.coverage" NAME="get_ESG Coverage Results" MODIFIED="1757262331117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main_skip.coverage" NAME="main skip Coverage Results" MODIFIED="1755078568743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef_load.coverage" NAME="ef load Coverage Results" MODIFIED="1757267298144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
   </component>
 </project>

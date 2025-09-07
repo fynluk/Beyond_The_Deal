@@ -58,7 +58,12 @@ class SqlHandler:
         cursor = self.db.cursor(buffered=True)
         # If value has type pd.NA use Value 0.0
         def sanitize(value):
-            return 0.0 if type(value) == pandas._libs.missing.NAType else value
+            if isinstance(value, pandas._libs.missing.NAType):
+                return 0.0
+            elif isinstance(value, type(None)):
+                return 0.0
+            else:
+                return value
 
         # Bereite Daten für das Insert vor
         sanitized_data = []
@@ -106,7 +111,7 @@ class SqlHandler:
         try:
             center_index = df.index[df["Date"] == pd.to_datetime(aDate).date()][0]
         except IndexError:
-            raise ValueError(f"Datum {aDate} nicht in Datenbank für Ticker {ticker} enthalten.")
+            logging.ERROR(f"Datum {aDate} nicht in Datenbank für Ticker {ticker} enthalten.")
 
         start_index = center_index - interval
         end_index = center_index + interval + 1
@@ -119,6 +124,15 @@ class SqlHandler:
             for index, row in subset.iterrows():
                 result_abs[relative_position] = row['Open']
                 relative_position = relative_position + 1
+            try:
+                test = result_abs[20]
+            except:
+                logging.warning("Interval not long enough for ticker: " + ticker)
+                print("Aktuell: " + str(result_abs))
+                last_key, last_value = list(result_abs.items())[-1]
+                result_abs[20] = last_value
+                print("New: " + str(result_abs))
+
             return result_abs
         else:
             zero_value = df.iloc[center_index]["Open"]

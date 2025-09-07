@@ -46,6 +46,9 @@ def load_deals(ref, file_path="Configuration/deals.yaml"):
     return deals
 
 def main():
+    logging.basicConfig(level=logging.INFO, filename="runtime.log", filemode="w",
+                        format="%(asctime)s %(levelname)s %(message)s")
+
     logging.info("Create Statistic Charts")
     data = load_statistics()
     #plt.imaa(data)
@@ -77,7 +80,12 @@ def main():
     logging.info("Create Intervals")
     intervals_buyer: List = []
     intervals_target: List = []
-    for deal in deals:
+
+    bar = progressbar.ProgressBar(widgets=[
+        'Get Intervals for Ticker: ', progressbar.Counter(), '/', str(len(deals)), ' ', progressbar.Percentage(),
+        ' ', progressbar.Bar(fill="."), ' ', progressbar.ETA()
+    ])
+    for deal in bar(deals):
         intervals_buyer.append(deal.buyer.get_interval(sql, deal.announcement_date, 20, True))
         intervals_target.append(deal.target.get_interval(sql, deal.announcement_date, 20, True))
     #plt.show_interval(intervals_buyer[0], deals[0].buyer)
@@ -87,10 +95,10 @@ def main():
     for int in intervals_buyer:
         return_int = (int[20]- int[-20]) / int[-20]
         return_buyer.append(return_int)
+    plt.show_returns(return_buyer, deals)
     for int in intervals_target:
         return_int = (int[20]- int[-20]) / int[-20]
         return_target.append(return_int)
-    print(return_buyer)
     plt.show_returns(return_target, deals)
 
 
@@ -101,7 +109,5 @@ def main():
     sql.db.close()
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.WARNING, filename="runtime.log", filemode="w",
-                        format="%(asctime)s %(levelname)s %(message)s")
 
     main()
