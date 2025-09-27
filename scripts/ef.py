@@ -114,70 +114,6 @@ def calculate_cov_matrix(prices_dict, freq='W'):
     return cov_matrix, annual_returns
 
 
-def calculate_return_risk(prices_dict, freq='W', max_workers=20):
-    """
-    Berechnet annualisierte erwartete Rendite und Risiko für jeden Ticker parallel und zeigt Fortschritt an.
-
-    Inputs:
-        prices_dict: Dictionary, Keys = Ticker, Values = DataFrame mit Spalten ['Price Close', 'Date']
-        freq: 'D' = täglich, 'W' = wöchentlich, 'M' = monatlich
-        max_workers: Anzahl paralleler Threads
-    Output:
-        df_risk_return: DataFrame mit Spalten ['Ticker', 'Return', 'Risk']
-    """
-
-    def process_ticker(ticker, df):
-        """
-        Berechnet Return und Risiko für einen einzelnen Ticker
-        """
-        df['Date'] = pd.to_datetime(df['Date'])
-        df = df.sort_values('Date')
-
-        # Renditeserie erstellen
-        if freq == 'D':
-            pct_change = df['Price Close'].pct_change().dropna()
-            scale = 252
-        elif freq == 'W':
-            weekly_prices = df.resample('W', on='Date')['Price Close'].last()
-            pct_change = weekly_prices.pct_change().dropna()
-            scale = 52
-        elif freq == 'M':
-            monthly_prices = df.resample('M', on='Date')['Price Close'].last()
-            pct_change = monthly_prices.pct_change().dropna()
-            scale = 12
-        else:
-            raise ValueError("freq muss 'D', 'W' oder 'M' sein")
-
-        return_mean = pct_change.mean() * scale
-        return_risk = pct_change.std() * np.sqrt(scale)
-
-        return ticker, return_mean, return_risk
-
-    tickers_list = []
-    returns_list = []
-    risks_list = []
-
-    # Multithreading mit Fortschrittsanzeige
-    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(process_ticker, ticker, df): ticker for ticker, df in prices_dict.items()}
-
-        for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures),
-                           desc="Calculating Return & Risk"):
-            ticker, mean_return, risk = future.result()
-            tickers_list.append(ticker)
-            returns_list.append(mean_return)
-            risks_list.append(risk)
-
-    # DataFrame erstellen
-    df_risk_return = pd.DataFrame({
-        'Ticker': tickers_list,
-        'Return': returns_list,
-        'Risk': risks_list
-    })
-
-    return df_risk_return
-
-
 def get_esg_scores(tickers_df, max_workers=20):
     """
     Holt den ESG-Score für jeden Ticker in tickers_df und gibt ein DataFrame zurück.
@@ -215,61 +151,6 @@ def get_esg_scores(tickers_df, max_workers=20):
     esg_df = pd.DataFrame(results, columns=['Ticker', 'ESG'])
 
     return esg_df
-
-def merge_return_risk_esg(return_risk_df, esg_df):
-    """
-    Führt return_risk DataFrame und esg DataFrame zusammen.
-
-    Inputs:
-        return_risk_df: DataFrame mit ['Ticker', 'Return', 'Risk']
-        esg_df: DataFrame mit ['Ticker', 'ESG']
-    Output:
-        merged_df: DataFrame mit ['Ticker', 'Return', 'Risk', 'ESG']
-    """
-    merged_df = pd.merge(return_risk_df, esg_df, on="Ticker", how="left")
-    return merged_df
-
-def plot_return_risk_esg(df_risk_esg, title='Return-Risk Scatterplot nach ESG', cmap='RdYlGn'):
-    """
-    Plottet Return-Risk Scatterplot, wobei die Farbe der Punkte den ESG Score zeigt.
-
-    Inputs:
-        df_risk_esg: DataFrame mit Spalten ['Ticker', 'Return', 'Risk', 'ESG']
-        title: Titel des Plots
-        cmap: Colormap für ESG (default: 'RdYlGn', Grün=hoch, Rot=niedrig)
-    """
-    # ESG-Spalte sicher in numerisch umwandeln
-    df_risk_esg['ESG'] = pd.to_numeric(df_risk_esg['ESG'], errors='coerce')
-
-    # Zeilen ohne ESG-Wert entfernen
-    df_risk_esg_plot = df_risk_esg.dropna(subset=['ESG']).copy()
-
-    plt.figure(figsize=(12, 8))
-
-    # Scatterplot in Prozent mit ESG als Farbe
-    sc = plt.scatter(
-        df_risk_esg_plot['Risk'] * 100,
-        df_risk_esg_plot['Return'] * 100,
-        c=df_risk_esg_plot['ESG'],
-        cmap=cmap,
-        alpha=0.8,
-        edgecolors='k'
-    )
-
-    # Ticker als Labels hinzufügen
-    for i, row in df_risk_esg_plot.iterrows():
-        plt.annotate(row['Ticker'], (row['Risk'] * 100, row['Return'] * 100), fontsize=8, alpha=0.7)
-
-    plt.xlabel('Risk (%)')
-    plt.ylabel('Expected Return (%)')
-    plt.title(title)
-    plt.grid(True)
-
-    # Farbleiste anzeigen
-    cbar = plt.colorbar(sc)
-    cbar.set_label('ESG Score')
-
-    plt.show()
 
 def markowitz_frontier(mu, cov_matrix, n_points=100, allow_short=False):
     """
@@ -331,24 +212,6 @@ def markowitz_frontier(mu, cov_matrix, n_points=100, allow_short=False):
 
     frontier_df = pd.DataFrame(frontier_points)
     return frontier_df
-
-def plot_frontier(frontier, title="Efficient Frontier"):
-    """
-    Plottet nur die Efficient Frontier.
-
-    Inputs:
-        frontier: DataFrame mit Spalten ['Return', 'Risk', 'Weights']
-        title: Plot-Titel
-    """
-
-    plt.figure(figsize=(10,6))
-    plt.plot(frontier['Risk'], frontier['Return'], color='blue', linewidth=2, label='Efficient Frontier')
-    plt.xlabel('Risk (Std. Dev.)')
-    plt.ylabel('Expected Return')
-    plt.title(title)
-    plt.legend()
-    plt.grid(True)
-    plt.show()
 
 def plot_esg_histogram(esg_df):
     """
