@@ -1,30 +1,22 @@
-from dataclasses import fields
-
 import lseg.data as ld
-import pandas
 import pickle
 import os
-import progressbar
 import pandas as pd
-import yaml
 import logging
-from IPython.display import display
 from matplotlib import pyplot as plt
-from refinitiv.dataplatform import search, get_historical_price_summaries
-import refinitiv.data as rd
 import concurrent.futures
 from tqdm import tqdm
 import argparse
 import numpy as np
+from scipy.optimize import minimize
 
 
 
 def open_ld():
     try:
         ld.open_session()
-        rd.open_session()
-    except:
-        logging.error("Refinitive Bridge connection failed")
+    except Exception as e:
+        logging.error("Refinitive Bridge connection failed; Exception: " + str(e))
 
 
 def get_tickers():
@@ -36,8 +28,8 @@ def get_tickers():
             'SDate': '2024-12-31'
         }
     )
+    #return query.head(100)
     return query
-
 
 def get_historical_price(tickers, max_workers=20):
     """
@@ -52,9 +44,9 @@ def get_historical_price(tickers, max_workers=20):
     prices_dict = {}  # Dictionary für Ergebnisse
 
     # Hilfsfunktion für einzelne Abfrage
-    def fetch_ticker(ticker):
-        df = ld.get_data(
-            universe=ticker,
+    def fetch_ticker(t):
+        data = ld.get_data(
+            universe=t,
             fields=["TR.PriceClose","TR.PriceClose.date"],
             parameters={
                 "Frq": "D",
@@ -62,7 +54,7 @@ def get_historical_price(tickers, max_workers=20):
                 "EDate": "2024-12-31"
             }
         )
-        return ticker, df
+        return t, data
 
     # ThreadPoolExecutor für parallele Abfragen
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -76,6 +68,50 @@ def get_historical_price(tickers, max_workers=20):
             prices_dict[ticker] = df
 
     return prices_dict
+
+def calculate_cov_matrix(prices_dict, freq='W'):
+    """
+    Berechnet annualisierte Kovarianzmatrix der Renditen aus historical_prices.
+
+    Inputs:
+      - prices_dict: dict {Ticker: DataFrame mit ['Instrument','Price Close','Date']}
+      - freq: 'D'=daily, 'W'=weekly, 'M'=monthly
+    Output:
+      - cov_matrix: pd.DataFrame, annualisierte Kovarianzmatrix
+      - returns_df: pd.DataFrame, annualisierte Renditen pro Ticker
+    """
+    price_data = pd.DataFrame()
+
+    # Alle Preise in ein DataFrame
+    for ticker, df in prices_dict.items():
+        df = df.copy()
+        df['Date'] = pd.to_datetime(df['Date'])
+        df = df.sort_values('Date')
+        df.set_index('Date', inplace=True)
+        price_data[ticker] = df['Price Close']
+
+    # Renditen berechnen
+    if freq == 'D':
+        returns = price_data.pct_change().dropna()
+        scale = 252  # Handelstage
+    elif freq == 'W':
+        weekly_prices = price_data.resample('W').last()
+        returns = weekly_prices.pct_change().dropna()
+        scale = 52
+    elif freq == 'M':
+        monthly_prices = price_data.resample('M').last()
+        returns = monthly_prices.pct_change().dropna()
+        scale = 12
+    else:
+        raise ValueError("freq muss 'D', 'W' oder 'M' sein")
+
+    # Annualisierte Renditen
+    annual_returns = returns.mean() * scale
+
+    # Annualisierte Kovarianzmatrix
+    cov_matrix = returns.cov() * scale
+
+    return cov_matrix, annual_returns
 
 
 def calculate_return_risk(prices_dict, freq='W', max_workers=20):
@@ -112,10 +148,10 @@ def calculate_return_risk(prices_dict, freq='W', max_workers=20):
         else:
             raise ValueError("freq muss 'D', 'W' oder 'M' sein")
 
-        mean_return = pct_change.mean() * scale
-        risk = pct_change.std() * np.sqrt(scale)
+        return_mean = pct_change.mean() * scale
+        return_risk = pct_change.std() * np.sqrt(scale)
 
-        return ticker, mean_return, risk
+        return ticker, return_mean, return_risk
 
     tickers_list = []
     returns_list = []
@@ -142,69 +178,56 @@ def calculate_return_risk(prices_dict, freq='W', max_workers=20):
     return df_risk_return
 
 
-def plot_return_risk(df_risk_return, title='Return-Risk Scatterplot'):
+def get_esg_scores(tickers_df, max_workers=20):
     """
-    Plottet ein Return-Risk Scatterplot für alle Ticker in Prozent.
+    Holt den ESG-Score für jeden Ticker in tickers_df und gibt ein DataFrame zurück.
 
     Inputs:
-        df_risk_return: DataFrame mit Spalten ['Ticker', 'Return', 'Risk']
-        title: Titel des Plots
-    """
-    plt.figure(figsize=(12,8))
-
-    # Scatterplot in Prozent
-    plt.scatter(df_risk_return['Risk']*100, df_risk_return['Return']*100, c='blue', alpha=0.6)
-
-    # Ticker als Labels hinzufügen
-    for i, row in df_risk_return.iterrows():
-        plt.annotate(row['Ticker'], (row['Risk']*100, row['Return']*100), fontsize=8, alpha=0.7)
-
-    plt.xlabel('Risk (%)')
-    plt.ylabel('Expected Return (%)')
-    plt.title(title)
-    plt.grid(True)
-    plt.show()
-
-
-def get_esg_scores(return_risk, max_workers=10):
-    """
-    Holt den ESG-Score für jeden Ticker und erweitert return_risk DataFrame.
-
-    Inputs:
-        return_risk: DataFrame mit Spalten ['Ticker', 'Return', 'Risk']
+        tickers_df: DataFrame mit Spalte ['Ticker']
         max_workers: Anzahl paralleler Threads
     Output:
-        return_risk_esg: DataFrame mit zusätzlicher Spalte 'ESG'
+        esg_df: DataFrame mit Spalten ['Ticker', 'ESG']
     """
 
-    esg_dict = {}  # Dictionary für ESG Scores
+    results = []
 
-    def fetch_esg(ticker):
+    def fetch_esg(t):
         try:
             df = ld.get_data(
-                universe=ticker,
+                universe=t,
                 fields=["TR.TRESGScore"],
                 parameters={'SDate': '2024-12-31'}
             )
-            # ESG Score extrahieren; falls mehrere Zeilen, nur erste nehmen
-            score = df['ESG Score'].iloc[0] if not df.empty else None
-        except:
-            score = None
-        return ticker, score
+            s = df['ESG Score'].iloc[0] if not df.empty else None
+        except Exception as e:
+            logging.warning("No ESG-Data for Ticker: " + t + "Exception: " + str(e))
+            s = None
+        return t, s
 
     # Multithreading mit Fortschrittsanzeige
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(fetch_esg, row['Ticker']): row['Ticker'] for index, row in return_risk.iterrows()}
+        futures = {executor.submit(fetch_esg, row['Instrument']): row['Instrument'] for _, row in tickers_df.iterrows()}
         for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Fetching ESG Scores"):
             ticker, score = future.result()
-            esg_dict[ticker] = score
+            results.append((ticker, score))
 
-    # Neue Spalte hinzufügen
-    return_risk_esg = return_risk.copy()
-    return_risk_esg['ESG'] = return_risk_esg['Ticker'].map(esg_dict)
+    # Ergebnisse in DataFrame umwandeln
+    esg_df = pd.DataFrame(results, columns=['Ticker', 'ESG'])
 
-    return return_risk_esg
+    return esg_df
 
+def merge_return_risk_esg(return_risk_df, esg_df):
+    """
+    Führt return_risk DataFrame und esg DataFrame zusammen.
+
+    Inputs:
+        return_risk_df: DataFrame mit ['Ticker', 'Return', 'Risk']
+        esg_df: DataFrame mit ['Ticker', 'ESG']
+    Output:
+        merged_df: DataFrame mit ['Ticker', 'Return', 'Risk', 'ESG']
+    """
+    merged_df = pd.merge(return_risk_df, esg_df, on="Ticker", how="left")
+    return merged_df
 
 def plot_return_risk_esg(df_risk_esg, title='Return-Risk Scatterplot nach ESG', cmap='RdYlGn'):
     """
@@ -248,33 +271,292 @@ def plot_return_risk_esg(df_risk_esg, title='Return-Risk Scatterplot nach ESG', 
 
     plt.show()
 
+def markowitz_frontier(mu, cov_matrix, n_points=100, allow_short=False):
+    """
+    Berechnet die Markowitz-Efficient Frontier.
+
+    Inputs:
+        mu: pd.Series oder np.array, erwartete annualisierte Renditen der Assets
+        cov_matrix: pd.DataFrame oder np.array, annualisierte Kovarianzmatrix der Assets
+        n_points: int, Anzahl der Zielrenditen für die Frontier
+        allow_short: bool, ob Short-Selling erlaubt ist (Gewichte < 0)
+
+    Output:
+        frontier_df: DataFrame mit ['Return', 'Risk', 'Weights']
+    """
+
+    mu = np.array(mu)
+    cov_matrix = np.array(cov_matrix)
+    n_assets = len(mu)
+
+    # Portfolio-Risiko-Funktion
+    def portfolio_risk(weights):
+        return np.sqrt(weights.T @ cov_matrix @ weights)
+
+    # Constraints: Summe der Gewichte = 1, Portfolio-Return = target_return
+    def get_constraints(target_return):
+        constraints = [
+            {'type': 'eq', 'fun': lambda w: np.sum(w) - 1},  # Summe=1
+            {'type': 'eq', 'fun': lambda w: w @ mu - target_return}  # Zielrendite
+        ]
+        return constraints
+
+    # Bounds für Gewichte
+    if allow_short:
+        bounds = [(None, None) for _ in range(n_assets)]
+    else:
+        bounds = [(0,1) for _ in range(n_assets)]
+
+    # Zielrenditen: von minimaler bis maximaler Asset-Return
+    target_returns = np.linspace(mu.min(), mu.max(), n_points)
+
+    frontier_points = []
+
+    # Startwerte: gleichverteilte Gewichte
+    x0 = np.repeat(1/n_assets, n_assets)
+
+    # Schleife ohne Progressbar
+    for r_target in target_returns:
+        cons = get_constraints(r_target)
+        res = minimize(portfolio_risk, x0, method='SLSQP', bounds=bounds, constraints=cons)     # type: ignore
+        if res.success:
+            w_opt = res.x
+            frontier_points.append({
+                'Return': float(r_target),
+                'Risk': float(portfolio_risk(w_opt)),
+                'Weights': w_opt
+            })
+        else:
+            print(f"Optimization failed for target return {r_target:.4f}")
+
+    frontier_df = pd.DataFrame(frontier_points)
+    return frontier_df
+
+def plot_frontier(frontier, title="Efficient Frontier"):
+    """
+    Plottet nur die Efficient Frontier.
+
+    Inputs:
+        frontier: DataFrame mit Spalten ['Return', 'Risk', 'Weights']
+        title: Plot-Titel
+    """
+
+    plt.figure(figsize=(10,6))
+    plt.plot(frontier['Risk'], frontier['Return'], color='blue', linewidth=2, label='Efficient Frontier')
+    plt.xlabel('Risk (Std. Dev.)')
+    plt.ylabel('Expected Return')
+    plt.title(title)
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def plot_esg_histogram(esg_df):
+    """
+    Plottet ein Histogramm der ESG-Scores mit Binning in 5er-Schritten.
+
+    Input:
+        esg_df: DataFrame mit Spalten ['Ticker', 'ESG']
+    """
+
+    # ESG-Spalte zu numerisch konvertieren, Fehler -> NaN
+    esg_numeric = pd.to_numeric(esg_df['ESG'], errors='coerce')
+    esg_numeric = esg_numeric.dropna()  # NaN rauswerfen
+
+    # Bin-Grenzen (0-100 in 5er-Schritten)
+    bins = np.arange(0, 105, 5)
+
+    plt.figure(figsize=(10,6))
+    plt.hist(esg_numeric, bins=bins, edgecolor='black', alpha=0.7)
+    plt.title("Verteilung der ESG-Scores")
+    plt.xlabel("ESG Score")
+    plt.ylabel("Anzahl der Ticker")
+    plt.xticks(bins, rotation=45)
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+    plt.show()
+
+
+def clean_data(prices, esg):
+    corrupt_tickers = []
+
+    # First mark all tickers without historical data
+    for ticker, df in prices.items():
+        df['Date'] = pd.to_datetime(df['Date'])
+        duplicates = df[df.duplicated(subset=['Date'], keep=False)]
+        if not duplicates.empty:
+            corrupt_tickers.append(ticker)
+
+
+    # Second mark all tickers without esg data
+    corrupt_esg = esg[pd.to_numeric(esg['ESG'], errors='coerce').isna()]["Ticker"].tolist()
+    corrupt_tickers.extend(corrupt_esg)
+
+    # Remove all marked tickers from data
+    logging.info("Remove " + str(len(corrupt_tickers)) + " corrupt tickers: " + str(corrupt_tickers))
+    for ticker in corrupt_tickers:
+        if ticker in prices:
+            del prices[ticker]
+    esg = esg[~esg['Ticker'].isin(corrupt_tickers)].copy()
+
+    return prices, esg
+
+
+def adjust_data(prices, esg, border):
+    # Filter Ticker im ESG-DataFrame
+    esg['ESG'] = pd.to_numeric(esg['ESG'])
+    filtered_esg = esg[esg['ESG'] <= border].copy()
+
+    # Ticker-Liste für Filter
+    valid_tickers = filtered_esg['Ticker'].tolist()
+
+    # Dict filtern
+    filtered_prices = {ticker: df for ticker, df in prices.items() if ticker in valid_tickers}
+
+    return filtered_prices, filtered_esg
+
+def check_and_sort_alignment(prices, esg):
+    """
+    Prüft, ob die Ticker in prices (Dict) und esg (DataFrame) an den gleichen Positionen übereinstimmen,
+    und sortiert beide nach Ticker aufsteigend.
+
+    Returns:
+        prices_sorted: Dict nach Ticker sortiert
+        esg_sorted: DataFrame nach Ticker sortiert
+    """
+    # Ticker-Liste für beide Objekte
+    prices_tickers = list(prices.keys())
+    esg_tickers = esg['Ticker'].tolist()
+
+    # Überprüfung vor Sortierung
+    mismatches = []
+    for i, (p, e) in enumerate(zip(prices_tickers, esg_tickers)):
+        if p != e:
+            mismatches.append((i, p, e))
+    if mismatches:
+        logging.info("Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:")
+    else:
+        logging.info("Alle Ticker stimmen vor Sortierung überein!")
+
+    # Sortieren
+    sorted_tickers = sorted(prices_tickers)
+    prices_sorted = {ticker: prices[ticker] for ticker in sorted_tickers}
+    esg_sorted = esg[esg['Ticker'].isin(sorted_tickers)].copy()
+    esg_sorted = esg_sorted.set_index('Ticker').loc[sorted_tickers].reset_index()
+
+    # Überprüfung nach Sortierung
+    prices_sorted_list = list(prices_sorted.keys())
+    esg_sorted_list = esg_sorted['Ticker'].tolist()
+    mismatches_after = [(i, p, e) for i, (p, e) in enumerate(zip(prices_sorted_list, esg_sorted_list)) if p != e]
+    if mismatches_after:
+        logging.error("Ticker stimmen nach Sortierung immer noch nicht überein:", mismatches_after)
+    else:
+        logging.info("Alle Ticker stimmen nach Sortierung überein!")
+
+    return prices_sorted, esg_sorted
+
+
+def calculate_frontiers(prices, esg, n_workers=3):
+    """
+    Berechnet für verschiedene ESG-Borders die Markowitz-Frontier.
+
+    Inputs:
+        prices: Dict mit historischen Preisen
+        esg: DataFrame mit ESG-Scores
+        n_workers: Anzahl paralleler Threads
+    Output:
+        frontiers: Dict mit ESG-Border als Key und Frontier DataFrame als Value
+    """
+
+    frontiers = {}
+    esg_borders = list(range(100, 49, -5))
+
+    def process_border(border):
+        logging.info(f"Adjust Data for ESG-Border: {border}")
+        border_historical_prices, border_esg_scores = adjust_data(prices, esg, border)
+        checked_historical_prices, checked_esg_scores = check_and_sort_alignment(border_historical_prices,
+                                                                                 border_esg_scores)
+        logging.info(f"Calculate Co-Variance and get annual returns for ESG-Border: {border}")
+        cov, returns = calculate_cov_matrix(checked_historical_prices)
+        logging.info(f"Calculate Markowitz Frontier for ESG-Border: {border}")
+        mark_frontier = markowitz_frontier(returns, cov)
+        return border, mark_frontier
+
+    # Multithreading mit Fortschrittsanzeige
+    with concurrent.futures.ThreadPoolExecutor(max_workers=n_workers) as executor:
+        futures = {executor.submit(process_border, border): border for border in esg_borders}
+
+        for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Calculating Frontiers"):
+            esg_border, frontier = future.result()
+            frontiers[esg_border] = frontier
+
+    return frontiers
+
+
+def plot_all_frontiers(frontiers_dict):
+    """
+    Plottet mehrere Markowitz-Frontiers aus einem Dict.
+
+    Inputs:
+        frontiers_dict: Dict, keys = ESG-Borders, values = DataFrames mit ['Return', 'Risk', 'Weights']
+    """
+    plt.figure(figsize=(12, 8))
+
+    n = len(frontiers_dict)
+    cmap = plt.get_cmap("viridis")  # Colormap holen
+    colors = cmap(np.linspace(0, 1, n))
+
+    for color, (esg_border, frontier_df) in zip(colors, sorted(frontiers_dict.items())):
+        plt.plot(frontier_df['Risk'], frontier_df['Return'], label=f'ESG ≤ {esg_border}', color=color)
+
+    plt.xlabel("Risk (Volatility)")
+    plt.ylabel("Expected Return")
+    plt.title("Markowitz Efficient Frontiers für verschiedene ESG-Borders")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
 
 def main(load_from_file):
-    pickle_file = '../Data/historical_prices.pkl'
+    file_historical_prices = '../Data/historical_prices.pkl'
+    file_esg_scores = '../Data/esg_scores.pkl'
 
     logging.info("Open Refinitiv Session")
     open_ld()
 
-    if load_from_file and os.path.exists(pickle_file):
-        logging.info(f"Loading historical prices from {pickle_file}")
-        with open(pickle_file, 'rb') as f:
+    logging.info("Get Tickers")
+    tickers = get_tickers()
+
+    if load_from_file and os.path.exists(file_historical_prices):
+        logging.info(f"Loading historical prices from {file_historical_prices}")
+        with open(file_historical_prices, 'rb') as f:
             historical_prices = pickle.load(f)
     else:
-        logging.info("Get Tickers")
-        tickers = get_tickers()
         logging.info("Get historical prices")
         historical_prices = get_historical_price(tickers)
         # Pickle speichern
-        with open(pickle_file, 'wb') as f:
-            pickle.dump(historical_prices, f)
-        logging.info(f"Saved historical prices to {pickle_file}")
+        with open(file_historical_prices, 'wb') as f:
+            pickle.dump(historical_prices, f)   # type: ignore
+        logging.info(f"Saved historical prices to {file_historical_prices}")
 
-    logging.info("Calculate Return Risk")
-    return_risk = calculate_return_risk(historical_prices)
-    logging.info("Get ESG-Scores")
-    return_risk_esg = get_esg_scores(return_risk)
-    logging.info("Plot Return Risk ESG")
-    plot_return_risk_esg(return_risk_esg)
+    if load_from_file and os.path.exists(file_esg_scores):
+        logging.info(f"Loading ESG scores from {file_esg_scores}")
+        with open(file_esg_scores, 'rb') as f:
+            esg_scores = pickle.load(f)
+    else:
+        logging.info("Get ESG scores")
+        esg_scores = get_esg_scores(tickers)
+        with open(file_esg_scores, 'wb') as f:
+            pickle.dump(esg_scores, f)          # type: ignore
+        logging.info(f"Saved ESG scores to {file_esg_scores}")
+
+    logging.info("Clean up Data")
+    clean_historical_prices, clean_esg_scores = clean_data(historical_prices, esg_scores)
+
+    # Build frontier for each ESG Border
+    logging.info("Get Efficient Frontier for several ESG-Borders")
+    frontiers = calculate_frontiers(clean_historical_prices, clean_esg_scores)
+    plot_esg_histogram(clean_esg_scores)
+    plot_all_frontiers(frontiers)
 
     ld.close_session()
 
