@@ -1,0 +1,448 @@
+2025-10-11 19:22:29,104 INFO ===== Starte Run: 2024_1Y_W_SP500 =====
+2025-10-11 19:22:29,104 INFO Open Refinitiv Session
+2025-10-11 19:22:29,360 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2025-10-11 19:22:29,362 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2025-10-11 19:22:29,363 INFO Get Tickers
+2025-10-11 19:22:30,779 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:30,802 INFO Get historical prices
+2025-10-11 19:22:31,275 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:31,275 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:31,346 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:31,346 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:31,346 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:32,228 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:32,267 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:32,268 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:32,268 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:32,268 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:32,544 INFO Saved historical prices to Output//2024_1Y_W_SP500/historical_prices.pkl
+2025-10-11 19:22:32,545 INFO Get ESG scores
+2025-10-11 19:22:33,273 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:33,279 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:33,290 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:33,398 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:33,398 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:34,284 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:34,284 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:34,294 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:34,296 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:34,299 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:34,303 INFO Saved ESG scores to Output//2024_1Y_W_SP500/esg_scores.pkl
+2025-10-11 19:22:34,303 INFO Clean up Data
+2025-10-11 19:22:34,312 INFO Remove 2 corrupt tickers: ['GEHC.OQ', 'FCX.N']
+2025-10-11 19:22:34,312 INFO Get Efficient Frontier for several ESG-Borders
+2025-10-11 19:22:34,312 INFO Adjust Data for ESG-Border: 100
+2025-10-11 19:22:34,313 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:34,313 INFO Adjust Data for ESG-Border: 95
+2025-10-11 19:22:34,314 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:34,314 INFO Adjust Data for ESG-Border: 90
+2025-10-11 19:22:34,314 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:34,314 INFO Adjust Data for ESG-Border: 85
+2025-10-11 19:22:34,314 INFO Calculate Co-Variance and get annual returns for ESG-Border: 100
+2025-10-11 19:22:34,315 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:34,315 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:34,315 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:34,317 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:34,318 INFO Calculate Co-Variance and get annual returns for ESG-Border: 95
+2025-10-11 19:22:34,324 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:34,324 INFO Calculate Co-Variance and get annual returns for ESG-Border: 90
+2025-10-11 19:22:34,331 INFO Calculate Markowitz Frontier for ESG-Border: 100
+2025-10-11 19:22:34,335 INFO Calculate Co-Variance and get annual returns for ESG-Border: 85
+2025-10-11 19:22:34,340 INFO Calculate Markowitz Frontier for ESG-Border: 95
+2025-10-11 19:22:34,361 INFO Calculate Markowitz Frontier for ESG-Border: 90
+2025-10-11 19:22:34,362 INFO Calculate Markowitz Frontier for ESG-Border: 85
+2025-10-11 19:22:35,853 INFO Adjust Data for ESG-Border: 80
+2025-10-11 19:22:35,854 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:35,855 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:35,855 INFO Calculate Co-Variance and get annual returns for ESG-Border: 80
+2025-10-11 19:22:35,862 INFO Adjust Data for ESG-Border: 75
+2025-10-11 19:22:35,863 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:35,864 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:35,867 INFO Calculate Co-Variance and get annual returns for ESG-Border: 75
+2025-10-11 19:22:35,894 INFO Adjust Data for ESG-Border: 70
+2025-10-11 19:22:35,894 INFO Calculate Markowitz Frontier for ESG-Border: 75
+2025-10-11 19:22:35,897 INFO Calculate Markowitz Frontier for ESG-Border: 80
+2025-10-11 19:22:35,897 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:35,910 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:35,910 INFO Calculate Co-Variance and get annual returns for ESG-Border: 70
+2025-10-11 19:22:35,929 INFO Calculate Markowitz Frontier for ESG-Border: 70
+2025-10-11 19:22:36,004 INFO Adjust Data for ESG-Border: 65
+2025-10-11 19:22:36,008 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:36,012 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:36,012 INFO Calculate Co-Variance and get annual returns for ESG-Border: 65
+2025-10-11 19:22:36,040 INFO Calculate Markowitz Frontier for ESG-Border: 65
+2025-10-11 19:22:36,721 INFO Adjust Data for ESG-Border: 60
+2025-10-11 19:22:36,722 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:36,723 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:36,724 INFO Calculate Co-Variance and get annual returns for ESG-Border: 60
+2025-10-11 19:22:36,732 INFO Calculate Markowitz Frontier for ESG-Border: 60
+2025-10-11 19:22:37,250 INFO Adjust Data for ESG-Border: 55
+2025-10-11 19:22:37,250 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:22:37,251 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:37,251 INFO Calculate Co-Variance and get annual returns for ESG-Border: 55
+2025-10-11 19:22:37,262 INFO Calculate Markowitz Frontier for ESG-Border: 55
+2025-10-11 19:22:37,425 INFO Adjust Data for ESG-Border: 50
+2025-10-11 19:22:37,426 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:22:37,428 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:37,428 INFO Calculate Co-Variance and get annual returns for ESG-Border: 50
+2025-10-11 19:22:37,432 INFO Calculate Markowitz Frontier for ESG-Border: 50
+2025-10-11 19:22:37,879 ERROR Run 2024_1Y_W_SP500 fehlgeschlagen: 'Risk'
+2025-10-11 19:22:37,879 INFO ===== Run 2024_1Y_W_SP500 beendet =====
+
+2025-10-11 19:22:37,879 INFO ===== Starte Run: 2023_1Y_W_SP500 =====
+2025-10-11 19:22:37,879 INFO Open Refinitiv Session
+2025-10-11 19:22:37,880 INFO Get Tickers
+2025-10-11 19:22:39,021 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:39,026 INFO Get historical prices
+2025-10-11 19:22:39,496 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:39,560 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:39,560 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:39,561 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:39,561 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:40,477 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:40,556 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:40,556 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:40,557 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:40,557 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:40,781 INFO Saved historical prices to Output//2023_1Y_W_SP500/historical_prices.pkl
+2025-10-11 19:22:40,781 INFO Get ESG scores
+2025-10-11 19:22:41,521 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:41,526 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:41,530 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:41,536 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:41,548 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:42,534 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:42,536 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:42,543 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:42,543 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:42,545 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:42,553 INFO Saved ESG scores to Output//2023_1Y_W_SP500/esg_scores.pkl
+2025-10-11 19:22:42,553 INFO Clean up Data
+2025-10-11 19:22:42,559 INFO Remove 1 corrupt tickers: ['GEHC.OQ']
+2025-10-11 19:22:42,561 INFO Get Efficient Frontier for several ESG-Borders
+2025-10-11 19:22:42,561 INFO Adjust Data for ESG-Border: 100
+2025-10-11 19:22:42,562 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:42,562 INFO Adjust Data for ESG-Border: 95
+2025-10-11 19:22:42,563 INFO Adjust Data for ESG-Border: 90
+2025-10-11 19:22:42,563 INFO Adjust Data for ESG-Border: 85
+2025-10-11 19:22:42,564 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:42,564 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:42,565 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:42,567 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:42,568 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:42,569 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:42,569 INFO Calculate Co-Variance and get annual returns for ESG-Border: 100
+2025-10-11 19:22:42,570 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:42,570 INFO Calculate Co-Variance and get annual returns for ESG-Border: 95
+2025-10-11 19:22:42,570 INFO Calculate Co-Variance and get annual returns for ESG-Border: 90
+2025-10-11 19:22:42,580 INFO Calculate Co-Variance and get annual returns for ESG-Border: 85
+2025-10-11 19:22:42,580 INFO Calculate Markowitz Frontier for ESG-Border: 100
+2025-10-11 19:22:42,609 INFO Calculate Markowitz Frontier for ESG-Border: 90
+2025-10-11 19:22:42,613 INFO Calculate Markowitz Frontier for ESG-Border: 85
+2025-10-11 19:22:42,616 INFO Calculate Markowitz Frontier for ESG-Border: 95
+2025-10-11 19:22:44,858 INFO Adjust Data for ESG-Border: 80
+2025-10-11 19:22:44,859 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:44,860 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:44,860 INFO Calculate Co-Variance and get annual returns for ESG-Border: 80
+2025-10-11 19:22:44,940 INFO Calculate Markowitz Frontier for ESG-Border: 80
+2025-10-11 19:22:45,171 INFO Adjust Data for ESG-Border: 75
+2025-10-11 19:22:45,173 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:45,177 INFO Adjust Data for ESG-Border: 70
+2025-10-11 19:22:45,178 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:45,181 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:45,186 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:45,193 INFO Calculate Co-Variance and get annual returns for ESG-Border: 70
+2025-10-11 19:22:45,188 INFO Calculate Co-Variance and get annual returns for ESG-Border: 75
+2025-10-11 19:22:45,222 INFO Calculate Markowitz Frontier for ESG-Border: 70
+2025-10-11 19:22:45,228 INFO Calculate Markowitz Frontier for ESG-Border: 75
+2025-10-11 19:22:45,377 INFO Adjust Data for ESG-Border: 65
+2025-10-11 19:22:45,378 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:45,378 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:45,378 INFO Calculate Co-Variance and get annual returns for ESG-Border: 65
+2025-10-11 19:22:45,394 INFO Calculate Markowitz Frontier for ESG-Border: 65
+2025-10-11 19:22:46,191 INFO Adjust Data for ESG-Border: 60
+2025-10-11 19:22:46,191 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:46,192 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:46,193 INFO Calculate Co-Variance and get annual returns for ESG-Border: 60
+2025-10-11 19:22:46,198 INFO Calculate Markowitz Frontier for ESG-Border: 60
+2025-10-11 19:22:46,462 INFO Adjust Data for ESG-Border: 55
+2025-10-11 19:22:46,462 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:22:46,465 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:46,467 INFO Calculate Co-Variance and get annual returns for ESG-Border: 55
+2025-10-11 19:22:46,472 INFO Calculate Markowitz Frontier for ESG-Border: 55
+2025-10-11 19:22:46,637 INFO Adjust Data for ESG-Border: 50
+2025-10-11 19:22:46,638 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:22:46,644 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:46,644 INFO Calculate Co-Variance and get annual returns for ESG-Border: 50
+2025-10-11 19:22:46,653 INFO Calculate Markowitz Frontier for ESG-Border: 50
+2025-10-11 19:22:47,130 ERROR Run 2023_1Y_W_SP500 fehlgeschlagen: 'Risk'
+2025-10-11 19:22:47,131 INFO ===== Run 2023_1Y_W_SP500 beendet =====
+
+2025-10-11 19:22:47,131 INFO ===== Starte Run: 2022_1Y_W_SP500 =====
+2025-10-11 19:22:47,131 INFO Open Refinitiv Session
+2025-10-11 19:22:47,132 INFO Get Tickers
+2025-10-11 19:22:48,173 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:48,177 INFO Get historical prices
+2025-10-11 19:22:48,648 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:48,652 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:48,681 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:48,681 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:48,947 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:49,631 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:49,717 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:49,717 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:49,717 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:49,813 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:50,118 INFO Saved historical prices to Output//2022_1Y_W_SP500/historical_prices.pkl
+2025-10-11 19:22:50,119 INFO Get ESG scores
+2025-10-11 19:22:50,677 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:50,685 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:50,686 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:50,691 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:50,715 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:51,669 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:51,679 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:51,687 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:51,716 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:51,800 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:51,809 INFO Saved ESG scores to Output//2022_1Y_W_SP500/esg_scores.pkl
+2025-10-11 19:22:51,809 INFO Clean up Data
+2025-10-11 19:22:51,824 INFO Remove 2 corrupt tickers: ['GEHC.OQ', 'GEHC.OQ']
+2025-10-11 19:22:51,824 INFO Get Efficient Frontier for several ESG-Borders
+2025-10-11 19:22:51,825 INFO Adjust Data for ESG-Border: 100
+2025-10-11 19:22:51,825 INFO Adjust Data for ESG-Border: 95
+2025-10-11 19:22:51,826 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:51,826 INFO Adjust Data for ESG-Border: 90
+2025-10-11 19:22:51,827 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:51,827 INFO Adjust Data for ESG-Border: 85
+2025-10-11 19:22:51,829 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:51,829 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:51,832 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:51,832 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:51,832 INFO Calculate Co-Variance and get annual returns for ESG-Border: 100
+2025-10-11 19:22:51,834 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:51,835 INFO Calculate Co-Variance and get annual returns for ESG-Border: 95
+2025-10-11 19:22:51,837 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:51,841 INFO Calculate Co-Variance and get annual returns for ESG-Border: 90
+2025-10-11 19:22:51,843 INFO Calculate Co-Variance and get annual returns for ESG-Border: 85
+2025-10-11 19:22:51,890 INFO Calculate Markowitz Frontier for ESG-Border: 100
+2025-10-11 19:22:51,895 INFO Calculate Markowitz Frontier for ESG-Border: 95
+2025-10-11 19:22:51,910 INFO Calculate Markowitz Frontier for ESG-Border: 90
+2025-10-11 19:22:51,927 INFO Calculate Markowitz Frontier for ESG-Border: 85
+2025-10-11 19:22:53,542 INFO Adjust Data for ESG-Border: 80
+2025-10-11 19:22:53,543 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:53,550 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:53,550 INFO Calculate Co-Variance and get annual returns for ESG-Border: 80
+2025-10-11 19:22:53,588 INFO Calculate Markowitz Frontier for ESG-Border: 80
+2025-10-11 19:22:53,687 INFO Adjust Data for ESG-Border: 75
+2025-10-11 19:22:53,687 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:53,697 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:53,700 INFO Calculate Co-Variance and get annual returns for ESG-Border: 75
+2025-10-11 19:22:53,727 INFO Calculate Markowitz Frontier for ESG-Border: 75
+2025-10-11 19:22:53,913 INFO Adjust Data for ESG-Border: 70
+2025-10-11 19:22:53,915 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:22:53,919 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:53,919 INFO Calculate Co-Variance and get annual returns for ESG-Border: 70
+2025-10-11 19:22:53,949 INFO Calculate Markowitz Frontier for ESG-Border: 70
+2025-10-11 19:22:54,062 INFO Adjust Data for ESG-Border: 65
+2025-10-11 19:22:54,070 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:22:54,073 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:54,073 INFO Calculate Co-Variance and get annual returns for ESG-Border: 65
+2025-10-11 19:22:54,087 INFO Calculate Markowitz Frontier for ESG-Border: 65
+2025-10-11 19:22:54,386 INFO Adjust Data for ESG-Border: 60
+2025-10-11 19:22:54,386 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:22:54,387 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:54,387 INFO Calculate Co-Variance and get annual returns for ESG-Border: 60
+2025-10-11 19:22:54,401 INFO Calculate Markowitz Frontier for ESG-Border: 60
+2025-10-11 19:22:54,675 INFO Adjust Data for ESG-Border: 55
+2025-10-11 19:22:54,676 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:22:54,676 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:54,677 INFO Calculate Co-Variance and get annual returns for ESG-Border: 55
+2025-10-11 19:22:54,687 INFO Calculate Markowitz Frontier for ESG-Border: 55
+2025-10-11 19:22:54,932 INFO Adjust Data for ESG-Border: 50
+2025-10-11 19:22:54,933 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:22:54,933 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:22:54,933 INFO Calculate Co-Variance and get annual returns for ESG-Border: 50
+2025-10-11 19:22:54,941 INFO Calculate Markowitz Frontier for ESG-Border: 50
+2025-10-11 19:22:56,088 INFO ===== Run 2022_1Y_W_SP500 beendet =====
+
+2025-10-11 19:22:56,088 INFO ===== Starte Run: 2024_2Y_W_SP500 =====
+2025-10-11 19:22:56,088 INFO Open Refinitiv Session
+2025-10-11 19:22:56,108 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2025-10-11 19:22:56,110 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2025-10-11 19:22:56,111 INFO Get Tickers
+2025-10-11 19:22:56,976 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:56,981 INFO Get historical prices
+2025-10-11 19:22:57,459 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:57,590 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:57,591 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:57,591 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:57,591 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:57,592 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:57,964 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:57,964 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:57,965 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:58,590 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:58,714 INFO Saved historical prices to Output//2024_2Y_W_SP500/historical_prices.pkl
+2025-10-11 19:22:58,715 INFO Get ESG scores
+2025-10-11 19:22:59,221 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:59,225 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:59,229 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:59,241 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:59,605 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:59,608 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:59,613 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:59,624 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:22:59,625 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:00,647 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:00,664 INFO Saved ESG scores to Output//2024_2Y_W_SP500/esg_scores.pkl
+2025-10-11 19:23:00,664 INFO Clean up Data
+2025-10-11 19:23:00,712 INFO Remove 2 corrupt tickers: ['GEHC.OQ', 'FCX.N']
+2025-10-11 19:23:00,713 INFO Get Efficient Frontier for several ESG-Borders
+2025-10-11 19:23:00,714 INFO Adjust Data for ESG-Border: 100
+2025-10-11 19:23:00,714 INFO Adjust Data for ESG-Border: 95
+2025-10-11 19:23:00,716 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:00,716 INFO Adjust Data for ESG-Border: 90
+2025-10-11 19:23:00,716 INFO Adjust Data for ESG-Border: 85
+2025-10-11 19:23:00,724 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:00,717 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:00,721 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:00,730 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:00,730 INFO Calculate Co-Variance and get annual returns for ESG-Border: 90
+2025-10-11 19:23:00,726 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:00,743 INFO Calculate Co-Variance and get annual returns for ESG-Border: 85
+2025-10-11 19:23:00,719 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:00,789 INFO Calculate Co-Variance and get annual returns for ESG-Border: 100
+2025-10-11 19:23:00,728 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:00,799 INFO Calculate Co-Variance and get annual returns for ESG-Border: 95
+2025-10-11 19:23:00,926 INFO Calculate Markowitz Frontier for ESG-Border: 90
+2025-10-11 19:23:00,957 INFO Calculate Markowitz Frontier for ESG-Border: 85
+2025-10-11 19:23:01,028 INFO Calculate Markowitz Frontier for ESG-Border: 100
+2025-10-11 19:23:01,152 INFO Calculate Markowitz Frontier for ESG-Border: 95
+2025-10-11 19:23:05,627 INFO Adjust Data for ESG-Border: 80
+2025-10-11 19:23:05,639 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:05,642 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:05,643 INFO Calculate Co-Variance and get annual returns for ESG-Border: 80
+2025-10-11 19:23:05,643 INFO Adjust Data for ESG-Border: 75
+2025-10-11 19:23:05,650 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:05,655 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:05,657 INFO Calculate Co-Variance and get annual returns for ESG-Border: 75
+2025-10-11 19:23:05,710 INFO Calculate Markowitz Frontier for ESG-Border: 80
+2025-10-11 19:23:05,724 INFO Calculate Markowitz Frontier for ESG-Border: 75
+2025-10-11 19:23:05,749 INFO Adjust Data for ESG-Border: 70
+2025-10-11 19:23:05,749 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:05,750 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:05,751 INFO Calculate Co-Variance and get annual returns for ESG-Border: 70
+2025-10-11 19:23:05,788 INFO Calculate Markowitz Frontier for ESG-Border: 70
+2025-10-11 19:23:05,806 INFO Adjust Data for ESG-Border: 65
+2025-10-11 19:23:05,808 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:05,809 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:05,811 INFO Calculate Co-Variance and get annual returns for ESG-Border: 65
+2025-10-11 19:23:05,826 INFO Calculate Markowitz Frontier for ESG-Border: 65
+2025-10-11 19:23:07,416 INFO Adjust Data for ESG-Border: 60
+2025-10-11 19:23:07,419 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:07,420 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:07,420 INFO Calculate Co-Variance and get annual returns for ESG-Border: 60
+2025-10-11 19:23:07,435 INFO Calculate Markowitz Frontier for ESG-Border: 60
+2025-10-11 19:23:09,401 INFO Adjust Data for ESG-Border: 55
+2025-10-11 19:23:09,424 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:23:09,440 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:09,440 INFO Calculate Co-Variance and get annual returns for ESG-Border: 55
+2025-10-11 19:23:09,462 INFO Calculate Markowitz Frontier for ESG-Border: 55
+2025-10-11 19:23:10,047 INFO Adjust Data for ESG-Border: 50
+2025-10-11 19:23:10,061 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:23:10,077 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:10,078 INFO Calculate Co-Variance and get annual returns for ESG-Border: 50
+2025-10-11 19:23:10,125 INFO Calculate Markowitz Frontier for ESG-Border: 50
+2025-10-11 19:23:10,704 ERROR Run 2024_2Y_W_SP500 fehlgeschlagen: 'Risk'
+2025-10-11 19:23:10,706 INFO ===== Run 2024_2Y_W_SP500 beendet =====
+
+2025-10-11 19:23:10,706 INFO ===== Starte Run: 2023_2Y_W_SP500 =====
+2025-10-11 19:23:10,706 INFO Open Refinitiv Session
+2025-10-11 19:23:10,709 INFO Get Tickers
+2025-10-11 19:23:11,870 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:11,874 INFO Get historical prices
+2025-10-11 19:23:12,364 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:12,504 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:12,577 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:12,578 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:13,347 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:13,348 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:13,349 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:13,351 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:13,351 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:15,312 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:15,398 INFO Saved historical prices to Output//2023_2Y_W_SP500/historical_prices.pkl
+2025-10-11 19:23:15,398 INFO Get ESG scores
+2025-10-11 19:23:15,910 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:15,916 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:15,938 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:16,179 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:16,185 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:16,933 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:16,942 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:17,476 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:17,480 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:17,486 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-11 19:23:17,494 INFO Saved ESG scores to Output//2023_2Y_W_SP500/esg_scores.pkl
+2025-10-11 19:23:17,494 INFO Clean up Data
+2025-10-11 19:23:17,590 INFO Remove 2 corrupt tickers: ['GEHC.OQ', 'GEHC.OQ']
+2025-10-11 19:23:17,590 INFO Get Efficient Frontier for several ESG-Borders
+2025-10-11 19:23:17,590 INFO Adjust Data for ESG-Border: 100
+2025-10-11 19:23:17,590 INFO Adjust Data for ESG-Border: 95
+2025-10-11 19:23:17,591 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:17,591 INFO Adjust Data for ESG-Border: 90
+2025-10-11 19:23:17,591 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:17,592 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:17,592 INFO Adjust Data for ESG-Border: 85
+2025-10-11 19:23:17,592 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:17,593 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:17,594 INFO Calculate Co-Variance and get annual returns for ESG-Border: 95
+2025-10-11 19:23:17,593 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:17,594 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:17,593 INFO Calculate Co-Variance and get annual returns for ESG-Border: 100
+2025-10-11 19:23:17,596 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:17,596 INFO Calculate Co-Variance and get annual returns for ESG-Border: 90
+2025-10-11 19:23:17,604 INFO Calculate Co-Variance and get annual returns for ESG-Border: 85
+2025-10-11 19:23:17,612 INFO Calculate Markowitz Frontier for ESG-Border: 100
+2025-10-11 19:23:17,635 INFO Calculate Markowitz Frontier for ESG-Border: 95
+2025-10-11 19:23:17,641 INFO Calculate Markowitz Frontier for ESG-Border: 90
+2025-10-11 19:23:17,649 INFO Calculate Markowitz Frontier for ESG-Border: 85
+2025-10-11 19:23:19,489 INFO Adjust Data for ESG-Border: 80
+2025-10-11 19:23:19,490 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:19,490 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:19,490 INFO Calculate Co-Variance and get annual returns for ESG-Border: 80
+2025-10-11 19:23:19,525 INFO Calculate Markowitz Frontier for ESG-Border: 80
+2025-10-11 19:23:19,564 INFO Adjust Data for ESG-Border: 75
+2025-10-11 19:23:19,565 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:19,566 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:19,566 INFO Calculate Co-Variance and get annual returns for ESG-Border: 75
+2025-10-11 19:23:19,591 INFO Calculate Markowitz Frontier for ESG-Border: 75
+2025-10-11 19:23:19,616 INFO Adjust Data for ESG-Border: 70
+2025-10-11 19:23:19,616 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:19,617 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:19,617 INFO Calculate Co-Variance and get annual returns for ESG-Border: 70
+2025-10-11 19:23:19,620 INFO Adjust Data for ESG-Border: 65
+2025-10-11 19:23:19,621 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:19,622 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:19,622 INFO Calculate Co-Variance and get annual returns for ESG-Border: 65
+2025-10-11 19:23:19,642 INFO Calculate Markowitz Frontier for ESG-Border: 70
+2025-10-11 19:23:19,654 INFO Calculate Markowitz Frontier for ESG-Border: 65
+2025-10-11 19:23:20,536 INFO Adjust Data for ESG-Border: 60
+2025-10-11 19:23:20,542 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-11 19:23:20,543 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:20,544 INFO Calculate Co-Variance and get annual returns for ESG-Border: 60
+2025-10-11 19:23:20,560 INFO Calculate Markowitz Frontier for ESG-Border: 60
+2025-10-11 19:23:20,938 INFO Adjust Data for ESG-Border: 55
+2025-10-11 19:23:20,943 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:23:20,948 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:20,949 INFO Calculate Co-Variance and get annual returns for ESG-Border: 55
+2025-10-11 19:23:20,957 INFO Calculate Markowitz Frontier for ESG-Border: 55
+2025-10-11 19:23:21,108 INFO Adjust Data for ESG-Border: 50
+2025-10-11 19:23:21,110 INFO Alle Ticker stimmen vor Sortierung überein!
+2025-10-11 19:23:21,110 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-11 19:23:21,110 INFO Calculate Co-Variance and get annual returns for ESG-Border: 50
+2025-10-11 19:23:21,123 INFO Calculate Markowitz Frontier for ESG-Border: 50
+2025-10-11 19:23:21,803 ERROR Run 2023_2Y_W_SP500 fehlgeschlagen: 'Risk'
+2025-10-11 19:23:21,804 INFO ===== Run 2023_2Y_W_SP500 beendet =====
+

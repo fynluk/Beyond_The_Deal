@@ -3,6 +3,7 @@ import pickle
 import os
 import pandas as pd
 import logging
+import yaml
 from matplotlib import pyplot as plt
 import concurrent.futures
 from tqdm import tqdm
@@ -19,19 +20,19 @@ def open_ld():
         logging.error("Refinitive Bridge connection failed; Exception: " + str(e))
 
 
-def get_tickers():
+def get_tickers(universe, start):
     #TODO Add more Tickers FTSE100 MSCI ...
     query = ld.get_data(
-        universe="0#.SPX",
+        universe=universe,
         fields=["TR.IndexConstituentRIC"],
         parameters={
-            'SDate': '2024-12-31'
+            'SDate': start
         }
     )
-    #return query.head(100)
+    #return query.head(10)
     return query
 
-def get_historical_price(tickers, max_workers=10):
+def get_historical_price(tickers, start, end, max_workers=10):
     """
     Holt historische Kurse für alle Ticker parallel und zeigt Fortschritt an.
 
@@ -50,8 +51,8 @@ def get_historical_price(tickers, max_workers=10):
             fields=["TR.PriceClose","TR.PriceClose.date"],
             parameters={
                 "Frq": "D",
-                "SDate": "2024-01-01",
-                "EDate": "2024-12-31"
+                "SDate": start,
+                "EDate": end
             }
         )
         return t, data
@@ -69,7 +70,7 @@ def get_historical_price(tickers, max_workers=10):
 
     return prices_dict
 
-def calculate_cov_matrix(prices_dict, freq='W'):
+def calculate_cov_matrix(prices_dict, freq):
     """
     Berechnet annualisierte Kovarianzmatrix der Renditen aus historical_prices.
 
@@ -114,7 +115,7 @@ def calculate_cov_matrix(prices_dict, freq='W'):
     return cov_matrix, annual_returns
 
 
-def get_esg_scores(tickers_df, max_workers=10):
+def get_esg_scores(tickers_df, end, max_workers=10):
     """
     Holt den ESG-Score für jeden Ticker in tickers_df und gibt ein DataFrame zurück.
 
@@ -132,7 +133,7 @@ def get_esg_scores(tickers_df, max_workers=10):
             df = ld.get_data(
                 universe=t,
                 fields=["TR.TRESGScore"],
-                parameters={'SDate': '2024-12-31'}
+                parameters={'SDate': end}
             )
             s = df['ESG Score'].iloc[0] if not df.empty else None
         except Exception as e:
@@ -213,7 +214,7 @@ def markowitz_frontier(mu, cov_matrix, n_points=100, allow_short=False):
     frontier_df = pd.DataFrame(frontier_points)
     return frontier_df
 
-def plot_esg_histogram(esg_df):
+def plot_esg_histogram(esg_df, outputFile, name):
     """
     Plottet ein Histogramm der ESG-Scores mit Binning in 5er-Schritten.
 
@@ -236,7 +237,11 @@ def plot_esg_histogram(esg_df):
     plt.xticks(bins, rotation=45)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
 
-    plt.show()
+    #plt.show()
+    #Plot speichern
+    output_path = outputFile + "/" + name + "/" + "esg_distribution.png"
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
 
 def clean_data(prices, esg):
@@ -319,7 +324,7 @@ def check_and_sort_alignment(prices, esg):
     return prices_sorted, esg_sorted
 
 
-def calculate_frontiers(prices, esg, n_workers=4):
+def calculate_frontiers(prices, esg, freq, n_workers=4):
     """
     Berechnet für verschiedene ESG-Borders die Markowitz-Frontier.
 
@@ -340,7 +345,7 @@ def calculate_frontiers(prices, esg, n_workers=4):
         checked_historical_prices, checked_esg_scores = check_and_sort_alignment(border_historical_prices,
                                                                                  border_esg_scores)
         logging.info(f"Calculate Co-Variance and get annual returns for ESG-Border: {border}")
-        cov, returns = calculate_cov_matrix(checked_historical_prices)
+        cov, returns = calculate_cov_matrix(checked_historical_prices, freq)
         #annual_returns_sorted = returns.sort_values(ascending=False)
         #print(annual_returns_sorted)
         #exit(1)
@@ -360,7 +365,7 @@ def calculate_frontiers(prices, esg, n_workers=4):
     return frontiers
 
 
-def plot_all_frontiers(frontiers_dict):
+def plot_all_frontiers(frontiers_dict, outputFile, name):
     """
     Plottet mehrere Markowitz-Frontiers aus einem Dict.
 
@@ -381,18 +386,23 @@ def plot_all_frontiers(frontiers_dict):
     plt.title("Markowitz Efficient Frontiers für verschiedene ESG-Borders")
     plt.legend()
     plt.grid(True)
-    plt.show()
+
+    # plt.show()
+    # Plot speichern
+    output_path = outputFile + "/" + name + "/" + "frontiers.png"
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
 
-def main(load_from_file):
-    file_historical_prices = '../Data/historical_prices.pkl'
-    file_esg_scores = '../Data/esg_scores.pkl'
+def main(load_from_file, universe, start, end, freq, outputFile, name):
+    file_historical_prices = outputFile + '/' + name + '/' + 'historical_prices.pkl'
+    file_esg_scores = outputFile + '/' + name + '/' + 'esg_scores.pkl'
 
     logging.info("Open Refinitiv Session")
     open_ld()
 
     logging.info("Get Tickers")
-    tickers = get_tickers()
+    tickers = get_tickers(universe, start)
 
     if load_from_file and os.path.exists(file_historical_prices):
         logging.info(f"Loading historical prices from {file_historical_prices}")
@@ -400,7 +410,7 @@ def main(load_from_file):
             historical_prices = pickle.load(f)
     else:
         logging.info("Get historical prices")
-        historical_prices = get_historical_price(tickers)
+        historical_prices = get_historical_price(tickers, start, end)
         # Pickle speichern
         with open(file_historical_prices, 'wb') as f:
             pickle.dump(historical_prices, f)   # type: ignore
@@ -412,7 +422,7 @@ def main(load_from_file):
             esg_scores = pickle.load(f)
     else:
         logging.info("Get ESG scores")
-        esg_scores = get_esg_scores(tickers)
+        esg_scores = get_esg_scores(tickers, end)
         with open(file_esg_scores, 'wb') as f:
             pickle.dump(esg_scores, f)          # type: ignore
         logging.info(f"Saved ESG scores to {file_esg_scores}")
@@ -421,22 +431,23 @@ def main(load_from_file):
     clean_historical_prices, clean_esg_scores = clean_data(historical_prices, esg_scores)
 
     logging.info("Get Efficient Frontier for several ESG-Borders")
-    frontiers = calculate_frontiers(clean_historical_prices, clean_esg_scores)
-    plot_esg_histogram(clean_esg_scores)
-    plot_all_frontiers(frontiers)
+    frontiers = calculate_frontiers(clean_historical_prices, clean_esg_scores, freq)
+    plot_esg_histogram(clean_esg_scores, outputFile, name)
+    plot_all_frontiers(frontiers, outputFile, name)
 
     ld.close_session()
 
 if __name__ == "__main__":
-    # Logging konfigurieren
-    logging.basicConfig(
-        level=logging.INFO,
-        filename="../runtime.log",
-        filemode="w",
-        format="%(asctime)s %(levelname)s %(message)s"
-    )
-
     pd.set_option("future.no_silent_downcasting", True)
+
+    # YAML-Konfiguration laden
+    with open("config.yaml", "r") as f:
+        config = yaml.safe_load(f)
+
+    runs = config.get("runs", [])
+    if not runs:
+        logging.error("Keine Runs in config.yaml gefunden!")
+        exit(1)
 
     # Kommandozeilenparameter parsen
     parser = argparse.ArgumentParser(description="Run Efficient Frontier Pipeline")
@@ -447,5 +458,31 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    # main() aufrufen mit Boolean
-    main(args.load_from_file)
+    # Logging konfigurieren
+    logging.basicConfig(
+        level=logging.INFO,
+        filename= "runtime.log",
+        filemode="w",
+        format="%(asctime)s %(levelname)s %(message)s"
+    )
+
+    # Alle Runs nacheinander ausführen
+    for run in runs:
+        # Ordner anlegen
+        folder = 'Output' + '/' + run['name']
+        os.makedirs(folder, exist_ok=True)
+
+        logging.info(f"===== Starte Run: {run['name']} =====")
+        try:
+            main(
+                load_from_file=args.load_from_file,
+                universe=run["universe"],
+                start=run["start"],
+                end=run["end"],
+                freq=run["freq"],
+                outputFile=run["output"],
+                name=run["name"]
+            )
+        except Exception as e:
+            logging.error(f"Run {run['name']} fehlgeschlagen: {e}")
+        logging.info(f"===== Run {run['name']} beendet =====\n")
