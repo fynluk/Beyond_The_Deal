@@ -29,7 +29,7 @@ def get_tickers(universe, start):
             'SDate': start
         }
     )
-    #return query.head(10)
+    #return query.head(25)
     return query
 
 def get_historical_price(tickers, start, end, max_workers=10):
@@ -393,6 +393,41 @@ def plot_all_frontiers(frontiers_dict, outputFile, name):
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
+def save_dfs_to_excel(outputFile, name, tickers, historical_prices, esg_scores, clean_historical_prices, clean_esg_scores, frontiers, cov, returns):
+    # Pfad zur Datei erstellen
+    path = outputFile + "/" + name + "/" + "Data.xlsx"
+
+    # Listen vorbereiten (Dict to DF)
+    dfs_historical_prices = []
+    for ticker, df in historical_prices.items():
+        df_copy = df.copy()
+        df_copy['Ticker'] = ticker
+        dfs_historical_prices.append(df_copy)
+    combined_df_historical_prices = pd.concat(dfs_historical_prices, ignore_index=True)
+    dfs_clean_historical_prices = []
+    for ticker, df in clean_historical_prices.items():
+        df_copy = df.copy()
+        df_copy['Ticker'] = ticker
+        dfs_clean_historical_prices.append(df_copy)
+    combined_df_clean_historical_prices = pd.concat(dfs_clean_historical_prices, ignore_index=True)
+    dfs_frontiers = []
+    for border, df in frontiers.items():
+        df_copy = df.copy()
+        df_copy['ESG-Border'] = border
+        dfs_frontiers.append(df_copy)
+    combined_df_frontiers = pd.concat(dfs_frontiers, ignore_index=True)
+
+    # ExcelWriter verwenden, um mehrere Sheets zu schreiben
+    with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
+        tickers.to_excel(writer, sheet_name='Tickers', index=True)
+        returns.to_excel(writer, sheet_name='Annual-Returns', index=True)
+        combined_df_historical_prices.to_excel(writer, sheet_name='Historical-Prices', index=True)
+        combined_df_clean_historical_prices.to_excel(writer, sheet_name='Clean-Historical-Prices', index=True)
+        esg_scores.to_excel(writer, sheet_name='ESG-Scores', index=True)
+        clean_esg_scores.to_excel(writer, sheet_name='Clean-ESG-Scores', index=True)
+        cov.to_excel(writer, sheet_name='Co-Variance', index=True)
+        combined_df_frontiers.to_excel(writer, sheet_name='Frontiers', index=True)
+
 
 def main(load_from_file, universe, start, end, freq, outputFile, name):
     file_historical_prices = outputFile + '/' + name + '/' + 'historical_prices.pkl'
@@ -431,9 +466,15 @@ def main(load_from_file, universe, start, end, freq, outputFile, name):
     clean_historical_prices, clean_esg_scores = clean_data(historical_prices, esg_scores)
 
     logging.info("Get Efficient Frontier for several ESG-Borders")
+    cov, returns = calculate_cov_matrix(clean_historical_prices, freq)
     frontiers = calculate_frontiers(clean_historical_prices, clean_esg_scores, freq)
+    print("Type cov: " + str(type(cov)))
+    print("Type returns: " + str(type(returns)))
     plot_esg_histogram(clean_esg_scores, outputFile, name)
     plot_all_frontiers(frontiers, outputFile, name)
+
+    logging.info("Save Data to Excel")
+    save_dfs_to_excel(outputFile, name, tickers, historical_prices, esg_scores, clean_historical_prices, clean_esg_scores, frontiers, cov, returns)
 
     ld.close_session()
 

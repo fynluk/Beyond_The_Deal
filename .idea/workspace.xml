@@ -6,10 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Clean Code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient Frontier/Data/esg_scores.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient Frontier/Data/historical_prices.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient Frontier/ef.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient Frontier/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2022_1Y_W_SP500/historical_prices.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/Output/2022_1Y_W_SP500/historical_prices.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/esg_distribution.png" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/esg_distribution.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/esg_scores.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/esg_scores.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/historical_prices.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/historical_prices.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/esg_distribution.png" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/esg_distribution.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/esg_scores.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/esg_scores.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/historical_prices.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/historical_prices.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/ef.py" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/ef.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/runtime.log" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/runtime.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +291,7 @@
       <workItem from="1755336157168" duration="2474000" />
       <workItem from="1755826444400" duration="2318000" />
       <workItem from="1757262020047" duration="8057000" />
-      <workItem from="1758956379677" duration="38999000" />
+      <workItem from="1758956379677" duration="41564000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -624,7 +629,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760200708552</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="* Clean Code">
+      <option name="closed" value="true" />
+      <created>1760203429582</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1760203429582</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +674,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1751017686038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$excel_to_yaml.coverage" NAME="excel_to_yaml Coverage Results" MODIFIED="1750958253438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef.coverage" NAME="ef Coverage Results" MODIFIED="1760203019725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Efficient_Frontier" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef.coverage" NAME="ef Coverage Results" MODIFIED="1760205529743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Efficient_Frontier" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ticker.coverage" NAME="get_ticker Coverage Results" MODIFIED="1750957828433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ESG.coverage" NAME="get_ESG Coverage Results" MODIFIED="1757262331117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main_skip.coverage" NAME="main skip Coverage Results" MODIFIED="1755078568743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
