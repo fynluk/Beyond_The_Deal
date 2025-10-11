@@ -1,9 +1,0 @@
-refinitiv:
-  APP-ID: <place-here-your-token>
-  USER: <place-here-your-username>
-  PASSWORD: <place-here-your-password>
-SQL:
-  HOST: <placeholder>
-  USER: <placeholder>
-  PASSWORD: <placeholder>
-  DATABASE: <placeholder>

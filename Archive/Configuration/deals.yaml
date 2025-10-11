@@ -1,0 +1,1291 @@
+Deals:
+  - buyer: WPZ^B15
+    target: WMZ^I10
+    aDate: 2010-01-19
+  - buyer: FE
+    target: AYE^B11
+    aDate: 2010-02-11
+  #- buyer: SLB
+  #  target: SII^H10
+  #  aDate: 2010-02-21
+  - buyer: ABT
+    target: FACT.O^E10
+    aDate: 2010-03-10
+  - buyer: AVT.O
+    target: BELM.O^G10
+    aDate: 2010-03-29
+  #- buyer: SD
+  #  target: ARD^G10
+  #  aDate: 2010-04-04
+  #- buyer: APA_pd^H13
+  #  target: MEGY.O^L00
+  #  aDate: 2010-04-15
+  - buyer: ORCL.K
+    target: PFWD.O^H10
+    aDate: 2010-04-16
+  - buyer: V
+    target: CYBS.O^H10
+    aDate: 2010-04-21
+  - buyer: HPQ
+    target: PALM.O^G10
+    aDate: 2010-04-28
+  - buyer: UAL.O
+    target: CAL^J10
+    aDate: 2010-05-03
+  - buyer: UHS
+    target: PSYS.O^K10
+    aDate: 2010-05-17
+  - buyer: GTIV.O^B15
+    target: ODSY.O^H10
+    aDate: 2010-05-24
+  - buyer: MDRX.PK
+    target: ECLP.O^H10
+    aDate: 2010-06-09
+  - buyer: BPL^K19
+    target: BGH^K10
+    aDate: 2010-06-11
+  - buyer: RAH^A13
+    target: AIPC.O^H10
+    aDate: 2010-06-21
+  - buyer: BA
+    target: STST.O^H10
+    aDate: 2010-06-30
+  - buyer: TCM.TO^J16
+    target: 33T.F^J10
+    aDate: 2010-07-15
+  #- buyer: NRGY_w.K^F13
+  #  target: NRGP.K^K10
+  #  aDate: 2010-08-09
+  - buyer: FNFG.O^H16
+    target: NAL^D11
+    aDate: 2010-08-19
+  - buyer: HPQ
+    target: PAR^I10
+    aDate: 2010-08-23
+  - buyer: MMM
+    target: COGT.O^L10
+    aDate: 2010-08-30
+  - buyer: EPD
+    target: EPE^K10
+    aDate: 2010-09-07
+  - buyer: BMY
+    target: ZGEN.O^J10
+    aDate: 2010-09-07
+  - buyer: HPQ
+    target: ARST.O^J10
+    aDate: 2010-09-13
+  #- buyer: DFS.MX
+  #  target: STU^A10
+  #  aDate: 2010-09-17
+  - buyer: PVR.N^C14
+    target: PVG^C11
+    aDate: 2010-09-21
+  - buyer: LUV
+    target: AAI^E11
+    aDate: 2010-09-27
+  #- buyer: ELNK.OQ^B17
+  #  target: ITCD.O^K02
+  #  aDate: 2010-10-01
+  #- buyer: MSCCn.BCU
+  #  target: ACTL.O^K10
+  #  aDate: 2010-10-04
+  - buyer: PFE
+    target: KG^C11
+    aDate: 2010-10-12
+  - buyer: OIS
+    target: MSL.AX^A11
+    aDate: 2010-10-14
+  - buyer: MTB
+    target: WL^E11
+    aDate: 2010-11-01
+  - buyer: CVX
+    target: ATLS.O^B11
+    aDate: 2010-11-09
+  - buyer: EMC^I16
+    target: ISLN.O^L10
+    aDate: 2010-11-15
+  - buyer: CAT
+    target: BUCY.O^G11
+    aDate: 2010-11-15
+  - buyer: ATI
+    target: LDSH.O^E11
+    aDate: 2010-11-17
+  - buyer: DELL.O^J13
+    target: CML^B11
+    aDate: 2010-12-13
+  - buyer: TMO
+    target: DNEX.O^E11
+    aDate: 2010-12-13
+  #- buyer: CMLS.PK
+  #  target: CDL_w^F07
+  #  aDate: 2010-12-17
+  - buyer: RTN^D20
+    target: APSG.O^B11
+    aDate: 2010-12-20
+  - buyer: CVS
+    target: UAM^D17
+    aDate: 2010-12-31
+  - buyer: DUK
+    target: PGN^G12
+    aDate: 2011-01-10
+  - buyer: CLF
+    target: CLMdbu.TO^E11
+    aDate: 2011-01-11
+  #- buyer: RKT^G15
+  #  target: SSCC.K^E11
+  #  aDate: 2011-01-23
+  #- buyer: AMB_pa^G03
+  #  target: PLD^F11
+  #  aDate: 2011-01-26
+  - buyer: NEM
+    target: FRG.TO^D11
+    aDate: 2011-02-03
+  - buyer: DHR
+    target: BEC.N^F11
+    aDate: 2011-02-07
+  - buyer: KND^G18
+    target: RHB^F11
+    aDate: 2011-02-08
+  - buyer: VTR
+    target: NHP^G11
+    aDate: 2011-02-28
+  #- buyer: KEX
+  #  target: KSP^G11
+  #  aDate: 2011-03-13
+  - buyer: BRKa
+    target: LZ^I11
+    aDate: 2011-03-14
+  - buyer: SCHW.K
+    target: OXPS.O^I11
+    aDate: 2011-03-21
+  - buyer: LVLT.K^K17
+    target: GLBC.OQ^J11
+    aDate: 2011-04-11
+  - buyer: JNJ
+    target: SYST.VX^F12
+    aDate: 2011-04-18
+  - buyer: AES
+    target: DPL^K11
+    aDate: 2011-04-20
+  - buyer: EXC.O
+    target: CEG^C12
+    aDate: 2011-04-28
+  - buyer: APO
+    target: CKXE.O^F11
+    aDate: 2011-05-10
+  - buyer: IP
+    target: TIN^B12
+    aDate: 2011-06-06
+  - buyer: HON.O
+    target: ELMG.O^H11
+    aDate: 2011-06-13
+  #- buyer: ATPdbe.TO^E21
+  #  target: CPA_u.TO^K11
+  #  aDate: 2011-06-20
+  #- buyer: NOV_w^F14
+  #  target: AMN^J11
+  #  aDate: 2011-07-05
+  #- buyer: MSCCn.BCU
+  #  target: ZLdb.TO^J11
+  #  aDate: 2011-07-20
+  - buyer: ECL
+    target: NLC^L11
+    aDate: 2011-07-20
+  - buyer: ESRX.O^L18
+    target: MHS^D12
+    aDate: 2011-07-21
+  - buyer: ACIW.O
+    target: SONE.O^B12
+    aDate: 2011-07-26
+  #- buyer: GOOG.O
+  #  target: MMI^E12
+  #  aDate: 2011-08-15
+  #- buyer: UTX_pa^H15
+  #  target: GR^G12
+  #  aDate: 2011-09-21
+  #- buyer: KMI
+  #  target: EP^E12
+  #  aDate: 2011-10-16
+  - buyer: Y^J22
+    target: TRH^C12
+    aDate: 2011-11-21
+  - buyer: SNPS.O
+    target: LAVA.O^B12
+    aDate: 2011-11-30
+  - buyer: LRCX.O
+    target: NVLS.O^F12
+    aDate: 2011-12-14
+  - buyer: URI
+    target: RRR^E12
+    aDate: 2011-12-16
+  #- buyer: BMY
+  #  target: INHX.O^B12
+  #  aDate: 2012-01-07
+  - buyer: EMN
+    target: SOA^G12
+    aDate: 2012-01-27
+  - buyer: ORCL.K
+    target: TLEO.O^D12
+    aDate: 2012-02-09
+  #- buyer: URS^J14
+  #  target: FES.TO^E12
+  #  aDate: 2012-02-20
+  - buyer: MCP.N^F15
+    target: NEMdbu.TO^F12
+    aDate: 2012-03-08
+  - buyer: HK.N^G19
+    target: GEOI.O^H12
+    aDate: 2012-04-25
+  - buyer: HOLX.O
+    target: GPRO.O^H12
+    aDate: 2012-04-30
+  - buyer: ETP^D17
+    target: SUN^J12
+    aDate: 2012-04-30
+  - buyer: MCHP.O
+    target: SMSC.O^H12
+    aDate: 2012-05-02
+  #- buyer: BBBYn.BCU
+  #  target: CPWM.O^G12
+  #  aDate: 2012-05-09
+  - buyer: VZ
+    target: HUTC.OB^G12
+    aDate: 2012-06-01
+  - buyer: BMY
+    target: AMLN.OQ^H12
+    aDate: 2012-06-29
+  - buyer: DELL.O^J13
+    target: QSFT.O^J12
+    aDate: 2012-07-02
+  - buyer: IM^L16
+    target: CELL.O^J12
+    aDate: 2012-07-02
+  - buyer: TRI.TO
+    target: FX.N^H12
+    aDate: 2012-07-09
+  #- buyer: NRG
+  #  target: GEN^L12
+  #  aDate: 2012-07-22
+  - buyer: GWR^L19
+    target: RA^J12
+    aDate: 2012-07-23
+  - buyer: CBI^E18
+    target: SHAW.K^B13
+    aDate: 2012-07-30
+  #- buyer: NOV_w^F14
+  #  target: RBN^B13
+  #  aDate: 2012-08-09
+  - buyer: VRNT.O
+    target: CMVT.O^B13
+    aDate: 2012-08-13
+  - buyer: AET^K18
+    target: CVH^E13
+    aDate: 2012-08-20
+  #- buyer: HCN_pb^G03
+  #  target: SRZ^A13
+  #  aDate: 2012-08-22
+  - buyer: IBM
+    target: KNXA.K^L12
+    aDate: 2012-08-27
+  - buyer: MTB
+    target: HCBK.O^K15
+    aDate: 2012-08-27
+  - buyer: O
+    target: ARCT.O^A13
+    aDate: 2012-09-06
+  - buyer: FMER.O^H16
+    target: CRBC.O^D13
+    aDate: 2012-09-13
+  - buyer: COLB.O
+    target: WCBO.O^D13
+    aDate: 2012-09-26
+  - buyer: MMM
+    target: CRDN.O^K12
+    aDate: 2012-10-01
+  - buyer: MCK
+    target: PSSI.O^B13
+    aDate: 2012-10-25
+  #- buyer: RVBD.O^D15
+  #  target: OPNT.O^L12
+  #  aDate: 2012-10-29
+  - buyer: PVH
+    target: WRC^B13
+    aDate: 2012-10-31
+  - buyer: HUM
+    target: MDF^L12
+    aDate: 2012-11-05
+  - buyer: SF
+    target: KBW^B13
+    aDate: 2012-11-05
+  #- buyer: PCLNL.PK^B11
+  #  target: KYAK.O^E13
+  #  aDate: 2012-11-08
+  - buyer: SBUX.O
+    target: TEA^A13
+    aDate: 2012-11-14
+  - buyer: CAG
+    target: RAH^A13
+    aDate: 2012-11-27
+  - buyer: FCX
+    target: PXP^E13
+    aDate: 2012-12-05
+  #- buyer: HON.O
+  #  target: IN^I13
+  #  aDate: 2012-12-09
+  - buyer: MKL
+    target: ALTE.O^E13
+    aDate: 2012-12-19
+  - buyer: ORCL.K
+    target: ELOQ.O^B13
+    aDate: 2012-12-20
+  - buyer: CAR.O
+    target: ZIP.O^C13
+    aDate: 2013-01-02
+  #- buyer: SYK
+  #  target: 0325.HK^G13
+  #  aDate: 2013-01-17
+  - buyer: AGN^C15
+    target: MAPP.O^C13
+    aDate: 2013-01-22
+  - buyer: KMP^K14
+    target: CPNO.O^E13
+    aDate: 2013-01-29
+  - buyer: ORCL.K
+    target: APKT.O^D13
+    aDate: 2013-02-04
+  - buyer: RS
+    target: MUSA.K^D13
+    aDate: 2013-02-06
+  - buyer: TSS^I19
+    target: NTSP.O^G13
+    aDate: 2013-02-19
+  - buyer: HL
+    target: ARZ.TO^F13
+    aDate: 2013-03-04
+  - buyer: GE
+    target: LUFK.O^G13
+    aDate: 2013-04-08
+  - buyer: TMO
+    target: LIFE.O^B14
+    aDate: 2013-04-15
+  - buyer: SCI
+    target: STEI.O^L13
+    aDate: 2013-05-29
+  - buyer: MAA
+    target: CLP^J13
+    aDate: 2013-06-03
+  - buyer: CRM
+    target: ET^G13
+    aDate: 2013-06-04
+  #- buyer: MEG^A17
+  #  target: NYBH.PQ^I13
+  #  aDate: 2013-06-06
+  - buyer: THC
+    target: VHS^J13
+    aDate: 2013-06-24
+  #- buyer: AMGN.O
+  #  target: ONXX.O^J13
+  #  aDate: 2013-06-30
+  - buyer: KR
+    target: HTSI.K^A14
+    aDate: 2013-07-09
+  - buyer: T
+    target: LEAP.O^C14
+    aDate: 2013-07-12
+  - buyer: MBFI.O^C19
+    target: TAYC.O^H14
+    aDate: 2013-07-15
+  - buyer: BYI^K14
+    target: SHFL.O^K13
+    aDate: 2013-07-16
+  - buyer: CSCO.O
+    target: FIRE.O^J13
+    aDate: 2013-07-23
+  - buyer: HBI
+    target: MFB^J13
+    aDate: 2013-07-24
+  - buyer: CBST.O^A15
+    target: OPTR.O^J13
+    aDate: 2013-07-30
+  - buyer: CYH
+    target: HMA^A14
+    aDate: 2013-07-30
+  - buyer: CBST.O^A15
+    target: TSRX.O^I13
+    aDate: 2013-07-30
+  #- buyer: MXIMvi.TPRM
+  #  target: VLTR.O^J13
+  #  aDate: 2013-08-15
+  #- buyer: AKRXn.BCU
+  #  target: HITK.O^D14
+  #  aDate: 2013-08-27
+  - buyer: PKY.N^J16
+    target: TPGI.K^L13
+    aDate: 2013-09-05
+  - buyer: PKG
+    target: BZ^J13
+    aDate: 2013-09-16
+  - buyer: SYK
+    target: MAKO.O^L13
+    aDate: 2013-09-25
+  - buyer: RGP^D15
+    target: PVR^C14
+    aDate: 2013-10-10
+  - buyer: SLXP.O^D15
+    target: SNTS.O^A14
+    aDate: 2013-11-07
+  - buyer: MW^B16
+    target: JOSB.O^F14
+    aDate: 2013-11-26
+  - buyer: ESS
+    target: BRE^D14
+    aDate: 2013-12-09
+  - buyer: ORCL.K
+    target: MKTG.O^B14
+    aDate: 2013-12-20
+  #- buyer: CVG^J18
+  #  target: SGS^D12
+  #  aDate: 2014-01-06
+  #- buyer: APO
+  #  target: CEC^B14
+  #  aDate: 2014-01-16
+  - buyer: MLM
+    target: TXI^G14
+    aDate: 2014-01-28
+  - buyer: ENTG.O
+    target: ATMI.O^E14
+    aDate: 2014-02-04
+  - buyer: MTX
+    target: ACO^E14
+    aDate: 2014-02-14
+  - buyer: BKD
+    target: ESC^G14
+    aDate: 2014-02-20
+  - buyer: RFMD.O^A15
+    target: TQNT.O^A15
+    aDate: 2014-02-24
+  - buyer: MATW.O
+    target: SGK^G14
+    aDate: 2014-03-17
+  - buyer: FRX^G14
+    target: FURX.O^G14
+    aDate: 2014-04-28
+  - buyer: ETP^D17
+    target: SUSS.K^H14
+    aDate: 2014-04-28
+  #- buyer: ATKIL.PK^C11
+  #  target: ORB^B15
+  #  aDate: 2014-04-29
+  - buyer: EXC.O
+    target: POM^C16
+    aDate: 2014-04-30
+  - buyer: KND^G18
+    target: GTIV.O^B15
+    aDate: 2014-05-15
+  #- buyer: T
+  #  target: DTV.O^G15
+  #  aDate: 2014-05-18
+  - buyer: TSN
+    target: HSH^H14
+    aDate: 2014-05-29
+  - buyer: VTR
+    target: HCT.O^A15
+    aDate: 2014-06-02
+  - buyer: ADI.O
+    target: HITT.O^G14
+    aDate: 2014-06-09
+  - buyer: MRK
+    target: IDIX.O^H14
+    aDate: 2014-06-09
+  #- buyer: PCLNL.PK^B11
+  #  target: OPEN.O^G14
+  #  aDate: 2014-06-13
+  - buyer: LVLT.K^K17
+    target: TWTC.O^K14
+    aDate: 2014-06-16
+  #- buyer: SNDK.O
+  #  target: FIO^G14
+  #  aDate: 2014-06-16
+  - buyer: ORCL.K
+    target: MCRS.O^I14
+    aDate: 2014-06-23
+  - buyer: RAI^G17
+    target: LO^F15
+    aDate: 2014-07-11
+  #- buyer: ACM
+  #  target: URS^J14
+  #  aDate: 2014-07-13
+  #- buyer: WLL^G22
+  #  target: KOG^L14
+  #  aDate: 2014-07-13
+  - buyer: ALB
+    target: ROC^A15
+    aDate: 2014-07-15
+  - buyer: DLTR.O
+    target: FDO^G15
+    aDate: 2014-07-28
+  #- buyer: KMI
+  #  target: KMR^K14
+  #  aDate: 2014-08-10
+  - buyer: GIS
+    target: BNNY.K^J14
+    aDate: 2014-09-08
+  - buyer: EMN
+    target: TAM^L14
+    aDate: 2014-09-11
+  #- buyer: BDX
+  #  target: CFN^C15
+  #  aDate: 2014-10-05
+  - buyer: STE^K15
+    target: SYR.L^K15
+    aDate: 2014-10-13
+  - buyer: NGLS.K^B16
+    target: APL^C15
+    aDate: 2014-10-13
+  - buyer: TRGP.K
+    target: ATLS.K^B15
+    aDate: 2014-10-13
+  - buyer: ORA
+    target: ORMT.TA^B15
+    aDate: 2014-10-29
+  - buyer: OHI
+    target: AVIV.K^D15
+    aDate: 2014-10-31
+  #- buyer: LH_w^G23
+  #  target: CVD^B15
+  #  aDate: 2014-11-03
+  - buyer: BBT_pe^I19
+    target: SUSQ.O^H15
+    aDate: 2014-11-12
+  - buyer: BMRN.O
+    target: RNA.O^B15
+    aDate: 2014-11-24
+  #- buyer: CYn.BCU
+  #  target: CODE.K^C15
+  #  aDate: 2014-12-01
+  - buyer: MRK
+    target: CBST.O^A15
+    aDate: 2014-12-08
+  #- buyer: CZRn.BCU
+  #  target: CACQ.O^J17
+  #  aDate: 2014-12-22
+  - buyer: MWV^G15
+    target: RKT^G15
+    aDate: 2015-01-26
+  - buyer: ETP^D17
+    target: RGP^D15
+    aDate: 2015-01-26
+  - buyer: LSCC.O
+    target: SIMG.O^C15
+    aDate: 2015-01-27
+  - buyer: SSNC.O
+    target: ADVS.O^G15
+    aDate: 2015-02-02
+  - buyer: PFE
+    target: HSP^I15
+    aDate: 2015-02-05
+  - buyer: EXPE.O
+    target: OWW^I15
+    aDate: 2015-02-12
+  - buyer: CYBX.O^J15
+    target: SORN.MI^J15
+    aDate: 2015-02-26
+  - buyer: HPQ
+    target: ARUN.O^E15
+    aDate: 2015-03-02
+  - buyer: ABBV.K
+    target: PCYC.O^E15
+    aDate: 2015-03-04
+  #- buyer: LXK^K16
+  #  target: KFX.L^C15
+  #  aDate: 2015-03-24
+  - buyer: UNH
+    target: CTRX.O^G15
+    aDate: 2015-03-30
+  - buyer: EQIX.O
+    target: TCY.L^A16
+    aDate: 2015-05-07
+  - buyer: MCHP.O
+    target: MCRL.O^H15
+    aDate: 2015-05-07
+  - buyer: NBL.O^J20
+    target: ROSE.O^G15
+    aDate: 2015-05-11
+  - buyer: VZ
+    target: AOL^F15
+    aDate: 2015-05-12
+  - buyer: DHR
+    target: PLL^H15
+    aDate: 2015-05-13
+  - buyer: CVS
+    target: OCR^H15
+    aDate: 2015-05-21
+  #- buyer: CHTRq.L^K07
+  #  target: TWC^E16
+  #  aDate: 2015-05-26
+  - buyer: CA.O^K18
+    target: RALY.K^G15
+    aDate: 2015-05-27
+  - buyer: INTC.O
+    target: ALTR.O^L15
+    aDate: 2015-06-01
+  - buyer: APO
+    target: OMG^J15
+    aDate: 2015-06-01
+  - buyer: OPK.O
+    target: BRLI.O^H15
+    aDate: 2015-06-04
+  #- buyer: SPF_r.N^H08
+  #  target: RYL^J15
+  #  aDate: 2015-06-14
+  - buyer: CNC
+    target: HNT^C16
+    aDate: 2015-07-02
+  - buyer: MPLX.K
+    target: MWE^L15
+    aDate: 2015-07-13
+  #- buyer: BWA
+  #  target: RMYIP.PK^B11
+  #  aDate: 2015-07-13
+  - buyer: CELG.OQ^K19
+    target: RCPT.O^H15
+    aDate: 2015-07-14
+  - buyer: STJ^A17
+    target: THOR.O^J15
+    aDate: 2015-07-22
+  - buyer: TMH^B17
+    target: IPCM.O^K15
+    aDate: 2015-08-04
+  - buyer: IBM
+    target: MRGE.O^J15
+    aDate: 2015-08-06
+  - buyer: UAN
+    target: RNF^D16
+    aDate: 2015-08-10
+  - buyer: ENV^K24
+    target: YDLE.O^K15
+    aDate: 2015-08-10
+  - buyer: SHEN.O
+    target: NTLS.O^E16
+    aDate: 2015-08-10
+  - buyer: LVNTA.O^C18
+    target: ZU.O^J15
+    aDate: 2015-08-17
+  - buyer: BBT_pe^I19
+    target: NPBC.O^D16
+    aDate: 2015-08-17
+  - buyer: SLB
+    target: CAM^D16
+    aDate: 2015-08-26
+  - buyer: XPO
+    target: CNW^J15
+    aDate: 2015-09-09
+  - buyer: EFX
+    target: VED.AX^B16
+    aDate: 2015-09-18
+  #- buyer: NXST.O
+  #  target: MEGAB.PK^H09
+  #  aDate: 2015-09-28
+  - buyer: SCOR.O
+    target: RENT.O^B16
+    aDate: 2015-09-29
+  #- buyer: MSCCn.BCU
+  #  target: PMCS.O^A16
+  #  aDate: 2015-10-19
+  #- buyer: WDC.O
+  #  target: SNDK.O
+  #  aDate: 2015-10-21
+  - buyer: DUK
+    target: PNY^J16
+    aDate: 2015-10-26
+  - buyer: LNCE.O^C18
+    target: DMND.O^C16
+    aDate: 2015-10-28
+  - buyer: KEY
+    target: FNFG.O^H16
+    aDate: 2015-10-30
+  - buyer: EXPE.O
+    target: AWAY.O^L15
+    aDate: 2015-11-04
+  #- buyer: WY
+  #  target: PCL^B16
+  #  aDate: 2015-11-08
+  - buyer: MAR.O
+    target: HOT^I16
+    aDate: 2015-11-16
+  - buyer: ON.O
+    target: FCS.O^I16
+    aDate: 2015-11-18
+  - buyer: PF^J18
+    target: BDBD.O^A16
+    aDate: 2015-11-24
+  - buyer: AMH
+    target: ARPI.K^C16
+    aDate: 2015-12-03
+  - buyer: NWL.O
+    target: JAH^D16
+    aDate: 2015-12-14
+  - buyer: GPN
+    target: HPY^D16
+    aDate: 2015-12-15
+  - buyer: TMO
+    target: AFFX.O^D16
+    aDate: 2016-01-08
+  #- buyer: MCHP.O
+  #  target: ATMLn.BCU
+  #  aDate: 2016-01-13
+  - buyer: HBAN.O
+    target: FMER.O^H16
+    aDate: 2016-01-26
+  - buyer: WLK
+    target: AXLL.K^H16
+    aDate: 2016-01-29
+  #- buyer: D
+  #  target: STR_w^G10
+  #  aDate: 2016-02-01
+  - buyer: ABT
+    target: ALR^J17
+    aDate: 2016-02-01
+  - buyer: LOW
+    target: RON.TO^E16
+    aDate: 2016-02-03
+  - buyer: APO
+    target: ADT^E16
+    aDate: 2016-02-16
+  - buyer: MKSI.O
+    target: NEWP.O^E16
+    aDate: 2016-02-23
+  - buyer: AMC
+    target: CKEC.O^L16
+    aDate: 2016-03-03
+  - buyer: APO
+    target: TFM.O^D16
+    aDate: 2016-03-14
+  #- buyer: SHW
+  #  target: VAL^F17
+  #  aDate: 2016-03-20
+  - buyer: ALK
+    target: VA.O^L16
+    aDate: 2016-04-04
+  - buyer: BRCD.O^K17
+    target: RKUS.K^E16
+    aDate: 2016-04-04
+  - buyer: NLY
+    target: HTS^G16
+    aDate: 2016-04-11
+  - buyer: ABT
+    target: STJ^A17
+    aDate: 2016-04-28
+  - buyer: ORCL.K
+    target: TXTR.K^F16
+    aDate: 2016-04-28
+  - buyer: CUZ
+    target: PKY.N^J16
+    aDate: 2016-04-29
+  - buyer: ORCL.K
+    target: OPWR.K^F16
+    aDate: 2016-05-02
+  - buyer: CLNY.K^A17
+    target: NRF^A17
+    aDate: 2016-05-06
+  - buyer: CLNY.K^A17
+    target: CLNY.K^A17
+    aDate: 2016-05-06
+  - buyer: PFE
+    target: ANAC.O^F16
+    aDate: 2016-05-16
+  - buyer: ARCC.O
+    target: ACAS.O^A17
+    aDate: 2016-05-23
+  - buyer: TMO
+    target: FEIC.O^I16
+    aDate: 2016-05-27
+  #- buyer: WRS^E12
+  #  target: GXP.N^F18
+  #  aDate: 2016-05-31
+  - buyer: CRM
+    target: DWRE.K^G16
+    aDate: 2016-06-01
+  - buyer: ZBH
+    target: LDRH.O^G16
+    aDate: 2016-06-07
+  - buyer: MSFT.O
+    target: LNKD.K^L16
+    aDate: 2016-06-13
+  - buyer: AMSG.O^L16
+    target: EVHC.K^L16
+    aDate: 2016-06-15
+  #- buyer: CAVMn.BCU
+  #  target: QLGC.O^H16
+  #  aDate: 2016-06-15
+  - buyer: TSLA.O
+    target: SCTY.O^K16
+    aDate: 2016-06-21
+  - buyer: APO
+    target: DRII.K^I16
+    aDate: 2016-06-29
+  - buyer: XOM
+    target: IOC^B17
+    aDate: 2016-07-18
+  - buyer: APO
+    target: OUTR.O^I16
+    aDate: 2016-07-25
+  - buyer: ADI.O
+    target: LLTC.O^C17
+    aDate: 2016-07-26
+  - buyer: ORCL.K
+    target: N^K16
+    aDate: 2016-07-28
+  - buyer: MTN
+    target: WB.TO^J16
+    aDate: 2016-08-08
+  - buyer: MAA
+    target: PPS^L16
+    aDate: 2016-08-15
+  - buyer: CTAS.O
+    target: GK.O^C17
+    aDate: 2016-08-16
+  - buyer: UBSI.O
+    target: CFNL.O^D17
+    aDate: 2016-08-18
+  - buyer: PFE
+    target: MDVN.O^I16
+    aDate: 2016-08-22
+  - buyer: DHR
+    target: CPHD.O^K16
+    aDate: 2016-09-06
+  - buyer: LEN
+    target: WCIC.K^B17
+    aDate: 2016-09-22
+  #- buyer: T
+  #  target: TWX^F18
+  #  aDate: 2016-10-22
+  #- buyer: BX_w^J15
+  #  target: TMH^B17
+  #  aDate: 2016-10-31
+  - buyer: AXL
+    target: MPG^D17
+    aDate: 2016-11-03
+  - buyer: ADBE.O
+    target: TUBE.O^L16
+    aDate: 2016-11-10
+  - buyer: REG.O
+    target: EQY.N^C17
+    aDate: 2016-11-14
+  - buyer: WCG^A20
+    target: UAM^D17
+    aDate: 2016-11-17
+  #- buyer: TSO_pa^F01
+  #  target: WNR.N^F17
+  #  aDate: 2016-11-17
+  - buyer: FIBK.O
+    target: CACB.O^E17
+    aDate: 2016-11-17
+  - buyer: MTSI.O
+    target: AMCC.O^A17
+    aDate: 2016-11-21
+  - buyer: PH
+    target: CLC^B17
+    aDate: 2016-12-01
+  - buyer: TFX
+    target: VASC.O^B17
+    aDate: 2016-12-02
+  - buyer: SNCR.O
+    target: IL^A17
+    aDate: 2016-12-06
+  - buyer: SFNC.O
+    target: OKSB.O^J17
+    aDate: 2016-12-14
+  - buyer: IT
+    target: CEB^D17
+    aDate: 2017-01-05
+  - buyer: COLB.O
+    target: PCBK.O^K17
+    aDate: 2017-01-09
+  #- buyer: NBL.O^J20
+  #  target: CWEI.K^D17
+  #  aDate: 2017-01-16
+  - buyer: LLY
+    target: CLCD.O^C17
+    aDate: 2017-01-18
+  #- buyer: PNFP.O
+  #  target: BNCN.O^F17
+  #  aDate: 2017-01-22
+  - buyer: KEYS.K
+    target: XXIA.O^D17
+    aDate: 2017-01-30
+  - buyer: VECO.O
+    target: UTEK.O^E17
+    aDate: 2017-02-02
+  - buyer: HOLX.O
+    target: CYNO.O^C17
+    aDate: 2017-02-14
+  - buyer: HPE
+    target: NMBL.K^D17
+    aDate: 2017-03-07
+  - buyer: VIRT.K
+    target: KCG^G17
+    aDate: 2017-03-15
+  - buyer: HOMB.K
+    target: SGBK.O^I17
+    aDate: 2017-03-27
+  - buyer: TSN
+    target: APFH.K^F17
+    aDate: 2017-04-25
+  - buyer: VZ
+    target: STRP.K^B18
+    aDate: 2017-04-25
+  - buyer: SSB
+    target: PSTB.O^L17
+    aDate: 2017-04-27
+  - buyer: FHN
+    target: CBF.O^L17
+    aDate: 2017-05-04
+  #- buyer: APO
+  #  target: WSTC.O^J17
+  #  aDate: 2017-05-09
+  - buyer: DLR
+    target: DFT^I17
+    aDate: 2017-06-09
+  - buyer: AMZN.O
+    target: WFM.O^H17
+    aDate: 2017-06-16
+  - buyer: EQT
+    target: RICE.K^K17
+    aDate: 2017-06-19
+  #- buyer: APO
+  #  target: MYCC.K^I17
+  #  aDate: 2017-07-09
+  - buyer: FFBC.O
+    target: MSFG.O^D18
+    aDate: 2017-07-25
+  - buyer: URI
+    target: NEFF.K^J17
+    aDate: 2017-08-14
+  - buyer: LFUS.O
+    target: IXYS.O^A18
+    aDate: 2017-08-28
+  - buyer: GILD.O
+    target: KITE.O^J17
+    aDate: 2017-08-28
+  #- buyer: UTX_pa^H15
+  #  target: COL^K18
+  #  aDate: 2017-09-04
+  - buyer: FTV
+    target: LDR^J17
+    aDate: 2017-09-06
+  - buyer: NOC
+    target: OA^F18
+    aDate: 2017-09-18
+  - buyer: ITRI.O
+    target: SSNI.K^A18
+    aDate: 2017-09-18
+  - buyer: POST.K
+    target: BOBE.O^A18
+    aDate: 2017-09-19
+  - buyer: CSCO.O
+    target: BSFT.O^B18
+    aDate: 2017-10-23
+  - buyer: VST
+    target: DYN^D18
+    aDate: 2017-10-30
+  #- buyer: CVS
+  #  target: AET^K18
+  #  aDate: 2017-12-03
+  - buyer: SYK
+    target: ENTL.O^C18
+    aDate: 2017-12-07
+  - buyer: CPB.O
+    target: LNCE.O^C18
+    aDate: 2017-12-18
+  - buyer: HSY
+    target: BETR.K^A18
+    aDate: 2017-12-18
+  - buyer: D
+    target: SCG^A19
+    aDate: 2018-01-03
+  - buyer: SSNC.O
+    target: DST^D18
+    aDate: 2018-01-11
+  #- buyer: WYND_w.K^F18
+  #  target: LQ^E18
+  #  aDate: 2018-01-18
+  - buyer: AIG
+    target: VR_pb^J18
+    aDate: 2018-01-22
+  - buyer: NS^E24
+    target: NSH^G18
+    aDate: 2018-02-08
+  - buyer: GD
+    target: CSRA.K^D18
+    aDate: 2018-02-09
+  - buyer: PPBI.O
+    target: GPNC.PK^G18
+    aDate: 2018-02-12
+  - buyer: KMPR.K
+    target: IPCC.O^G18
+    aDate: 2018-02-13
+  - buyer: GIS
+    target: BUFF.O^D18
+    aDate: 2018-02-23
+  #- buyer: MCHP.O
+  #  target: MSCCn.BCU
+  #  aDate: 2018-03-01
+  - buyer: CRM
+    target: MULE.K^E18
+    aDate: 2018-03-20
+  - buyer: PEB
+    target: LHO^L18
+    aDate: 2018-03-28
+  - buyer: CNP
+    target: VVC^B19
+    aDate: 2018-04-23
+  - buyer: EQM^F20
+    target: RMP^G18
+    aDate: 2018-04-26
+  - buyer: TWO
+    target: CYS^H18
+    aDate: 2018-04-26
+  #- buyer: PLD
+  #  target: DCT^H18
+  #  aDate: 2018-04-29
+  - buyer: VAC
+    target: ILG.O^I18
+    aDate: 2018-04-30
+  - buyer: MPC
+    target: ANDV.K^J18
+    aDate: 2018-04-30
+  #- buyer: LLY
+  #  target: ARMOn.BCU
+  #  aDate: 2018-05-10
+  #- buyer: CADE.K^J21
+  #  target: STBZ.O^A19
+  #  aDate: 2018-05-13
+  - buyer: FITB.O
+    target: MBFI.O^C19
+    aDate: 2018-05-21
+  - buyer: BOKF.O
+    target: COBZ.O^J18
+    aDate: 2018-06-18
+  - buyer: CAG
+    target: PF^J18
+    aDate: 2018-06-27
+  - buyer: SNX
+    target: CVG^J18
+    aDate: 2018-06-28
+  - buyer: AKBA.O
+    target: KERX.O^L18
+    aDate: 2018-06-28
+  - buyer: AVGO.O
+    target: CA.O^K18
+    aDate: 2018-07-11
+  - buyer: SNV
+    target: FCB^A19
+    aDate: 2018-07-24
+  - buyer: UNFI.K
+    target: SVU^J18
+    aDate: 2018-07-26
+  - buyer: FANG.O
+    target: EGN^K18
+    aDate: 2018-08-14
+  - buyer: HIG
+    target: NAVG.O^E19
+    aDate: 2018-08-22
+  #- buyer: SYK
+  #  target: KTWOn.BCU
+  #  aDate: 2018-08-30
+  - buyer: INDB.O
+    target: BHBK.O^D19
+    aDate: 2018-09-20
+  #- buyer: CLDR.K^J21
+  #  target: HDPn.BCU
+  #  aDate: 2018-10-03
+  - buyer: TDG
+    target: ESL^C19
+    aDate: 2018-10-10
+  - buyer: TWLO.K
+    target: SEND.K^B19
+    aDate: 2018-10-15
+  #- buyer: IBM
+  #  target: RHT^G19
+  #  aDate: 2018-10-28
+  - buyer: MKSI.O
+    target: ESIO.O^B19
+    aDate: 2018-10-30
+  - buyer: VIRT.K
+    target: ITG^C19
+    aDate: 2018-11-07
+  - buyer: XEC^J21
+    target: REN^C19
+    aDate: 2018-11-19
+  - buyer: CSFL.O^F20
+    target: NCOM.O^D19
+    aDate: 2018-11-26
+  - buyer: ABCB.K
+    target: LION.O^G19
+    aDate: 2018-12-17
+  - buyer: BMY
+    target: CELG.OQ^K19
+    aDate: 2019-01-03
+  - buyer: LLY
+    target: LOXO.O^B19
+    aDate: 2019-01-07
+  #- buyer: NEM
+  #  target: GGn.BCU
+  #  aDate: 2019-01-14
+  - buyer: FI
+    target: FDC^G19
+    aDate: 2019-01-16
+  - buyer: EXPE.O
+    target: LEXEA.O^G19
+    aDate: 2019-02-04
+  - buyer: MS
+    target: SUM.TO^E19
+    aDate: 2019-02-11
+  - buyer: FIS
+    target: WP^G19
+    aDate: 2019-03-18
+  - buyer: JLL
+    target: HF^G19
+    aDate: 2019-03-19
+  - buyer: CUZ
+    target: TIER.K^F19
+    aDate: 2019-03-25
+  - buyer: CNC
+    target: WCG^A20
+    aDate: 2019-03-27
+  - buyer: OXY
+    target: APC^H19
+    aDate: 2019-04-24
+  - buyer: HQY.O
+    target: WAGE.K^H19
+    aDate: 2019-04-30
+  - buyer: PK
+    target: CHSP.K^I19
+    aDate: 2019-05-06
+  - buyer: MPLX.K
+    target: ANDX.K^G19
+    aDate: 2019-05-08
+  - buyer: HPE
+    target: CRAY.O^I19
+    aDate: 2019-05-17
+  - buyer: GPN
+    target: TSS^I19
+    aDate: 2019-05-28
+  #- buyer: UTX_pa^H15
+  #  target: RTN^D20
+  #  aDate: 2019-06-09
+  - buyer: CRM
+    target: DATA.K^H19
+    aDate: 2019-06-10
+  - buyer: PFE
+    target: ARRY.O^G19
+    aDate: 2019-06-17
+  - buyer: CSCO.O
+    target: ACIA.O^C21
+    aDate: 2019-07-09
+  - buyer: HI
+    target: MCRN.K^K19
+    aDate: 2019-07-12
+  #- buyer: CPE.MX
+  #  target: CRZOn.BCU
+  #  aDate: 2019-07-15
+  #- buyer: PLD
+  #  target: IDDP.PK^K19
+  #  aDate: 2019-07-15
+  - buyer: WSBC.O
+    target: OLBK.O^K19
+    aDate: 2019-07-23
+  - buyer: EXAS.O
+    target: GHDX.O^K19
+    aDate: 2019-07-29
+  - buyer: GKOS.K
+    target: AVDR.O^K19
+    aDate: 2019-08-07
+  - buyer: HAS.O
+    target: ETO.L^L19
+    aDate: 2019-08-22
+  #- buyer: VMW.MX
+  #  target: CBLK.O^J19
+  #  aDate: 2019-08-22
+  - buyer: PE^A21
+    target: JAG^A20
+    aDate: 2019-10-14
+  #- buyer: PLD
+  #  target: LPT.N^B20
+  #  aDate: 2019-10-27
+  - buyer: FHN
+    target: IBKC.O^G20
+    aDate: 2019-11-04
+  - buyer: TMHC.K
+    target: WLH^B20
+    aDate: 2019-11-06
+  - buyer: SCHW.K
+    target: AMTD.O^J20
+    aDate: 2019-11-25
+  - buyer: CLF
+    target: AKS^C20
+    aDate: 2019-12-03
+  - buyer: LLY
+    target: DERM.O^B20
+    aDate: 2020-01-10
+  - buyer: SSB
+    target: CSFL.O^F20
+    aDate: 2020-01-27
+  - buyer: PPBI.O
+    target: OPB.O^F20
+    aDate: 2020-02-03
+  - buyer: MS
+    target: ETFC.O^J20
+    aDate: 2020-02-20
+  - buyer: GILD.O
+    target: FTSV.O^D20
+    aDate: 2020-03-02
+  - buyer: RUN.O
+    target: VSLR.K^J20
+    aDate: 2020-07-06
+  - buyer: ALL
+    target: NGHC.O^A21
+    aDate: 2020-07-07
+  #- buyer: ADI.O
+  #  target: MXIMvi.TPRM
+  #  aDate: 2020-07-13
+  - buyer: CVX
+    target: NBL.O^J20
+    aDate: 2020-07-20
+  #- buyer: TDOC.K
+  #  target: LVGO.MX
+  #  aDate: 2020-08-05
+  - buyer: LGND.O
+    target: PFNX.K^J20
+    aDate: 2020-08-10
+  - buyer: JNJ
+    target: MNTA.O^J20
+    aDate: 2020-08-19
+  #- buyer: BLDR.K
+  #  target: BMCHn.BCU
+  #  aDate: 2020-08-27
+  #- buyer: GILD.O
+  #  target: IMMUn.BCU
+  #  aDate: 2020-09-13
+  - buyer: DVN
+    target: WPX^A21
+    aDate: 2020-09-28
+  #- buyer: BMY
+  #  target: MYOKn.BCU
+  #  aDate: 2020-10-05
+  #- buyer: MS
+  #  target: EVCNf.TPRM
+  #  aDate: 2020-10-08
+  #- buyer: APO.MX^D22
+  #  target: GCdb.TO^I21
+  #  aDate: 2020-11-10
+  - buyer: HD
+    target: HDS.O^L20
+    aDate: 2020-11-16
+  - buyer: APH
+    target: MTSC.O^D21
+    aDate: 2020-12-09
+  - buyer: FANG.O
+    target: QEP^C21
+    aDate: 2020-12-21

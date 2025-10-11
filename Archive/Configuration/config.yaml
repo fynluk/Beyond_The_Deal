@@ -1,0 +1,14 @@
+refinitiv:
+  APP-ID: 3e6dfe7ed06541ffbb5fac39307094ef734329ce
+  USER: fynn.spaeker.2022@student.ism.de
+  PASSWORD: Fynn:2303
+sql_old:
+  HOST: hthw.your-database.de
+  USER: fynluk00
+  PASSWORD: YV6UFZ59Sj8VdGy1
+  DATABASE: beyondthedeal
+sql:
+  HOST: iqww.your-database.de
+  USER: fynluk00
+  PASSWORD: AydM678QSd9nwgAD
+  DATABASE: thesis_test

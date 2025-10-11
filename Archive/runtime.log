@@ -1,0 +1,65 @@
+2025-10-01 19:21:55,508 INFO Open Refinitiv Session
+2025-10-01 19:21:55,753 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2025-10-01 19:21:55,756 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2025-10-01 19:21:55,756 INFO Get Tickers
+2025-10-01 19:21:57,390 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-10-01 19:21:57,403 INFO Loading historical prices from ../Data/historical_prices.pkl
+2025-10-01 19:21:57,449 INFO Loading ESG scores from ../Data/esg_scores.pkl
+2025-10-01 19:21:57,450 INFO Clean up Data
+2025-10-01 19:21:57,706 INFO Remove 13 corrupt tickers: ['COIN.OQ', 'NVDA.OQ', 'SMCI.OQ', 'VST.N', 'GEV.N', 'VLTO.N', 'KVUE.N', 'SOLV.N', 'EXPD.N', 'SW.N', 'HOOD.OQ', 'AVY.N', 'APP.OQ']
+2025-10-01 19:21:57,707 INFO Get Efficient Frontier for several ESG-Borders
+2025-10-01 19:21:57,707 INFO Adjust Data for ESG-Border: 100
+2025-10-01 19:21:57,708 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 19:21:57,709 INFO Adjust Data for ESG-Border: 95
+2025-10-01 19:21:57,710 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 19:21:57,711 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 19:21:57,711 INFO Calculate Co-Variance and get annual returns for ESG-Border: 95
+2025-10-01 19:21:57,712 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 19:21:57,712 INFO Calculate Co-Variance and get annual returns for ESG-Border: 100
+2025-10-01 19:21:57,712 INFO Adjust Data for ESG-Border: 90
+2025-10-01 19:21:57,714 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 19:21:57,715 INFO Adjust Data for ESG-Border: 85
+2025-10-01 19:21:57,717 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 19:21:57,718 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 19:21:57,719 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 19:21:57,719 INFO Calculate Co-Variance and get annual returns for ESG-Border: 85
+2025-10-01 19:21:57,720 INFO Calculate Co-Variance and get annual returns for ESG-Border: 90
+2025-10-01 19:21:59,580 INFO Calculate Markowitz Frontier for ESG-Border: 95
+2025-10-01 19:22:00,017 INFO Calculate Markowitz Frontier for ESG-Border: 90
+2025-10-01 19:22:00,094 INFO Calculate Markowitz Frontier for ESG-Border: 85
+2025-10-01 19:22:00,390 INFO Calculate Markowitz Frontier for ESG-Border: 100
+2025-10-01 20:04:48,220 INFO Adjust Data for ESG-Border: 80
+2025-10-01 20:04:48,235 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 20:04:48,302 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 20:04:48,303 INFO Calculate Co-Variance and get annual returns for ESG-Border: 80
+2025-10-01 20:05:00,513 INFO Calculate Markowitz Frontier for ESG-Border: 80
+2025-10-01 20:06:08,816 INFO Adjust Data for ESG-Border: 75
+2025-10-01 20:06:08,846 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 20:06:08,863 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 20:06:08,864 INFO Calculate Co-Variance and get annual returns for ESG-Border: 75
+2025-10-01 20:06:19,673 INFO Adjust Data for ESG-Border: 70
+2025-10-01 20:06:19,678 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 20:06:19,687 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 20:06:19,687 INFO Calculate Co-Variance and get annual returns for ESG-Border: 70
+2025-10-01 20:06:19,705 INFO Calculate Markowitz Frontier for ESG-Border: 75
+2025-10-01 20:06:21,405 INFO Adjust Data for ESG-Border: 65
+2025-10-01 20:06:21,419 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 20:06:21,423 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 20:06:21,426 INFO Calculate Co-Variance and get annual returns for ESG-Border: 65
+2025-10-01 20:06:25,631 INFO Calculate Markowitz Frontier for ESG-Border: 65
+2025-10-01 20:06:26,947 INFO Calculate Markowitz Frontier for ESG-Border: 70
+2025-10-01 20:14:07,029 INFO Adjust Data for ESG-Border: 60
+2025-10-01 20:14:07,046 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 20:14:07,050 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 20:14:07,060 INFO Calculate Co-Variance and get annual returns for ESG-Border: 60
+2025-10-01 20:14:09,964 INFO Calculate Markowitz Frontier for ESG-Border: 60
+2025-10-01 20:17:23,632 INFO Adjust Data for ESG-Border: 55
+2025-10-01 20:17:23,673 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 20:17:23,675 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 20:17:23,675 INFO Calculate Co-Variance and get annual returns for ESG-Border: 55
+2025-10-01 20:17:26,236 INFO Calculate Markowitz Frontier for ESG-Border: 55
+2025-10-01 20:18:46,810 INFO Adjust Data for ESG-Border: 50
+2025-10-01 20:18:46,835 INFO Vor Sortierung: Ticker stimmen nicht überein an folgenden Positionen:
+2025-10-01 20:18:46,845 INFO Alle Ticker stimmen nach Sortierung überein!
+2025-10-01 20:18:46,845 INFO Calculate Co-Variance and get annual returns for ESG-Border: 50
+2025-10-01 20:18:48,444 INFO Calculate Markowitz Frontier for ESG-Border: 50

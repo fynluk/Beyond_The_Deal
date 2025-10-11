@@ -1,0 +1,124 @@
+# Statistic from IMAA (Institute for Mergers, Acquisitions & Alliances
+# Link: www.imaa-institute.org/mergers-and-acquisitions-statistics/
+
+imaa:
+  - year: 1985
+    number_of_deals: 2676
+    ma_value_billion_usd: 347.00
+  - year: 1986
+    number_of_deals: 4228
+    ma_value_billion_usd: 435.00
+  - year: 1987
+    number_of_deals: 5279
+    ma_value_billion_usd: 506.00
+  - year: 1988
+    number_of_deals: 7440
+    ma_value_billion_usd: 777.00
+  - year: 1989
+    number_of_deals: 10135
+    ma_value_billion_usd: 758.00
+  - year: 1990
+    number_of_deals: 10814
+    ma_value_billion_usd: 540.00
+  - year: 1991
+    number_of_deals: 14722
+    ma_value_billion_usd: 397.00
+  - year: 1992
+    number_of_deals: 14102
+    ma_value_billion_usd: 400.00
+  - year: 1993
+    number_of_deals: 14772
+    ma_value_billion_usd: 516.00
+  - year: 1994
+    number_of_deals: 16816
+    ma_value_billion_usd: 624.00
+  - year: 1995
+    number_of_deals: 20278
+    ma_value_billion_usd: 1039.00
+  - year: 1996
+    number_of_deals: 24310
+    ma_value_billion_usd: 1217.00
+  - year: 1997
+    number_of_deals: 26227
+    ma_value_billion_usd: 1824.00
+  - year: 1998
+    number_of_deals: 30218
+    ma_value_billion_usd: 2678.00
+  - year: 1999
+    number_of_deals: 33132
+    ma_value_billion_usd: 4116.00
+  - year: 2000
+    number_of_deals: 39783
+    ma_value_billion_usd: 3623.00
+  - year: 2001
+    number_of_deals: 31047
+    ma_value_billion_usd: 1866.00
+  - year: 2002
+    number_of_deals: 27201
+    ma_value_billion_usd: 1242.00
+  - year: 2003
+    number_of_deals: 29573
+    ma_value_billion_usd: 1411.00
+  - year: 2004
+    number_of_deals: 32953
+    ma_value_billion_usd: 2145.00
+  - year: 2005
+    number_of_deals: 36025
+    ma_value_billion_usd: 2794.00
+  - year: 2006
+    number_of_deals: 41407
+    ma_value_billion_usd: 4023.00
+  - year: 2007
+    number_of_deals: 47455
+    ma_value_billion_usd: 4920.00
+  - year: 2008
+    number_of_deals: 45173
+    ma_value_billion_usd: 3075.00
+  - year: 2009
+    number_of_deals: 40710
+    ma_value_billion_usd: 2187.00
+  - year: 2010
+    number_of_deals: 44844
+    ma_value_billion_usd: 2750.00
+  - year: 2011
+    number_of_deals: 43976
+    ma_value_billion_usd: 2668.00
+  - year: 2012
+    number_of_deals: 41480
+    ma_value_billion_usd: 2533.00
+  - year: 2013
+    number_of_deals: 39568
+    ma_value_billion_usd: 2536.00
+  - year: 2014
+    number_of_deals: 43847
+    ma_value_billion_usd: 3960.00
+  - year: 2015
+    number_of_deals: 48052
+    ma_value_billion_usd: 4779.00
+  - year: 2016
+    number_of_deals: 49991
+    ma_value_billion_usd: 3646.00
+  - year: 2017
+    number_of_deals: 53302
+    ma_value_billion_usd: 3777.00
+  - year: 2018
+    number_of_deals: 56382
+    ma_value_billion_usd: 3939.27
+  - year: 2019
+    number_of_deals: 53594
+    ma_value_billion_usd: 3893.91
+  - year: 2020
+    number_of_deals: 47307
+    ma_value_billion_usd: 3268.49
+  - year: 2021
+    number_of_deals: 58308
+    ma_value_billion_usd: 5235.65
+  - year: 2022
+    number_of_deals: 50763
+    ma_value_billion_usd: 3383.79
+  - year: 2023
+    number_of_deals: 39603
+    ma_value_billion_usd: 2495.06
+  - year: 2024
+    number_of_deals: 36067
+    ma_value_billion_usd: 2626.89

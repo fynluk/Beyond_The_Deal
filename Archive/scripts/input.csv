@@ -1,0 +1,432 @@
+﻿aDate;target_name;target_ticker;buyer_name;buyer_ticker
+19.01.10;Williams Pipeline Partners LP;WMZ^I10;Williams Partners LP;WPZ^B15
+11.02.10;Allegheny Energy Inc;AYE^B11;FirstEnergy Corp;FE
+21.02.10;Smith International Inc;SII^H10;Schlumberger Ltd;SLB
+10.03.10;Facet Biotech Corp;FACT.O^E10;Abbott Laboratories;ABT
+29.03.10;Bell Microproducts Inc;BELM.O^G10;Avnet Inc;AVT.O
+04.04.10;Arena Resources Inc;ARD^G10;SandRidge Energy Inc;SD
+15.04.10;Mariner Energy Inc;MEGY.O^L00;Apache Corp;APA_pd^H13
+16.04.10;Phase Forward Inc;PFWD.O^H10;Oracle Corp;ORCL.K
+21.04.10;CyberSource Corp;CYBS.O^H10;Visa Inc;V
+28.04.10;Palm Inc;PALM.O^G10;Hewlett Packard Co;HPQ
+03.05.10;Continental Airlines Inc;CAL^J10;UAL Corp;UAL.O
+17.05.10;Psychiatric Solutions Inc;PSYS.O^K10;Universal Health Services Inc;UHS
+24.05.10;Odyssey HealthCare Inc;ODSY.O^H10;Gentiva Health Services Inc;GTIV.O^B15
+09.06.10;Eclipsys Corp;ECLP.O^H10;Allscripts-Misys Healthcare Solutions Inc;MDRX.PK
+11.06.10;Buckeye GP Holdings LP;BGH^K10;Buckeye Partners LP;BPL^K19
+21.06.10;American Italian Pasta Co;AIPC.O^H10;Ralcorp Holdings Inc;RAH^A13
+30.06.10;Argon ST Inc;STST.O^H10;Boeing Co;BA
+15.07.10;Terrane Metals Corp;33T.F^J10;Thompson Creek Metals Co Inc;TCM.TO^J16
+09.08.10;Inergy Holdings LP;NRGP.K^K10;Inergy LP;NRGY_w.K^F13
+19.08.10;NewAlliance Bancshares Inc, New Haven,Connecticut;NAL^D11;First Niagara Financial Group Inc;FNFG.O^H16
+23.08.10;3PAR Inc;PAR^I10;Hewlett Packard Co;HPQ
+30.08.10;Cogent Inc;COGT.O^L10;3M Co;MMM
+07.09.10;Enterprise GP Holdings LP;EPE^K10;Enterprise Products Partners LP;EPD
+07.09.10;ZymoGenetics Inc;ZGEN.O^J10;Bristol-Myers Squibb Co;BMY
+13.09.10;ArcSight Inc;ARST.O^J10;Hewlett Packard Co;HPQ
+17.09.10;Student Loan Corp;STU^A10;Discover Financial Services;DFS.MX
+21.09.10;Penn Virginia GP Holdings LP;PVG^C11;Penn Virginia Resource Partners LP;PVR.N^C14
+27.09.10;AirTran Holdings Inc;AAI^E11;Southwest Airlines Co;LUV
+01.10.10;ITC Deltacom Inc;ITCD.O^K02;EarthLink Inc;ELNK.OQ^B17
+04.10.10;Actel Corp;ACTL.O^K10;Microsemi Corp;MSCCn.BCU
+12.10.10;King Pharmaceuticals Inc;KG^C11;Pfizer Inc;PFE
+14.10.10;MAC Services Group Ltd;MSL.AX^A11;Oil States International Inc;OIS
+01.11.10;Wilmington Trust Corp, Wilmington,Delaware;WL^E11;M&T Bank Corp;MTB
+09.11.10;Atlas Energy Inc;ATLS.O^B11;Chevron Corp;CVX
+15.11.10;Isilon Systems Inc;ISLN.O^L10;EMC Corp;EMC^I16
+15.11.10;Bucyrus International Inc;BUCY.O^G11;Caterpillar Inc;CAT
+17.11.10;Ladish Co Inc;LDSH.O^E11;Allegheny Technologies Inc;ATI
+13.12.10;Compellent Technologies Inc;CML^B11;Dell Inc;DELL.O^J13
+13.12.10;Dionex Corp;DNEX.O^E11;Thermo Fisher Scientific Inc;TMO
+17.12.10;Citadel Broadcasting Corp;CDL_w^F07;Cumulus Media Inc;CMLS.PK
+20.12.10;Applied Signal Technology Inc;APSG.O^B11;Raytheon Co;RTN^D20
+31.12.10;Universal American Corp;UAM^D17;CVS Health Corp;CVS
+10.01.11;Progress Energy Inc;PGN^G12;Duke Energy Corp;DUK
+11.01.11;Consolidated Thompson Iron Mines Ltd;CLMdbu.TO^E11;Cliffs Natural Resources Inc;CLF
+23.01.11;Smurfit-Stone Container Corp;SSCC.K^E11;Rock-Tenn Co;RKT^G15
+26.01.11;ProLogis;PLD^F11;Amb Property Corp;AMB_pa^G03
+03.02.11;Fronteer Gold Inc;FRG.TO^D11;Newmont Mining Corp;NEM
+07.02.11;Beckman Coulter Inc;BEC.N^F11;Danaher Corp;DHR
+08.02.11;RehabCare Group Inc;RHB^F11;Kindred Healthcare Inc;KND^G18
+28.02.11;Nationwide Health Properties Inc;NHP^G11;Ventas Inc;VTR
+13.03.11;K-Sea Transportation Partners LP;KSP^G11;Kirby Corp;KEX
+14.03.11;Lubrizol Corp;LZ^I11;Berkshire Hathaway Inc;BRKa
+21.03.11;optionsXpress Holdings Inc;OXPS.O^I11;Charles Schwab Corp;SCHW.K
+11.04.11;Global Crossing Ltd;GLBC.OQ^J11;Level 3 Communications Inc;LVLT.K^K17
+18.04.11;Synthes Inc;SYST.VX^F12;Johnson & Johnson;JNJ
+20.04.11;DPL Inc;DPL^K11;AES Corp;AES
+28.04.11;Constellation Energy Group Inc;CEG^C12;Exelon Corp;EXC.O
+10.05.11;CKx Inc;CKXE.O^F11;Apollo Global Management LLC;APO
+06.06.11;Temple-Inland Inc;TIN^B12;International Paper Co;IP
+13.06.11;EMS Technologies Inc;ELMG.O^H11;Honeywell International Inc;HON.O
+20.06.11;Capital Power Income LP;CPA_u.TO^K11;Atlantic Power Corp;ATPdbe.TO^E21
+05.07.11;Ameron International Corp;AMN^J11;National Oilwell Varco Inc;NOV_w^F14
+20.07.11;Zarlink Semiconductor Inc;ZLdb.TO^J11;Microsemi Corp;MSCCn.BCU
+20.07.11;Nalco Holding Co;NLC^L11;Ecolab Inc;ECL
+21.07.11;Medco Health Solutions Inc;MHS^D12;Express Scripts Inc;ESRX.O^L18
+26.07.11;S1 Corp;SONE.O^B12;ACI Worldwide Inc;ACIW.O
+15.08.11;Motorola Mobility Holdings Inc;MMI^E12;Google Inc;GOOG.O
+21.09.11;Goodrich Corp;GR^G12;United Technologies Corp;UTX_pa^H15
+16.10.11;El Paso Corp;EP^E12;Kinder Morgan Inc;KMI
+21.11.11;Transatlantic Holdings Inc;TRH^C12;Alleghany Corp;Y^J22
+30.11.11;Magma Design Automation Inc;LAVA.O^B12;Synopsys Inc;SNPS.O
+14.12.11;Novellus Systems Inc;NVLS.O^F12;Lam Research Corp;LRCX.O
+16.12.11;RSC Holdings Inc;RRR^E12;United Rentals Inc;URI
+07.01.12;Inhibitex Inc;INHX.O^B12;Bristol-Myers Squibb Co;BMY
+27.01.12;Solutia Inc;SOA^G12;Eastman Chemical Co;EMN
+09.02.12;Taleo Corp;TLEO.O^D12;Oracle Corp;ORCL.K
+20.02.12;Flint Energy Services Ltd;FES.TO^E12;URS Corp;URS^J14
+08.03.12;Neo Material Technologies Inc;NEMdbu.TO^F12;Molycorp Inc;MCP.N^F15
+25.04.12;GeoResources Inc;GEOI.O^H12;Halcon Resources Corp;HK.N^G19
+30.04.12;Gen-Probe Inc;GPRO.O^H12;Hologic Inc;HOLX.O
+30.04.12;Sunoco Inc;SUN^J12;Energy Transfer Partners LP;ETP^D17
+02.05.12;Standard Microsystems Corp;SMSC.O^H12;Microchip Technology Inc;MCHP.O
+09.05.12;Cost Plus Inc;CPWM.O^G12;Bed Bath & Beyond Inc;BBBYn.BCU
+01.06.12;Hughes Telematics Inc;HUTC.OB^G12;Verizon Communications Inc;VZ
+29.06.12;Amylin Pharmaceuticals Inc;AMLN.OQ^H12;Bristol-Myers Squibb Co;BMY
+02.07.12;Quest Software Inc;QSFT.O^J12;Dell Inc;DELL.O^J13
+02.07.12;Brightpoint Inc;CELL.O^J12;Ingram Micro Inc;IM^L16
+09.07.12;FX Alliance Inc;FX.N^H12;Thomson Reuters Corp;TRI.TO
+22.07.12;GenOn Energy Inc;GEN^L12;NRG Energy Inc;NRG
+23.07.12;RailAmerica Inc;RA^J12;Genesee & Wyoming Inc;GWR^L19
+30.07.12;The Shaw Group Inc;SHAW.K^B13;Chicago Bridge & Iron Co NV;CBI^E18
+09.08.12;Robbins & Myers Inc;RBN^B13;National Oilwell Varco Inc;NOV_w^F14
+13.08.12;Comverse Technology Inc;CMVT.O^B13;Verint Systems Inc;VRNT.O
+20.08.12;Coventry Health Care Inc;CVH^E13;Aetna Inc;AET^K18
+22.08.12;Sunrise Senior Living Inc;SRZ^A13;Health Care REIT Inc;HCN_pb^G03
+27.08.12;Kenexa Corp;KNXA.K^L12;International Business Machines Corp;IBM
+27.08.12;Hudson City Bancorp Inc;HCBK.O^K15;M&T Bank Corp;MTB
+06.09.12;American Realty Capital Trust Inc;ARCT.O^A13;Realty Income Corp;O
+13.09.12;Citizens Republic Bancorp Inc, Flint,Michigan;CRBC.O^D13;FirstMerit Corp;FMER.O^H16
+26.09.12;West Coast Bancorp;WCBO.O^D13;Columbia Banking System Inc;COLB.O
+01.10.12;Ceradyne Inc;CRDN.O^K12;3M Co;MMM
+25.10.12;PSS World Medical Inc;PSSI.O^B13;McKesson Corp;MCK
+29.10.12;OPNET Technologies Inc;OPNT.O^L12;Riverbed Technology Inc;RVBD.O^D15
+31.10.12;Warnaco Group Inc;WRC^B13;PVH Corp;PVH
+05.11.12;Metropolitan Health Networks Inc;MDF^L12;Humana Inc;HUM
+05.11.12;KBW Inc;KBW^B13;Stifel Financial Corp;SF
+08.11.12;KAYAK Software Corp;KYAK.O^E13;The Priceline Group Inc;PCLNL.PK^B11
+14.11.12;Teavana Holdings Inc;TEA^A13;Starbucks Corp;SBUX.O
+27.11.12;Ralcorp Holdings Inc;RAH^A13;ConAgra Foods Inc;CAG
+05.12.12;Plains Exploration & Production Co;PXP^E13;Freeport-McMoRan Copper & Gold Inc;FCX
+09.12.12;Intermec Inc;IN^I13;Honeywell International Inc;HON.O
+19.12.12;Alterra Capital Holdings Ltd;ALTE.O^E13;Markel Corp;MKL
+20.12.12;Eloqua Inc;ELOQ.O^B13;Oracle Corp;ORCL.K
+02.01.13;Zipcar Inc;ZIP.O^C13;Avis Budget Group Inc;CAR.O
+17.01.13;Trauson Holdings Co Ltd;0325.HK^G13;Stryker Corp;SYK
+22.01.13;MAP Pharmaceuticals Inc;MAPP.O^C13;Allergan Inc;AGN^C15
+29.01.13;Copano Energy LLC;CPNO.O^E13;Kinder Morgan Energy Partners LP;KMP^K14
+04.02.13;Acme Packet Inc;APKT.O^D13;Oracle Corp;ORCL.K
+06.02.13;Metals USA Holdings Corp;MUSA.K^D13;Reliance Steel & Aluminum Co;RS
+19.02.13;NetSpend Holdings Inc;NTSP.O^G13;Total System Services Inc;TSS^I19
+04.03.13;Aurizon Mines Ltd;ARZ.TO^F13;Hecla Mining Co;HL
+08.04.13;Lufkin Industries Inc;LUFK.O^G13;General Electric Co;GE
+15.04.13;Life Technologies Corp;LIFE.O^B14;Thermo Fisher Scientific Inc;TMO
+29.05.13;Stewart Enterprises Inc;STEI.O^L13;Service Corp International;SCI
+03.06.13;Colonial Properties Trust Inc;CLP^J13;Mid-America Apartment Communities Inc;MAA
+04.06.13;ExactTarget Inc;ET^G13;Salesforce.com Inc;CRM
+06.06.13;New Young Broadcasting Holding Co Inc;NYBH.PQ^I13;Media General Inc;MEG^A17
+24.06.13;Vanguard Health Systems Inc;VHS^J13;Tenet Healthcare Corp;THC
+30.06.13;Onyx Pharmaceuticals Inc;ONXX.O^J13;Amgen Inc;AMGN.O
+09.07.13;Harris Teeter Supermarkets Inc;HTSI.K^A14;Kroger Co;KR
+12.07.13;Leap Wireless International Inc;LEAP.O^C14;AT&T Inc;T
+15.07.13;Taylor Capital Group Inc;TAYC.O^H14;MB Financial Inc;MBFI.O^C19
+16.07.13;SHFL entertainment Inc;SHFL.O^K13;Bally Technologies Inc;BYI^K14
+23.07.13;Sourcefire Inc;FIRE.O^J13;Cisco Systems Inc;CSCO.O
+24.07.13;Maidenform Brands Inc;MFB^J13;Hanesbrands Inc;HBI
+30.07.13;Optimer Pharmaceuticals Inc;OPTR.O^J13;Cubist Pharmaceuticals Inc;CBST.O^A15
+30.07.13;Health Management Associates Inc;HMA^A14;Community Health Systems Inc;CYH
+30.07.13;Trius Therapeutics Inc;TSRX.O^I13;Cubist Pharmaceuticals Inc;CBST.O^A15
+15.08.13;Volterra Semiconductor Corp;VLTR.O^J13;Maxim Integrated Products Inc;MXIMvi.TPRM
+27.08.13;Hi-Tech Pharmacal Co Inc;HITK.O^D14;Akorn Inc;AKRXn.BCU
+05.09.13;Thomas Properties Group Inc;TPGI.K^L13;Parkway Properties Inc;PKY.N^J16
+16.09.13;Boise Inc;BZ^J13;Packaging Corp of America;PKG
+25.09.13;MAKO Surgical Corp;MAKO.O^L13;Stryker Corp;SYK
+10.10.13;PVR Partners LP;PVR^C14;Regency Energy Partners LP;RGP^D15
+07.11.13;Santarus Inc;SNTS.O^A14;Salix Pharmaceuticals Ltd;SLXP.O^D15
+26.11.13;Jos A Bank Clothiers Inc;JOSB.O^F14;The Men's Wearhouse Inc;MW^B16
+09.12.13;BRE Properties Inc;BRE^D14;Essex Property Trust Inc;ESS
+20.12.13;Responsys Inc;MKTG.O^B14;Oracle Corp;ORCL.K
+06.01.14;Stream Global Services Inc;SGS^D12;Convergys Corp;CVG^J18
+16.01.14;CEC Entertainment Inc;CEC^B14;Apollo Global Management LLC;APO
+28.01.14;Texas Industries Inc;TXI^G14;Martin Marietta Materials Inc;MLM
+04.02.14;ATMI Inc;ATMI.O^E14;Entegris Inc;ENTG.O
+10.02.14;Inland Diversified Real Estate Trust Inc;;Kite Realty Group Trust;KRG
+14.02.14;Amcol International Corp;ACO^E14;Minerals Technologies Inc;MTX
+20.02.14;Emeritus Corp;ESC^G14;Brookdale Senior Living Inc;BKD
+24.02.14;TriQuint Semiconductor Inc;TQNT.O^A15;RF Micro Devices Inc;RFMD.O^A15
+17.03.14;Schawk Inc;SGK^G14;Matthews International Corp;MATW.O
+28.04.14;Furiex Pharmaceuticals Inc;FURX.O^G14;Forest Laboratories Inc;FRX^G14
+28.04.14;Susser Holdings Corp;SUSS.K^H14;Energy Transfer Partners LP;ETP^D17
+29.04.14;Orbital Sciences Corp;ORB^B15;Alliant Techsystems Inc;ATKIL.PK^C11
+30.04.14;Pepco Holdings Inc;POM^C16;Exelon Corp;EXC.O
+15.05.14;Gentiva Health Services Inc;GTIV.O^B15;Kindred Healthcare Inc;KND^G18
+18.05.14;DirecTV Inc;DTV.O^G15;AT&T Inc;T
+29.05.14;Hillshire Brands Co;HSH^H14;Tyson Foods Inc;TSN
+02.06.14;American Realty Capital Healthcare Trust Inc;HCT.O^A15;Ventas Inc;VTR
+09.06.14;Hittite Microwave Corp;HITT.O^G14;Analog Devices Inc;ADI.O
+09.06.14;Idenix Pharmaceuticals Inc;IDIX.O^H14;Merck & Co Inc;MRK
+13.06.14;OpenTable Inc;OPEN.O^G14;The Priceline Group Inc;PCLNL.PK^B11
+16.06.14;tw telecom inc;TWTC.O^K14;Level 3 Communications Inc;LVLT.K^K17
+16.06.14;Fusion-io Inc;FIO^G14;SanDisk Corp;SNDK.O
+23.06.14;MICROS Systems Inc;MCRS.O^I14;Oracle Corp;ORCL.K
+11.07.14;Lorillard Inc;LO^F15;Reynolds American Inc;RAI^G17
+13.07.14;URS Corp;URS^J14;AECOM Technology Corp;ACM
+13.07.14;Kodiak Oil & Gas Corp;KOG^L14;Whiting Petroleum Corp;WLL^G22
+15.07.14;Rockwood Holdings Inc;ROC^A15;Albemarle Corp;ALB
+28.07.14;Family Dollar Stores Inc;FDO^G15;Dollar Tree Inc;DLTR.O
+10.08.14;Kinder Morgan Management LLC;KMR^K14;Kinder Morgan Inc;KMI
+08.09.14;Annies Inc;BNNY.K^J14;General Mills Inc;GIS
+11.09.14;Taminco Corp;TAM^L14;Eastman Chemical Co;EMN
+05.10.14;CareFusion Corp;CFN^C15;Becton Dickinson & Co;BDX
+13.10.14;Synergy Health PLC;SYR.L^K15;STERIS Corp;STE^K15
+13.10.14;Atlas Pipeline Partners LP;APL^C15;Targa Resources Partners LP;NGLS.K^B16
+13.10.14;Atlas Energy LP;ATLS.K^B15;Targa Resources Corp;TRGP.K
+29.10.14;Ormat Industries Ltd;ORMT.TA^B15;Ormat Technologies Inc;ORA
+31.10.14;Aviv REIT Inc;AVIV.K^D15;Omega Healthcare Investors Inc;OHI
+03.11.14;Covance Inc;CVD^B15;Labcorp Holdings Inc;LH_w^G23
+12.11.14;Susquehanna Bancshares Inc;SUSQ.O^H15;BB&T Corp;BBT_pe^I19
+24.11.14;Prosensa Holding BV;RNA.O^B15;BioMarin Pharmaceutical Inc;BMRN.O
+01.12.14;Spansion Inc;CODE.K^C15;Cypress Semiconductor Corp;CYn.BCU
+08.12.14;Cubist Pharmaceuticals Inc;CBST.O^A15;Merck & Co Inc;MRK
+22.12.14;Caesars Acquisition Co;CACQ.O^J17;Caesars Entertainment Corp;CZRn.BCU
+26.01.15;Rock-Tenn Co;RKT^G15;MeadWestvaco Corp;MWV^G15
+26.01.15;Regency Energy Partners LP;RGP^D15;Energy Transfer Partners LP;ETP^D17
+27.01.15;Silicon Image Inc;SIMG.O^C15;Lattice Semiconductor Corp;LSCC.O
+02.02.15;Advent Software Inc;ADVS.O^G15;SS&C Technologies Holdings Inc;SSNC.O
+05.02.15;Hospira Inc;HSP^I15;Pfizer Inc;PFE
+12.02.15;Orbitz Worldwide Inc;OWW^I15;Expedia Inc;EXPE.O
+26.02.15;Sorin SpA;SORN.MI^J15;Cyberonics Inc;CYBX.O^J15
+02.03.15;Aruba Networks Inc;ARUN.O^E15;Hewlett Packard Co;HPQ
+04.03.15;Pharmacyclics Inc;PCYC.O^E15;AbbVie Inc;ABBV.K
+24.03.15;Kofax Ltd;KFX.L^C15;Lexmark International Inc;LXK^K16
+30.03.15;Catamaran Corp;CTRX.O^G15;UnitedHealth Group Inc;UNH
+07.05.15;Telecity Group PLC;TCY.L^A16;Equinix Inc;EQIX.O
+07.05.15;Micrel Inc;MCRL.O^H15;Microchip Technology Inc;MCHP.O
+11.05.15;Rosetta Resources Inc;ROSE.O^G15;Noble Energy Inc;NBL.O^J20
+12.05.15;AOL Inc;AOL^F15;Verizon Communications Inc;VZ
+13.05.15;Pall Corp;PLL^H15;Danaher Corp;DHR
+21.05.15;Omnicare Inc;OCR^H15;CVS Health Corp;CVS
+26.05.15;Time Warner Cable Inc;TWC^E16;Charter Communications Inc;CHTRq.L^K07
+27.05.15;Rally Software Development Corp;RALY.K^G15;CA Inc;CA.O^K18
+01.06.15;Altera Corp;ALTR.O^L15;Intel Corp;INTC.O
+01.06.15;OM Group Inc;OMG^J15;Apollo Global Management LLC;APO
+04.06.15;Bio-Reference Laboratories Inc;BRLI.O^H15;OPKO Health Inc;OPK.O
+14.06.15;Ryland Group Inc;RYL^J15;Standard Pacific Corp;SPF_r.N^H08
+02.07.15;Health Net Inc;HNT^C16;Centene Corp;CNC
+13.07.15;MarkWest Energy Partners LP;MWE^L15;MPLX LP;MPLX.K
+13.07.15;Remy International Inc;RMYIP.PK^B11;BorgWarner Inc;BWA
+14.07.15;Receptos Inc;RCPT.O^H15;Celgene Corp;CELG.OQ^K19
+22.07.15;Thoratec Corp;THOR.O^J15;St Jude Medical Inc;STJ^A17
+04.08.15;IPC Healthcare Inc;IPCM.O^K15;Team Health Holdings Inc;TMH^B17
+06.08.15;Merge Healthcare Inc;MRGE.O^J15;International Business Machines Corp;IBM
+10.08.15;Rentech Nitrogen Partners LP;RNF^D16;CVR Partners LP;UAN
+10.08.15;Yodlee Inc;YDLE.O^K15;Envestnet Inc;ENV^K24
+10.08.15;NTELOS Holdings Corp;NTLS.O^E16;Shenandoah Telecommunications Co;SHEN.O
+17.08.15;Zulily Inc;ZU.O^J15;Liberty Interactive Corp;LVNTA.O^C18
+17.08.15;National Penn Bancshares Inc, Boyertown,Pennsylvania;NPBC.O^D16;BB&T Corp;BBT_pe^I19
+26.08.15;Cameron International Corp;CAM^D16;Schlumberger Ltd;SLB
+09.09.15;Con-way Inc;CNW^J15;XPO Logistics Inc;XPO
+18.09.15;Veda Group Ltd;VED.AX^B16;Equifax Inc;EFX
+28.09.15;Media General Inc(WAS 650151);MEGAB.PK^H09;Nexstar Broadcasting Group Inc;NXST.O
+29.09.15;Rentrak Corp;RENT.O^B16;Comscore Inc;SCOR.O
+19.10.15;PMC-Sierra Inc;PMCS.O^A16;Microsemi Corp;MSCCn.BCU
+21.10.15;SanDisk Corp;SNDK.O;Western Digital Corp;WDC.O
+26.10.15;Piedmont Natural Gas Co Inc;PNY^J16;Duke Energy Corp;DUK
+28.10.15;Diamond Foods Inc;DMND.O^C16;Snyder's-Lance Inc;LNCE.O^C18
+30.10.15;First Niagara Financial Group Inc;FNFG.O^H16;KeyCorp,Cleveland,Ohio;KEY
+04.11.15;HomeAway Inc;AWAY.O^L15;Expedia Inc;EXPE.O
+08.11.15;Plum Creek Timber Co Inc;PCL^B16;Weyerhaeuser Co;WY
+16.11.15;Starwood Hotels & Resorts Worldwide Inc;HOT^I16;Marriott International Inc;MAR.O
+18.11.15;Fairchild Semiconductor International Inc;FCS.O^I16;ON Semiconductor Corp;ON.O
+24.11.15;Boulder Brands Inc;BDBD.O^A16;Pinnacle Foods Inc;PF^J18
+03.12.15;American Residential Properties Inc;ARPI.K^C16;American Homes 4 Rent;AMH
+14.12.15;Jarden Corp;JAH^D16;Newell Rubbermaid Inc;NWL.O
+15.12.15;Heartland Payment Systems Inc;HPY^D16;Global Payments Inc;GPN
+08.01.16;Affymetrix Inc;AFFX.O^D16;Thermo Fisher Scientific Inc;TMO
+13.01.16;Atmel Corp;ATMLn.BCU;Microchip Technology Inc;MCHP.O
+26.01.16;FirstMerit Corp;FMER.O^H16;Huntington Bancshares Inc,Columbus,OH;HBAN.O
+29.01.16;Axiall Corp;AXLL.K^H16;Westlake Chemical Corp;WLK
+01.02.16;Questar Corp;STR_w^G10;Dominion Resources Inc;D
+01.02.16;Alere Inc;ALR^J17;Abbott Laboratories;ABT
+03.02.16;RONA Inc;RON.TO^E16;Lowe's Cos Inc;LOW
+16.02.16;The ADT Corp;ADT^E16;Apollo Global Management LLC;APO
+23.02.16;Newport Corp;NEWP.O^E16;MKS Instruments Inc;MKSI.O
+03.03.16;Carmike Cinemas Inc;CKEC.O^L16;AMC Entertainment Holdings Inc;AMC
+14.03.16;Fresh Market Inc;TFM.O^D16;Apollo Global Management LLC;APO
+20.03.16;Valspar Corp;VAL^F17;Sherwin-Williams Co;SHW
+04.04.16;Virgin America Inc;VA.O^L16;Alaska Air Group Inc;ALK
+04.04.16;Ruckus Wireless Inc;RKUS.K^E16;Brocade Communications Systems Inc;BRCD.O^K17
+11.04.16;Hatteras Financial Corp;HTS^G16;Annaly Capital Management Inc;NLY
+28.04.16;St Jude Medical Inc;STJ^A17;Abbott Laboratories;ABT
+28.04.16;Textura Corp;TXTR.K^F16;Oracle Corp;ORCL.K
+29.04.16;Parkway Properties Inc;PKY.N^J16;Cousins Properties Inc;CUZ
+02.05.16;Opower Inc;OPWR.K^F16;Oracle Corp;ORCL.K
+06.05.16;Northstar Realty Finance Corp;NRF^A17;Colony Capital Inc;CLNY.K^A17
+06.05.16;Colony Capital Inc;CLNY.K^A17;Colony Capital Inc;CLNY.K^A17
+16.05.16;Anacor Pharmaceuticals Inc;ANAC.O^F16;Pfizer Inc;PFE
+23.05.16;American Capital Ltd;ACAS.O^A17;Ares Capital Corp;ARCC.O
+27.05.16;FEI Co;FEIC.O^I16;Thermo Fisher Scientific Inc;TMO
+31.05.16;Great Plains Energy Inc;GXP.N^F18;Westar Energy Inc;WRS^E12
+01.06.16;Demandware Inc;DWRE.K^G16;Salesforce.com Inc;CRM
+07.06.16;LDR Holding Corp;LDRH.O^G16;Zimmer Biomet Holdings Inc;ZBH
+13.06.16;LinkedIn Corp;LNKD.K^L16;Microsoft Corp;MSFT.O
+15.06.16;Envision Healthcare Holdings Inc;EVHC.K^L16;AmSurg Corp;AMSG.O^L16
+15.06.16;QLogic Corp;QLGC.O^H16;Cavium Inc;CAVMn.BCU
+21.06.16;SolarCity Corp;SCTY.O^K16;Tesla Motors Inc;TSLA.O
+29.06.16;Diamond Resorts International Inc;DRII.K^I16;Apollo Global Management LLC;APO
+18.07.16;InterOil Corp;IOC^B17;Exxon Mobil Corp;XOM
+25.07.16;Outerwall Inc;OUTR.O^I16;Apollo Global Management LLC;APO
+26.07.16;Linear Technology Corp;LLTC.O^C17;Analog Devices Inc;ADI.O
+28.07.16;NetSuite Inc;N^K16;Oracle Corp;ORCL.K
+08.08.16;Whistler Blackcomb Holdings Inc;WB.TO^J16;Vail Resorts Inc;MTN
+15.08.16;Post Properties Inc;PPS^L16;Mid-America Apartment Communities Inc;MAA
+16.08.16;G&K Services Inc;GK.O^C17;Cintas Corp;CTAS.O
+18.08.16;Cardinal Financial Corp;CFNL.O^D17;United Bankshares Inc;UBSI.O
+22.08.16;Medivation Inc;MDVN.O^I16;Pfizer Inc;PFE
+06.09.16;Cepheid Inc;CPHD.O^K16;Danaher Corp;DHR
+22.09.16;WCI Communities Inc;WCIC.K^B17;Lennar Corp;LEN
+22.10.16;Time Warner Inc;TWX^F18;AT&T Inc;T
+31.10.16;Team Health Holdings Inc;TMH^B17;Blackstone Group LP;BX_w^J15
+03.11.16;Metaldyne Performance Group Inc;MPG^D17;American Axle & Manufacturing Holdings Inc;AXL
+10.11.16;TubeMogul Inc;TUBE.O^L16;Adobe Systems Inc;ADBE.O
+14.11.16;Equity One Inc;EQY.N^C17;Regency Centers Corp;REG.O
+17.11.16;Universal American Corp;UAM^D17;WellCare Health Plans Inc;WCG^A20
+17.11.16;Western Refining Inc;WNR.N^F17;Tesoro Corp;TSO_pa^F01
+17.11.16;Cascade Bancorp,Bend,Oregon;CACB.O^E17;First Interstate BancSystem Inc;FIBK.O
+21.11.16;Applied Micro Circuits Corp;AMCC.O^A17;MACOM Technology Solutions Holdings Inc;MTSI.O
+01.12.16;CLARCOR Inc;CLC^B17;Parker Hannifin Corp;PH
+02.12.16;Vascular Solutions Inc;VASC.O^B17;Teleflex Inc;TFX
+06.12.16;IntraLinks Holdings Inc;IL^A17;Synchronoss Technologies Inc;SNCR.O
+14.12.16;Southwest Bancorp Inc, Stillwater,Oklahoma;OKSB.O^J17;Simmons First National Corp;SFNC.O
+05.01.17;CEB Inc;CEB^D17;Gartner Inc;IT
+09.01.17;Pacific Continental Corp;PCBK.O^K17;Columbia Banking System Inc;COLB.O
+16.01.17;Clayton Williams Energy Inc;CWEI.K^D17;Noble Energy Inc;NBL.O^J20
+18.01.17;CoLucid Pharmaceuticals Inc;CLCD.O^C17;Eli Lilly & Co;LLY
+22.01.17;BNC Bancorp,High Point, North Carolina;BNCN.O^F17;Pinnacle Financial Partners Inc;PNFP.O
+30.01.17;IXIA;XXIA.O^D17;Keysight Technologies Inc;KEYS.K
+02.02.17;Ultratech Inc;UTEK.O^E17;Veeco Instruments Inc;VECO.O
+14.02.17;Cynosure Inc;CYNO.O^C17;Hologic Inc;HOLX.O
+07.03.17;Nimble Storage Inc;NMBL.K^D17;Hewlett Packard Enterprise Co;HPE
+15.03.17;KCG Holdings Inc;KCG^G17;Virtu Financial Inc;VIRT.K
+27.03.17;Stonegate Bank,Fort Lauderdale,Florida;SGBK.O^I17;Home BancShares Inc;HOMB.K
+25.04.17;AdvancePierre Foods Holdings Inc;APFH.K^F17;Tyson Foods Inc;TSN
+25.04.17;Straight Path Communications Inc;STRP.K^B18;Verizon Communications Inc;VZ
+27.04.17;Park Sterling Corp,Charlotte,NC;PSTB.O^L17;South State Corp;SSB
+04.05.17;Capital Bank Financial Corp;CBF.O^L17;First Horizon National Corp;FHN
+09.05.17;West Corp;WSTC.O^J17;Apollo Global Management LLC;APO
+09.06.17;DuPont Fabros Technology Inc;DFT^I17;Digital Realty Trust Inc;DLR
+16.06.17;Whole Foods Market Inc;WFM.O^H17;Amazon.com Inc;AMZN.O
+19.06.17;Rice Energy Inc;RICE.K^K17;EQT Corp;EQT
+09.07.17;ClubCorp Holdings Inc;MYCC.K^I17;Apollo Global Management LLC;APO
+25.07.17;MainSource Financial Group Inc;MSFG.O^D18;First Financial Bancorp,Cincinnati,Ohio;FFBC.O
+14.08.17;Neff Corp;NEFF.K^J17;United Rentals Inc;URI
+28.08.17;IXYS Corp;IXYS.O^A18;Littelfuse Inc;LFUS.O
+28.08.17;Kite Pharma Inc;KITE.O^J17;Gilead Sciences Inc;GILD.O
+04.09.17;Rockwell Collins Inc;COL^K18;United Technologies Corp;UTX_pa^H15
+06.09.17;Landauer Inc;LDR^J17;Fortive Corp;FTV
+18.09.17;Orbital ATK Inc;OA^F18;Northrop Grumman Corp;NOC
+18.09.17;Silver Spring Networks Inc;SSNI.K^A18;Itron Inc;ITRI.O
+19.09.17;Bob Evans Farms Inc;BOBE.O^A18;Post Holdings Inc;POST.K
+23.10.17;BroadSoft Inc;BSFT.O^B18;Cisco Systems Inc;CSCO.O
+30.10.17;Dynegy Inc;DYN^D18;Vistra Energy Corp;VST
+03.12.17;Aetna Inc;AET^K18;CVS Health Corp;CVS
+07.12.17;Entellus Medical Inc;ENTL.O^C18;Stryker Corp;SYK
+18.12.17;Snyder's-Lance Inc;LNCE.O^C18;Campbell Soup Co;CPB.O
+18.12.17;Amplify Snack Brands Inc;BETR.K^A18;Hershey Co;HSY
+03.01.18;SCANA Corp;SCG^A19;Dominion Energy Inc;D
+11.01.18;DST Systems Inc;DST^D18;SS&C Technologies Holdings Inc;SSNC.O
+18.01.18;La Quinta Holdings Inc;LQ^E18;Wyndham Worldwide Corp;WYND_w.K^F18
+22.01.18;Validus Holdings Ltd;VR_pb^J18;American International Group Inc;AIG
+08.02.18;Nustar GP Holdings LLC;NSH^G18;NuStar Energy LP;NS^E24
+09.02.18;CSRA Inc;CSRA.K^D18;General Dynamics Corp;GD
+12.02.18;Grandpoint Capital Inc;GPNC.PK^G18;Pacific Premier Bancorp Inc;PPBI.O
+13.02.18;Infinity Property & Casualty Corp;IPCC.O^G18;Kemper Corp;KMPR.K
+23.02.18;Blue Buffalo Pet Products Inc;BUFF.O^D18;General Mills Inc;GIS
+01.03.18;Microsemi Corp;MSCCn.BCU;Microchip Technology Inc;MCHP.O
+20.03.18;MuleSoft Inc;MULE.K^E18;Salesforce.com Inc;CRM
+28.03.18;LaSalle Hotel Properties;LHO^L18;Pebblebrook Hotel Trust;PEB
+23.04.18;Vectren Corp;VVC^B19;CenterPoint Energy Inc;CNP
+26.04.18;Rice Midstream Partners LP;RMP^G18;EQT Midstream Partners LP;EQM^F20
+26.04.18;CYS Investments Inc;CYS^H18;Two Harbors Investment Corp;TWO
+29.04.18;DCT Industrial Trust Inc;DCT^H18;Prologis Inc;PLD
+30.04.18;ILG Inc;ILG.O^I18;Marriott Vacations Worldwide Corp;VAC
+30.04.18;Andeavor Corp;ANDV.K^J18;Marathon Petroleum Corp;MPC
+10.05.18;Armo Biosciences Inc;ARMOn.BCU;Eli Lilly & Co;LLY
+13.05.18;State Bank Financial Corp;STBZ.O^A19;Cadence Bancorp;CADE.K^J21
+21.05.18;MB Financial Inc;MBFI.O^C19;Fifth Third Bancorp;FITB.O
+18.06.18;CoBiz Financial Inc;COBZ.O^J18;BOK Financial Corp;BOKF.O
+27.06.18;Pinnacle Foods Inc;PF^J18;Conagra Brands Inc;CAG
+28.06.18;Convergys Corp;CVG^J18;SYNNEX Corp;SNX
+28.06.18;Keryx Biopharmaceuticals Inc;KERX.O^L18;Akebia Therapeutics Inc;AKBA.O
+11.07.18;CA Inc;CA.O^K18;Broadcom Inc;AVGO.O
+24.07.18;FCB Financial Holdings Inc;FCB^A19;Synovus Financial Corp;SNV
+26.07.18;SuperValu Inc;SVU^J18;United Natural Foods Inc;UNFI.K
+14.08.18;Energen Corp;EGN^K18;Diamondback Energy Inc;FANG.O
+22.08.18;The Navigators Group Inc;NAVG.O^E19;The Hartford Financial Services Group Inc;HIG
+30.08.18;K2M Group Holdings Inc;KTWOn.BCU;Stryker Corp;SYK
+20.09.18;Blue Hills Bancorp Inc;BHBK.O^D19;Independent Bank Corp,Rockland,Massachusetts;INDB.O
+03.10.18;Hortonworks Inc;HDPn.BCU;Cloudera Inc;CLDR.K^J21
+10.10.18;Esterline Technologies Corp;ESL^C19;TransDigm Group Inc;TDG
+15.10.18;SendGrid Inc;SEND.K^B19;Twilio Inc;TWLO.K
+28.10.18;Red Hat Inc;RHT^G19;International Business Machines Corp;IBM
+30.10.18;Electro Scientific Industries Inc;ESIO.O^B19;MKS Instruments Inc;MKSI.O
+07.11.18;Investment Technology Group Inc;ITG^C19;Virtu Financial Inc;VIRT.K
+19.11.18;Resolute Energy Corp;REN^C19;Cimarex Energy Co;XEC^J21
+26.11.18;National Commerce Corp;NCOM.O^D19;CenterState Bank Corp;CSFL.O^F20
+17.12.18;Fidelity Southern Corp;LION.O^G19;Ameris Bancorp;ABCB.K
+03.01.19;Celgene Corp;CELG.OQ^K19;Bristol-Myers Squibb Co;BMY
+07.01.19;Loxo Oncology Inc;LOXO.O^B19;Eli Lilly & Co;LLY
+14.01.19;Goldcorp Inc;GGn.BCU;Newmont Mining Corp;NEM
+16.01.19;First Data Corp;FDC^G19;Fiserv Inc;FI
+04.02.19;Liberty Expedia Holdings Inc;LEXEA.O^G19;Expedia Group Inc;EXPE.O
+11.02.19;Solium Capital Inc;SUM.TO^E19;Morgan Stanley;MS
+18.03.19;Worldpay Inc;WP^G19;Fidelity National Information Services Inc;FIS
+19.03.19;HFF Inc;HF^G19;Jones Lang LaSalle IP Inc;JLL
+25.03.19;TIER REIT Inc;TIER.K^F19;Cousins Properties Inc;CUZ
+27.03.19;WellCare Health Plans Inc;WCG^A20;Centene Corp;CNC
+24.04.19;Anadarko Petroleum Corp;APC^H19;Occidental Petroleum Corp;OXY
+30.04.19;WageWorks Inc;WAGE.K^H19;HealthEquity Inc;HQY.O
+06.05.19;Chesapeake Lodging Trust;CHSP.K^I19;Park Hotels & Resorts Inc;PK
+08.05.19;Andeavor Logistics LP;ANDX.K^G19;MPLX LP;MPLX.K
+17.05.19;Cray Inc;CRAY.O^I19;Hewlett Packard Enterprise Co;HPE
+28.05.19;Total System Services Inc;TSS^I19;Global Payments Inc;GPN
+09.06.19;Raytheon Co;RTN^D20;United Technologies Corp;UTX_pa^H15
+10.06.19;Tableau Software Inc;DATA.K^H19;Salesforce.com Inc;CRM
+17.06.19;Array Biopharma Inc;ARRY.O^G19;Pfizer Inc;PFE
+09.07.19;Acacia Communications Inc;ACIA.O^C21;Cisco Systems Inc;CSCO.O
+12.07.19;Milacron Holdings Corp;MCRN.K^K19;Hillenbrand Inc;HI
+15.07.19;Carrizo Oil & Gas Inc;CRZOn.BCU;Callon Petroleum Co;CPE.MX
+15.07.19;Industrial Property Trust Inc;IDDP.PK^K19;Prologis Inc;PLD
+23.07.19;Old Line Bancshares Inc;OLBK.O^K19;WesBanco Inc;WSBC.O
+29.07.19;Genomic Health Inc;GHDX.O^K19;Exact Sciences Corp;EXAS.O
+07.08.19;Avedro Inc;AVDR.O^K19;Glaukos Corp;GKOS.K
+22.08.19;Entertainment One Ltd;ETO.L^L19;Hasbro Inc;HAS.O
+22.08.19;Carbon Black Inc;CBLK.O^J19;VMware Inc;VMW.MX
+14.10.19;Jagged Peak Energy Inc;JAG^A20;Parsley Energy Inc;PE^A21
+27.10.19;Liberty Property Trust;LPT.N^B20;Prologis Inc;PLD
+04.11.19;IBERIABANK Corp;IBKC.O^G20;First Horizon National Corp;FHN
+06.11.19;William Lyon Homes;WLH^B20;Taylor Morrison Home Corp;TMHC.K
+25.11.19;TD Ameritrade Holding Corp;AMTD.O^J20;Charles Schwab Corp;SCHW.K
+03.12.19;AK Steel Holding Corp;AKS^C20;Cleveland-Cliffs Inc;CLF
+10.01.20;Dermira Inc;DERM.O^B20;Eli Lilly & Co;LLY
+27.01.20;CenterState Bank Corp;CSFL.O^F20;South State Corp;SSB
+03.02.20;Opus Bank;OPB.O^F20;Pacific Premier Bancorp Inc;PPBI.O
+20.02.20;E*TRADE Financial Corp;ETFC.O^J20;Morgan Stanley;MS
+02.03.20;Forty Seven Inc;FTSV.O^D20;Gilead Sciences Inc;GILD.O
+06.07.20;Vivint Solar Inc;VSLR.K^J20;Sunrun Inc;RUN.O
+07.07.20;National General Holdings Corp;NGHC.O^A21;Allstate Corp;ALL
+13.07.20;Maxim Integrated Products Inc;MXIMvi.TPRM;Analog Devices Inc;ADI.O
+20.07.20;Noble Energy Inc;NBL.O^J20;Chevron Corp;CVX
+05.08.20;Livongo Health Inc;LVGO.MX;Teladoc Health Inc;TDOC.K
+10.08.20;Pfenex Inc;PFNX.K^J20;Ligand Pharmaceuticals Inc;LGND.O
+19.08.20;Momenta Pharmaceuticals Inc;MNTA.O^J20;Johnson & Johnson;JNJ
+27.08.20;BMC Stock Holdings Inc;BMCHn.BCU;Builders FirstSource Inc;BLDR.K
+13.09.20;Immunomedics Inc;IMMUn.BCU;Gilead Sciences Inc;GILD.O
+28.09.20;WPX Energy Inc;WPX^A21;Devon Energy Corp;DVN
+05.10.20;MyoKardia Inc;MYOKn.BCU;Bristol-Myers Squibb Co;BMY
+08.10.20;Eaton Vance Corp;EVCNf.TPRM;Morgan Stanley;MS
+10.11.20;Great Canadian Gaming Corp;GCdb.TO^I21;Apollo Global Management Inc;APO.MX^D22
+16.11.20;HD Supply Holdings Inc;HDS.O^L20;Home Depot Inc;HD
+09.12.20;MTS Systems Corp;MTSC.O^D21;Amphenol Corp;APH
+21.12.20;QEP Resources Inc;QEP^C21;Diamondback Energy Inc;FANG.O

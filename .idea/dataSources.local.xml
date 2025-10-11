@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="PY-243.25659.43">
+    <data-source name="Test Hetzner" uuid="e4936b71-46db-41ed-9119-fc47806df4b5">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>fynluk00</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="Text Hetzner MariaDB" uuid="6d4bafcc-4558-4814-a5a8-4858e64b0c92">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MARIADB" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>fynluk00</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

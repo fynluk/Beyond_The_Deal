@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add progress bar&#10;* rearrange parts&#10;* use new plot">
-      <change afterPath="$PROJECT_DIR$/scripts/ef.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/get_ESG.py" afterDir="false" />
+    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Clean Code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Configuration/deals.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Configuration/deals.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Math/plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Math/plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawler/sql_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/sql_crawler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/esg_scores.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Data/esg_scores.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/historical_prices.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Data/historical_prices.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ef.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +63,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -286,7 +284,8 @@
       <workItem from="1754293430791" duration="46253000" />
       <workItem from="1755336157168" duration="2474000" />
       <workItem from="1755826444400" duration="2318000" />
-      <workItem from="1757262020047" duration="5269000" />
+      <workItem from="1757262020047" duration="8057000" />
+      <workItem from="1758956379677" duration="36473000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -584,16 +583,45 @@
       <option name="project" value="LOCAL" />
       <updated>1750965737918</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="* Add progress bar&#10;* rearrange parts&#10;* use new plot">
+      <option name="closed" value="true" />
+      <created>1757267752716</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1757267752716</updated>
+    </task>
+    <task id="LOCAL-00039" summary="* Add Efficient Frontier initial Script">
+      <option name="closed" value="true" />
+      <created>1757267778595</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1757267778595</updated>
+    </task>
+    <task id="LOCAL-00040" summary="* Refine Programm">
+      <option name="closed" value="true" />
+      <created>1758986853896</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1758986853896</updated>
+    </task>
+    <task id="LOCAL-00041" summary="* Clean Code">
+      <option name="closed" value="true" />
+      <created>1758987169752</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1758987169752</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="* Drafted getTickers&#10;* Build Upload Function for historical Data" />
-    <MESSAGE value="* Build sql.init()&#10;* Build ref.getPrices()" />
-    <MESSAGE value="* Delete unnec. functions" />
     <MESSAGE value="* Rename sth" />
     <MESSAGE value="* Add TODOS" />
     <MESSAGE value="* Add requirements" />
@@ -616,15 +644,18 @@
     <MESSAGE value="* Add progressbar&#10;* Rebuild upload function to regain speed" />
     <MESSAGE value="* input for script" />
     <MESSAGE value="* Add progress bar&#10;* rearrange parts&#10;* use new plot" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Add progress bar&#10;* rearrange parts&#10;* use new plot" />
+    <MESSAGE value="* Add Efficient Frontier initial Script" />
+    <MESSAGE value="* Refine Programm" />
+    <MESSAGE value="* Clean Code" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Clean Code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1751017686038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$excel_to_yaml.coverage" NAME="excel_to_yaml Coverage Results" MODIFIED="1750958253438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef.coverage" NAME="ef Coverage Results" MODIFIED="1757267190758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef.coverage" NAME="ef Coverage Results" MODIFIED="1759338793831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ticker.coverage" NAME="get_ticker Coverage Results" MODIFIED="1750957828433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ESG.coverage" NAME="get_ESG Coverage Results" MODIFIED="1757262331117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main_skip.coverage" NAME="main skip Coverage Results" MODIFIED="1755078568743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef_load.coverage" NAME="ef load Coverage Results" MODIFIED="1757267298144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef_load.coverage" NAME="ef load Coverage Results" MODIFIED="1759339314245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
   </component>
 </project>
