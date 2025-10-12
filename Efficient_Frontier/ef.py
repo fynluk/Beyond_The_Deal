@@ -1,3 +1,7 @@
+import random
+import time
+from datetime import datetime
+
 import lseg.data as ld
 import pickle
 import os
@@ -10,7 +14,6 @@ from tqdm import tqdm
 import argparse
 import numpy as np
 from scipy.optimize import minimize
-
 
 
 def open_ld():
@@ -29,8 +32,8 @@ def get_tickers(universe, start):
             'SDate': start
         }
     )
-    #return query.head(25)
-    return query
+    return query.head(1)
+    #return query
 
 def get_historical_price(tickers, start, end, max_workers=10):
     """
@@ -55,6 +58,7 @@ def get_historical_price(tickers, start, end, max_workers=10):
                 "EDate": end
             }
         )
+        time.sleep(3)
         return t, data
 
     # ThreadPoolExecutor für parallele Abfragen
@@ -90,6 +94,9 @@ def calculate_cov_matrix(prices_dict, freq):
         df = df.sort_values('Date')
         df.set_index('Date', inplace=True)
         price_data[ticker] = df['Price Close']
+
+    if freq not in ('D', 'W', 'M'):
+        raise ValueError("freq muss 'D', 'W' oder 'M' sein")
 
     # Renditen berechnen
     if freq == 'D':
@@ -136,8 +143,9 @@ def get_esg_scores(tickers_df, end, max_workers=10):
                 parameters={'SDate': end}
             )
             s = df['ESG Score'].iloc[0] if not df.empty else None
+            time.sleep(3)
         except Exception as e:
-            logging.warning("No ESG-Data for Ticker: " + t + "Exception: " + str(e))
+            logging.warning("No ESG-Data for Ticker: " + t + " Exception: " + str(e))
             s = None
         return t, s
 
@@ -209,12 +217,12 @@ def markowitz_frontier(mu, cov_matrix, n_points=100, allow_short=False):
                 'Weights': w_opt
             })
         else:
-            print(f"Optimization failed for target return {r_target:.4f}")
+            logging.error(f"Optimization failed for target return {r_target:.4f}")
 
     frontier_df = pd.DataFrame(frontier_points)
     return frontier_df
 
-def plot_esg_histogram(esg_df, outputFile, name):
+def plot_esg_histogram(esg_df, outputfile, name):
     """
     Plottet ein Histogramm der ESG-Scores mit Binning in 5er-Schritten.
 
@@ -239,7 +247,7 @@ def plot_esg_histogram(esg_df, outputFile, name):
 
     #plt.show()
     #Plot speichern
-    output_path = outputFile + "/" + name + "/" + "esg_distribution.png"
+    output_path = outputfile + "/" + name + "/" + "esg_distribution.png"
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
@@ -365,7 +373,7 @@ def calculate_frontiers(prices, esg, freq, n_workers=4):
     return frontiers
 
 
-def plot_all_frontiers(frontiers_dict, outputFile, name):
+def plot_all_frontiers(frontiers_dict, outputfile, name):
     """
     Plottet mehrere Markowitz-Frontiers aus einem Dict.
 
@@ -389,13 +397,13 @@ def plot_all_frontiers(frontiers_dict, outputFile, name):
 
     # plt.show()
     # Plot speichern
-    output_path = outputFile + "/" + name + "/" + "frontiers.png"
+    output_path = outputfile + "/" + name + "/" + "frontiers.png"
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
-def save_dfs_to_excel(outputFile, name, tickers, historical_prices, esg_scores, clean_historical_prices, clean_esg_scores, frontiers, cov, returns):
+def save_dfs_to_excel(outputfile, name, tickers, historical_prices, esg_scores, clean_historical_prices, clean_esg_scores, frontiers, cov, returns):
     # Pfad zur Datei erstellen
-    path = outputFile + "/" + name + "/" + "Data.xlsx"
+    path = outputfile + "/" + name + "/" + "Data.xlsx"
 
     # Listen vorbereiten (Dict to DF)
     dfs_historical_prices = []
@@ -429,9 +437,9 @@ def save_dfs_to_excel(outputFile, name, tickers, historical_prices, esg_scores, 
         combined_df_frontiers.to_excel(writer, sheet_name='Frontiers', index=True)
 
 
-def main(load_from_file, universe, start, end, freq, outputFile, name):
-    file_historical_prices = outputFile + '/' + name + '/' + 'historical_prices.pkl'
-    file_esg_scores = outputFile + '/' + name + '/' + 'esg_scores.pkl'
+def main(load_from_file, universe, start, end, freq, outputfile, name):
+    file_historical_prices = outputfile + '/' + name + '/' + 'historical_prices.pkl'
+    file_esg_scores = outputfile + '/' + name + '/' + 'esg_scores.pkl'
 
     logging.info("Open Refinitiv Session")
     open_ld()
@@ -465,16 +473,25 @@ def main(load_from_file, universe, start, end, freq, outputFile, name):
     logging.info("Clean up Data")
     clean_historical_prices, clean_esg_scores = clean_data(historical_prices, esg_scores)
 
+    # Export Prices to debug
+    excelname = "prices-" + str(random.randint(1, 9999)) + ".xlsx"
+    dfs_historical_prices = []
+    for ticker, df in clean_historical_prices.items():
+        df_copy = df.copy()
+        df_copy['Ticker'] = ticker
+        dfs_historical_prices.append(df_copy)
+    combined_df_historical_prices = pd.concat(dfs_historical_prices, ignore_index=True)
+    with pd.ExcelWriter(excelname, engine='xlsxwriter') as writer:
+        combined_df_historical_prices.to_excel(writer, sheet_name='Prices', index=True)
+
     logging.info("Get Efficient Frontier for several ESG-Borders")
     cov, returns = calculate_cov_matrix(clean_historical_prices, freq)
     frontiers = calculate_frontiers(clean_historical_prices, clean_esg_scores, freq)
-    print("Type cov: " + str(type(cov)))
-    print("Type returns: " + str(type(returns)))
-    plot_esg_histogram(clean_esg_scores, outputFile, name)
-    plot_all_frontiers(frontiers, outputFile, name)
+    plot_esg_histogram(clean_esg_scores, outputfile, name)
+    plot_all_frontiers(frontiers, outputfile, name)
 
     logging.info("Save Data to Excel")
-    save_dfs_to_excel(outputFile, name, tickers, historical_prices, esg_scores, clean_historical_prices, clean_esg_scores, frontiers, cov, returns)
+    save_dfs_to_excel(outputfile, name, tickers, historical_prices, esg_scores, clean_historical_prices, clean_esg_scores, frontiers, cov, returns)
 
     ld.close_session()
 
@@ -507,23 +524,24 @@ if __name__ == "__main__":
         format="%(asctime)s %(levelname)s %(message)s"
     )
 
+    # Run Ordner anlegen
+    rootfolder = datetime.now().strftime("%Y-%m-%d_%H-%M") + "_Output/"
+    os.makedirs(rootfolder, exist_ok=True)
+
     # Alle Runs nacheinander ausführen
     for run in runs:
         # Ordner anlegen
-        folder = 'Output' + '/' + run['name']
+        folder = rootfolder + run['name']
         os.makedirs(folder, exist_ok=True)
 
         logging.info(f"===== Starte Run: {run['name']} =====")
-        try:
-            main(
+        main(
                 load_from_file=args.load_from_file,
                 universe=run["universe"],
                 start=run["start"],
                 end=run["end"],
                 freq=run["freq"],
-                outputFile=run["output"],
+                outputfile=rootfolder,
                 name=run["name"]
-            )
-        except Exception as e:
-            logging.error(f"Run {run['name']} fehlgeschlagen: {e}")
+        )
         logging.info(f"===== Run {run['name']} beendet =====\n")
