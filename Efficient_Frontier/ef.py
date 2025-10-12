@@ -32,8 +32,8 @@ def get_tickers(universe, start):
             'SDate': start
         }
     )
-    return query.head(1)
-    #return query
+    #return query.head(1)
+    return query
 
 def get_historical_price(tickers, start, end, max_workers=10):
     """
