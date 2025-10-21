@@ -1,7 +1,6 @@
 import random
 import time
 from datetime import datetime
-
 import lseg.data as ld
 import pickle
 import os
@@ -94,6 +93,10 @@ def calculate_cov_matrix(prices_dict, freq):
         df = df.sort_values('Date')
         df.set_index('Date', inplace=True)
         price_data[ticker] = df['Price Close']
+
+    path = "Data.xlsx"
+    with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
+        price_data.to_excel(writer, sheet_name='Prices', index=False)
 
     if freq not in ('D', 'W', 'M'):
         raise ValueError("freq muss 'D', 'W' oder 'M' sein")
@@ -252,30 +255,82 @@ def plot_esg_histogram(esg_df, outputfile, name):
     plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
 
-def clean_data(prices, esg):
-    corrupt_tickers = []
-    #corrupt_tickers = ["COIN.OQ", "NVDA.OQ", "SMCI.OQ", "VST.N"]
+def clean_data(prices: dict, esg: pd.DataFrame):
+    """
+    Bereinigt prices (dict ticker -> DataFrame) und esg (DataFrame).
+    Entfernt Ticker, die
+      - doppelte Date-Einträge haben (same date mehrfach),
+      - keine gültigen ESG-Werte besitzen,
+      - nach Bereinigung keine gültigen Price- / Date-Zeilen mehr haben.
 
-    # First mark all tickers without historical data
-    for ticker, df in prices.items():
-        df['Date'] = pd.to_datetime(df['Date'])
-        duplicates = df[df.duplicated(subset=['Date'], keep=False)]
-        if not duplicates.empty:
-            corrupt_tickers.append(ticker)
+    Returns:
+        cleaned_prices (dict), cleaned_esg (DataFrame)
+    """
+    corrupt_tickers = set()
 
+    # 1) Markiere Ticker mit doppelten Dates (vorbereitet: parse Date)
+    for ticker, df in list(prices.items()):
+        d = df.copy()
+        # Wenn keine erwarteten Spalten existieren -> markieren
+        if 'Date' not in d.columns or 'Price Close' not in d.columns:
+            logging.info(f"[clean_data] {ticker}: fehlende Spalten -> entferne")
+            corrupt_tickers.add(ticker)
+            continue
 
-    # Second mark all tickers without esg data
-    corrupt_esg = esg[pd.to_numeric(esg['ESG'], errors='coerce').isna()]["Ticker"].tolist()
-    corrupt_tickers.extend(corrupt_esg)
+        # Parse Date robust
+        d['Date'] = pd.to_datetime(d['Date'], errors='coerce')
 
-    # Remove all marked tickers from data
-    logging.info("Remove " + str(len(corrupt_tickers)) + " corrupt tickers: " + str(corrupt_tickers))
-    for ticker in corrupt_tickers:
+        # Falls Duplikate (mehr als ein Eintrag für dasselbe Datum)
+        if d.duplicated(subset=['Date']).any():
+            logging.info(f"[clean_data] {ticker}: doppelte Datumseinträge entdeckt -> markiert")
+            corrupt_tickers.add(ticker)
+
+    # 2) Markiere Ticker ohne gültige ESG-Daten
+    invalid_esg = esg[pd.to_numeric(esg['ESG'], errors='coerce').isna()]["Ticker"].tolist()
+    corrupt_tickers.update(invalid_esg)
+
+    # 3) Säubere jeden Ticker-DataFrame: drop NaT-Date und nicht-numerische / leere Prices
+    for ticker, df in list(prices.items()):
+        if ticker in corrupt_tickers:
+            # schon markiert, skip cleaning (wird entfernt später)
+            continue
+
+        d = df.copy()
+
+        # 3.1 parse Date, coerce errors -> NaT
+        d['Date'] = pd.to_datetime(d['Date'], errors='coerce')
+
+        # 3.2 convert Price Close to numeric, non-convertible -> NaN
+        d['Price Close'] = pd.to_numeric(d['Price Close'], errors='coerce')
+
+        # 3.3 drop rows where Date is NaT OR Price Close is NaN
+        #      (wir brauchen beides: gültiges Datum und gültigen Preis)
+        d = d.dropna(subset=['Date', 'Price Close'])
+
+        # 3.4 drop duplicates by Date (keep last) to be safe
+        d = d.sort_values('Date').drop_duplicates(subset=['Date'], keep='last')
+
+        # 3.5 Wenn nach Bereinigung keine Zeilen mehr übrig sind -> markiere Ticker
+        if d.empty or d['Price Close'].isna().all():
+            logging.info(f"[clean_data] {ticker}: keine gültigen Preis-/Datum-Zeilen mehr -> markiert")
+            corrupt_tickers.add(ticker)
+            continue
+
+        # 3.6 Sonst: schreibe die bereinigte Version zurück in dict (wichtig!)
+        prices[ticker] = d.reset_index(drop=True)
+
+    # 4) Entferne alle markierten Ticker aus prices und esg
+    corrupt_list = sorted(corrupt_tickers)
+    if corrupt_list:
+        logging.info(f"[clean_data] Entferne {len(corrupt_list)} korrupt(e) Ticker: {corrupt_list}")
+
+    for ticker in corrupt_list:
         if ticker in prices:
             del prices[ticker]
-    esg = esg[~esg['Ticker'].isin(corrupt_tickers)].copy()
 
-    return prices, esg
+    esg_clean = esg[~esg['Ticker'].isin(corrupt_list)].copy()
+
+    return prices, esg_clean
 
 
 def adjust_data(prices, esg, border):
@@ -436,6 +491,46 @@ def save_dfs_to_excel(outputfile, name, tickers, historical_prices, esg_scores, 
         cov.to_excel(writer, sheet_name='Co-Variance', index=True)
         combined_df_frontiers.to_excel(writer, sheet_name='Frontiers', index=True)
 
+def plot_returns_with_outliers(returns: pd.Series, output_path: str, name : str):
+    """
+    Erstellt und speichert einen Scatterplot der Annual Returns.
+    Hebt Ausreißer (Top & Bottom 5%) hervor.
+
+    Args:
+        returns (pd.Series): Series mit Ticker (Index) und Annual Return (Wert)
+        output_path (str): Dateipfad zum Speichern des Plots (z. B. 'Data/returns_plot.png')
+    """
+    if not isinstance(returns, pd.Series):
+        raise TypeError("Input must be a pandas Series (Ticker -> Return)")
+
+    # Sortiere nach Return
+    returns = returns.sort_values(ascending=False)
+
+    # Ausreißer definieren (Top/Bottom 5%)
+    q_low, q_high = returns.quantile([0.05, 0.95])
+    outliers = returns[(returns <= q_low) | (returns >= q_high)]
+
+    # Scatterplot
+    plt.figure(figsize=(12, 6))
+    plt.scatter(range(len(returns)), returns, alpha=0.6, label="Returns")
+    plt.scatter(outliers.index.map(lambda x: returns.index.get_loc(x)), outliers, color='red', label="Outliers")
+
+    # Beschriftung der Ausreißer
+    for ticker, value in outliers.items():
+        plt.text(returns.index.get_loc(ticker), value, ticker, fontsize=8, ha='center', va='bottom', rotation=45)
+
+    # Layout & Beschriftung
+    plt.title("Annual Returns with Outliers Highlighted")
+    plt.xlabel("Assets (sorted by return)")
+    plt.ylabel("Annual Return")
+    plt.grid(alpha=0.3)
+    plt.legend()
+
+    # Speichern
+    plt.tight_layout()
+    putputfile = output_path + "/" + name + "/" + "Return_Destribution.png"
+    plt.savefig(putputfile, dpi=300)
+    plt.close()
 
 def main(load_from_file, universe, start, end, freq, outputfile, name):
     file_historical_prices = outputfile + '/' + name + '/' + 'historical_prices.pkl'
@@ -486,6 +581,7 @@ def main(load_from_file, universe, start, end, freq, outputfile, name):
 
     logging.info("Get Efficient Frontier for several ESG-Borders")
     cov, returns = calculate_cov_matrix(clean_historical_prices, freq)
+    plot_returns_with_outliers(returns, outputfile, name)
     frontiers = calculate_frontiers(clean_historical_prices, clean_esg_scores, freq)
     plot_esg_histogram(clean_esg_scores, outputfile, name)
     plot_all_frontiers(frontiers, outputfile, name)
