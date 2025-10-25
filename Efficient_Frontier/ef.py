@@ -13,6 +13,7 @@ from tqdm import tqdm
 import argparse
 import numpy as np
 from scipy.optimize import minimize
+from Efficient_Frontier import regression
 
 
 def open_ld():
@@ -31,7 +32,7 @@ def get_tickers(universe, start):
             'SDate': start
         }
     )
-    #return query.head(1)
+    #return query.head(75)
     return query
 
 def get_historical_price(tickers, start, end, max_workers=10):
@@ -57,7 +58,7 @@ def get_historical_price(tickers, start, end, max_workers=10):
                 "EDate": end
             }
         )
-        time.sleep(3)
+        time.sleep(4)
         return t, data
 
     # ThreadPoolExecutor für parallele Abfragen
@@ -146,7 +147,7 @@ def get_esg_scores(tickers_df, end, max_workers=10):
                 parameters={'SDate': end}
             )
             s = df['ESG Score'].iloc[0] if not df.empty else None
-            time.sleep(3)
+            time.sleep(4)
         except Exception as e:
             logging.warning("No ESG-Data for Ticker: " + t + " Exception: " + str(e))
             s = None
@@ -198,7 +199,7 @@ def markowitz_frontier(mu, cov_matrix, n_points=100, allow_short=False):
     if allow_short:
         bounds = [(None, None) for _ in range(n_assets)]
     else:
-        bounds = [(0,1) for _ in range(n_assets)]
+        bounds = [(0,0.5) for _ in range(n_assets)]
 
     # Zielrenditen: von minimaler bis maximaler Asset-Return
     target_returns = np.linspace(mu.min(), mu.max(), n_points)
@@ -409,9 +410,6 @@ def calculate_frontiers(prices, esg, freq, n_workers=4):
                                                                                  border_esg_scores)
         logging.info(f"Calculate Co-Variance and get annual returns for ESG-Border: {border}")
         cov, returns = calculate_cov_matrix(checked_historical_prices, freq)
-        #annual_returns_sorted = returns.sort_values(ascending=False)
-        #print(annual_returns_sorted)
-        #exit(1)
 
         logging.info(f"Calculate Markowitz Frontier for ESG-Border: {border}")
         mark_frontier = markowitz_frontier(returns, cov)
@@ -532,6 +530,128 @@ def plot_returns_with_outliers(returns: pd.Series, output_path: str, name : str)
     plt.savefig(putputfile, dpi=300)
     plt.close()
 
+def remove_extreme_tickers(clean_prices, clean_esg, returns, n_extremes=0):
+    """
+    Entfernt aus clean_prices (dict: ticker -> DataFrame), clean_esg (DataFrame mit Spalte 'Ticker')
+    und returns (pd.Series index=TICKER oder dict ticker->return oder pd.DataFrame mit 'Ticker' und 'Return')
+    jeweils die n_extremes Ticker mit höchsten und die n_extremes mit niedrigsten Returns.
+
+    Rückgabe:
+        (prices_pruned, esg_pruned, returns_pruned, removed_list)
+    Hinweise:
+      - Es wird auf den Schnittmengen-Tickern operiert (nur Ticker, die in allen drei Quellen vorhanden sind).
+      - Wenn n_extremes zu groß ist, wird es reduziert, sodass mindestens 1 Ticker übrig bleibt.
+      - returns muss bereits die gewünschte Return-Definition (total/annualized/etc.) enthalten.
+    """
+    # --- Normalisiere returns in pd.Series (index = ticker) ---
+    if isinstance(returns, pd.DataFrame):
+        # Versuche Spalte 'Return' oder 'TotalReturn' zu verwenden, sonst Fehler
+        if 'Return' in returns.columns:
+            ret = returns.set_index('Ticker')['Return'].astype(float)
+        elif 'TotalReturn' in returns.columns:
+            ret = returns.set_index('Ticker')['TotalReturn'].astype(float)
+        else:
+            # falls DataFrame schon index=TICKER und eine Spalte mit Werten hat:
+            if returns.index.name in ('Ticker', 'ticker') and returns.shape[1] == 1:
+                ret = returns.iloc[:, 0].astype(float)
+            else:
+                raise ValueError("DataFrame 'returns' erwartet Spalte 'Return' oder 'TotalReturn' oder index=Ticker mit 1 Spalte.")
+    elif isinstance(returns, dict):
+        ret = pd.Series(returns).astype(float)
+    elif isinstance(returns, pd.Series):
+        ret = returns.astype(float)
+    else:
+        raise TypeError("returns muss pd.Series, dict oder pd.DataFrame sein.")
+
+    # --- Erzeuge Kopien (modifizieren nicht die Originale) ---
+    prices = {k: v.copy() for k, v in clean_prices.items()}
+    esg = clean_esg.copy()
+    ret = ret.copy()
+
+    # --- Finde gemeinsame Ticker (nur diese werden bewertet/verglichen) ---
+    tickers_in_prices = set(prices.keys())
+    tickers_in_esg = set(esg['Ticker']) if 'Ticker' in esg.columns else set()
+    tickers_in_returns = set(ret.index)
+
+    common = tickers_in_prices & tickers_in_esg & tickers_in_returns
+
+    if not common:
+        logging.warning("[remove_extreme_tickers] Keine gemeinsamen Ticker in prices/esg/returns gefunden. Nichts entfernt.")
+        return prices, esg, ret, []
+
+    # Beschränke ret auf gemeinsame Ticker
+    ret = ret.loc[sorted(common)]
+
+    n_tickers = len(ret)
+    if n_extremes <= 0:
+        logging.info("[remove_extreme_tickers] n_extremes <= 0 -> nichts zu entfernen")
+        return prices, esg, ret, []
+
+    # Verhindere, dass alle oder zu viele Ticker entfernt werden:
+    # wir wollen mindestens 1 Ticker übriglassen
+    max_allowed = max((n_tickers - 1) // 2, 0)
+    if n_extremes > max_allowed:
+        logging.warning(f"[remove_extreme_tickers] n_extremes={n_extremes} zu groß für {n_tickers} gemeinsame Ticker, reduziere auf {max_allowed}")
+        n_extremes = max_allowed
+
+    if n_extremes == 0:
+        logging.info("[remove_extreme_tickers] Nach Anpassung ist n_extremes=0 -> nichts zu entfernen")
+        return prices, esg, ret, []
+
+    # --- Bestimme lowest und highest ---
+    lowest = ret.nsmallest(n_extremes).index.tolist()
+    highest = ret.nlargest(n_extremes).index.tolist()
+    to_remove = sorted(set(lowest + highest))
+
+    logging.info(f"[remove_extreme_tickers] Entferne {len(to_remove)} Ticker: lowest={lowest} highest={highest}")
+
+    # --- Entferne aus prices ---
+    for t in to_remove:
+        prices.pop(t, None)
+
+    # --- Entferne aus esg ---
+    if 'Ticker' in esg.columns:
+        esg = esg[~esg['Ticker'].isin(to_remove)].reset_index(drop=True)
+    else:
+        logging.warning("[remove_extreme_tickers] 'Ticker' Spalte fehlt in esg; überspringe ESG-Filter")
+
+    # --- Entferne aus returns ---
+    ret = ret.drop(to_remove, errors='ignore')
+
+    return prices, esg
+
+def plot_frontier_weights_boxplot(data, output_file, name):
+
+    save_dir = output_file + "/" + name + "/" + "Boxplots-Weights"
+    os.makedirs(save_dir, exist_ok=True)
+
+    for esg, frontiers in data.items():
+        weights_list = frontiers["Weights"].tolist()
+        weights_df = pd.DataFrame(weights_list)
+
+        # Ticker-Spaltennamen hinzufügen (falls vorhanden)
+        if tickers is not None and len(tickers) == weights_df.shape[1]:
+            weights_df.columns = tickers
+        else:
+            weights_df.columns = [f"T{i+1}" for i in range(weights_df.shape[1])]
+
+        plt.figure(figsize=(14, 6))
+        weights_df.boxplot(
+            patch_artist=True,
+            boxprops=dict(facecolor='lightblue', color='black'),
+            medianprops=dict(color='red', linewidth=1.5),
+            whiskerprops=dict(color='gray'),
+            flierprops=dict(marker='o', markersize=3, color='darkgray', alpha=0.5),
+        )
+        plt.title("Verteilung der Gewichte in den Efficient Frontiers für ESG Level: " + str(esg), fontsize=14)
+        plt.ylabel("Gewicht", fontsize=12)
+        plt.xlabel("Ticker", fontsize=12)
+        plt.xticks(rotation=45, ha='right')
+        plt.grid(axis="y", linestyle="--", alpha=0.5)
+        plt.tight_layout()
+
+        plt.savefig(save_dir + "/ESG-" + esg + "-Boxplot.png")
+
 def main(load_from_file, universe, start, end, freq, outputfile, name):
     file_historical_prices = outputfile + '/' + name + '/' + 'historical_prices.pkl'
     file_esg_scores = outputfile + '/' + name + '/' + 'esg_scores.pkl'
@@ -541,6 +661,9 @@ def main(load_from_file, universe, start, end, freq, outputfile, name):
 
     logging.info("Get Tickers")
     tickers = get_tickers(universe, start)
+
+    logging.info("Build Regression for Tickers")
+    regression.main(outputfile, tickers)
 
     if load_from_file and os.path.exists(file_historical_prices):
         logging.info(f"Loading historical prices from {file_historical_prices}")
@@ -568,26 +691,20 @@ def main(load_from_file, universe, start, end, freq, outputfile, name):
     logging.info("Clean up Data")
     clean_historical_prices, clean_esg_scores = clean_data(historical_prices, esg_scores)
 
-    # Export Prices to debug
-    excelname = "prices-" + str(random.randint(1, 9999)) + ".xlsx"
-    dfs_historical_prices = []
-    for ticker, df in clean_historical_prices.items():
-        df_copy = df.copy()
-        df_copy['Ticker'] = ticker
-        dfs_historical_prices.append(df_copy)
-    combined_df_historical_prices = pd.concat(dfs_historical_prices, ignore_index=True)
-    with pd.ExcelWriter(excelname, engine='xlsxwriter') as writer:
-        combined_df_historical_prices.to_excel(writer, sheet_name='Prices', index=True)
-
     logging.info("Get Efficient Frontier for several ESG-Borders")
     cov, returns = calculate_cov_matrix(clean_historical_prices, freq)
+
+    trimmed_historical_prices, trimmed_esg_scores = remove_extreme_tickers(clean_historical_prices, clean_esg_scores, returns, 10)
+    cov, returns = calculate_cov_matrix(trimmed_historical_prices, freq)
+
     plot_returns_with_outliers(returns, outputfile, name)
-    frontiers = calculate_frontiers(clean_historical_prices, clean_esg_scores, freq)
-    plot_esg_histogram(clean_esg_scores, outputfile, name)
+    frontiers = calculate_frontiers(trimmed_historical_prices, trimmed_esg_scores, freq)
+    plot_esg_histogram(trimmed_esg_scores, outputfile, name)
     plot_all_frontiers(frontiers, outputfile, name)
 
+    plot_frontier_weights_boxplot(frontiers, outputfile, name)
     logging.info("Save Data to Excel")
-    save_dfs_to_excel(outputfile, name, tickers, historical_prices, esg_scores, clean_historical_prices, clean_esg_scores, frontiers, cov, returns)
+    save_dfs_to_excel(outputfile, name, tickers, historical_prices, esg_scores, trimmed_historical_prices, trimmed_esg_scores, frontiers, cov, returns)
 
     ld.close_session()
 
