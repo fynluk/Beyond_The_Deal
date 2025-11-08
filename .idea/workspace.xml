@@ -4,30 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Output">
+    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Monte_Carlo_Portfolio Idea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2022_1Y_W_SP500/esg_distribution.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2022_1Y_W_SP500/esg_scores.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2022_1Y_W_SP500/frontiers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2022_1Y_W_SP500/historical_prices.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/Data.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/esg_distribution.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/esg_scores.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/frontiers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_1Y_W_SP500/historical_prices.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_2Y_W_SP500/esg_distribution.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_2Y_W_SP500/esg_scores.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2023_2Y_W_SP500/historical_prices.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/Data.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/esg_distribution.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/esg_scores.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/frontiers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_1Y_W_SP500/historical_prices.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_2Y_W_SP500/esg_distribution.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_2Y_W_SP500/esg_scores.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/Output/2024_2Y_W_SP500/historical_prices.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/ef.py" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/ef.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Efficient_Frontier/runtime.log" beforeDir="false" afterPath="$PROJECT_DIR$/Efficient_Frontier/runtime.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/runtime.log" beforeDir="false" afterPath="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/runtime.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +52,7 @@
     "Python.excel_to_yaml.executor": "Run",
     "Python.get_ESG.executor": "Run",
     "Python.get_ticker.executor": "Run",
+    "Python.main (1).executor": "Run",
     "Python.main skip.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -98,7 +79,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ef">
+  <component name="RunManager" selected="Python.main (1)">
     <configuration name="ef load" type="PythonConfigurationType" factoryName="Python">
       <module name="Beyond_The_Deal" />
       <option name="ENV_FILES" value="" />
@@ -191,7 +172,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="get_ticker" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Beyond_The_Deal" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -200,12 +181,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/get_ticker.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -263,19 +244,19 @@
     <list>
       <item itemvalue="Python.main skip" />
       <item itemvalue="Python.ef load" />
+      <item itemvalue="Python.main (1)" />
       <item itemvalue="Python.ef" />
       <item itemvalue="Python.get_ESG" />
       <item itemvalue="Python.excel_to_yaml" />
-      <item itemvalue="Python.get_ticker" />
       <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.ef" />
         <item itemvalue="Python.get_ESG" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.excel_to_yaml" />
-        <item itemvalue="Python.get_ticker" />
       </list>
     </recent_temporary>
   </component>
@@ -304,7 +285,7 @@
       <workItem from="1755336157168" duration="2474000" />
       <workItem from="1755826444400" duration="2318000" />
       <workItem from="1757262020047" duration="8057000" />
-      <workItem from="1758956379677" duration="54280000" />
+      <workItem from="1758956379677" duration="185949000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -658,16 +639,64 @@
       <option name="project" value="LOCAL" />
       <updated>1760205737064</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="* Refine">
+      <option name="closed" value="true" />
+      <created>1760285687997</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1760285687997</updated>
+    </task>
+    <task id="LOCAL-00046" summary="* Refine">
+      <option name="closed" value="true" />
+      <created>1760285911704</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1760285911704</updated>
+    </task>
+    <task id="LOCAL-00047" summary="* Refine">
+      <option name="closed" value="true" />
+      <created>1761047555868</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1761047555868</updated>
+    </task>
+    <task id="LOCAL-00048" summary="* Add Regression Code">
+      <option name="closed" value="true" />
+      <created>1761405957639</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1761405957639</updated>
+    </task>
+    <task id="LOCAL-00049" summary="* Add Monte_Carlo_Portfolio Idea">
+      <option name="closed" value="true" />
+      <created>1762609893760</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1762609893760</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="* Add TODOS" />
-    <MESSAGE value="* Add requirements" />
-    <MESSAGE value="* Refine requirements" />
     <MESSAGE value="* Add skip mode to skip the sql import part manually" />
     <MESSAGE value="* Fix Date for deal" />
     <MESSAGE value="* Created function to get Intervals from sql" />
@@ -690,12 +719,16 @@
     <MESSAGE value="* Refine Programm" />
     <MESSAGE value="* Clean Code" />
     <MESSAGE value="* Add Output" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Add Output" />
+    <MESSAGE value="* Refine" />
+    <MESSAGE value="* Add Regression Code" />
+    <MESSAGE value="* Add Monte_Carlo_Portfolio Idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Add Monte_Carlo_Portfolio Idea" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1751017686038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1762631551014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$excel_to_yaml.coverage" NAME="excel_to_yaml Coverage Results" MODIFIED="1750958253438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef.coverage" NAME="ef Coverage Results" MODIFIED="1760285600671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Efficient_Frontier" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef.coverage" NAME="ef Coverage Results" MODIFIED="1761488728825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Efficient_Frontier" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ticker.coverage" NAME="get_ticker Coverage Results" MODIFIED="1750957828433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ESG.coverage" NAME="get_ESG Coverage Results" MODIFIED="1757262331117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main_skip.coverage" NAME="main skip Coverage Results" MODIFIED="1755078568743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
