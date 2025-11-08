@@ -1,0 +1,5 @@
+2025-11-08 14:50:14,174 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2025-11-08 14:50:14,176 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2025-11-08 14:50:15,461 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-11-08 14:50:16,142 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2025-11-08 14:50:17,260 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"

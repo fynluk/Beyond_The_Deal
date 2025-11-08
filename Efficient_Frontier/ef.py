@@ -629,13 +629,9 @@ def plot_frontier_weights_boxplot(data, output_file, name):
         weights_list = frontiers["Weights"].tolist()
         weights_df = pd.DataFrame(weights_list)
 
-        # Ticker-Spaltennamen hinzufügen (falls vorhanden)
-        if tickers is not None and len(tickers) == weights_df.shape[1]:
-            weights_df.columns = tickers
-        else:
-            weights_df.columns = [f"T{i+1}" for i in range(weights_df.shape[1])]
+        weights_df.columns = [f"T{i+1}" for i in range(weights_df.shape[1])]
 
-        plt.figure(figsize=(14, 6))
+        plt.figure(figsize=(140, 60))
         weights_df.boxplot(
             patch_artist=True,
             boxprops=dict(facecolor='lightblue', color='black'),
@@ -650,7 +646,7 @@ def plot_frontier_weights_boxplot(data, output_file, name):
         plt.grid(axis="y", linestyle="--", alpha=0.5)
         plt.tight_layout()
 
-        plt.savefig(save_dir + "/ESG-" + esg + "-Boxplot.png")
+        plt.savefig(save_dir + "/ESG-" + str(esg) + "-Boxplot.png")
 
 def main(load_from_file, universe, start, end, freq, outputfile, name):
     file_historical_prices = outputfile + '/' + name + '/' + 'historical_prices.pkl'

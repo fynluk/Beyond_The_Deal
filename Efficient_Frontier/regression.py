@@ -51,7 +51,6 @@ def get_data(tickers):
             ticker, df = future.result()
             dict[ticker] = df
 
-    print(dict)
     return dict
 
 def prepare_regression_data(data_dict: Dict[str, pd.DataFrame],
@@ -121,7 +120,7 @@ def prepare_regression_data(data_dict: Dict[str, pd.DataFrame],
 def plot_criteria_scatter(prepared_dict: Dict[str, pd.DataFrame],
                           save_dir: str = None,
                           figsize=(8, 6),
-                          marker_size=20,
+                          marker_size=10,
                           alpha=0.6,
                           annotate_samples: int = 0):
     axes_dict = {}
@@ -157,7 +156,7 @@ def plot_criteria_scatter(prepared_dict: Dict[str, pd.DataFrame],
 
         # Prepare figure
         fig, ax = plt.subplots(figsize=figsize)
-        ax.scatter(x, y, s=marker_size, alpha=alpha, edgecolor='k', linewidth=0.3)
+        ax.scatter(x, y, s=marker_size, alpha=alpha, c='#e9a239' , edgecolor='k', linewidth=0.3)
         ax.set_title(f"{crit}\n(n={len(d)})", fontsize=12)
         ax.set_xlabel(crit)
         ax.set_ylabel("Return")
@@ -165,7 +164,7 @@ def plot_criteria_scatter(prepared_dict: Dict[str, pd.DataFrame],
         # Regression line (plot over x-range)
         x_lin = np.linspace(np.nanmin(x), np.nanmax(x), 200)
         y_lin = intercept + slope * x_lin
-        ax.plot(x_lin, y_lin, linestyle='-', linewidth=1.5, label='Linear fit')
+        ax.plot(x_lin, y_lin, linestyle='-', linewidth=1.5, label='Linear fit', color='#0c264d')
 
         # Annotate slope, R^2, p-value
         text = f"slope={slope:.4f}\nR²={r2:.3f}\np={p_value:.3g}"
