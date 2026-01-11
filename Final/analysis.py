@@ -18,6 +18,12 @@ class RunConfig:
     def __init__(self, universe: str, endDate: str):
         self.universe = universe
         self.endDate = endDate
+        self.instruments_to_clean = []
+
+    def add_instruments_to_clean(self, new_instruments):
+        for inst in new_instruments:
+            if inst not in self.instruments:
+                self.instruments.append(inst)
 
 
 def refinitiv_session():
@@ -83,12 +89,10 @@ def get_data(config: RunConfig, universe: set, frq: str):
 
         mask_na = esg["Date"].isna() | esg["ESG Score"].isna()
         instruments_dropped = esg.loc[mask_na, "Instrument"].unique()
-        print(instruments_dropped)
-        print(type(instruments_dropped))
+        config.add_instruments_to_clean(instruments_dropped)
 
         esg_dropped = esg.dropna()
         esg_dropped["Date"] = pd.to_datetime(esg_dropped["Date"])
-        display(esg_dropped)
         latest_esg = (
             esg_dropped
             .loc[esg_dropped.groupby("Instrument")["Date"].idxmax()]
@@ -105,6 +109,7 @@ def main():
     universe, df_universe = get_universe(config)
     prices5Y, esg5Y = get_data(config, universe, "M")
     prices2Y, esg2Y = get_data(config, universe, "W")
+    print(config.instruments_to_clean)
 
     logging.info("Save data to csv")
     dataframes_to_save = [

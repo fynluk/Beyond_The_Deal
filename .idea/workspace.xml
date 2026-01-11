@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Monte_Carlo_Portfolio Idea">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/runtime.log" beforeDir="false" afterPath="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation/runtime.log" afterDir="false" />
+    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Status Quo">
+      <change beforePath="$PROJECT_DIR$/Final/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/analysis.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +45,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.analysis.executor": "Run",
     "Python.ef load.executor": "Run",
     "Python.ef.executor": "Run",
     "Python.excel_to_yaml.executor": "Run",
@@ -79,7 +78,30 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (1)">
+  <component name="RunManager" selected="Python.analysis">
+    <configuration name="analysis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Beyond_The_Deal" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final/analysis.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="ef load" type="PythonConfigurationType" factoryName="Python">
       <module name="Beyond_The_Deal" />
       <option name="ENV_FILES" value="" />
@@ -118,29 +140,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Efficient_Frontier/ef.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="excel_to_yaml" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Beyond_The_Deal" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/excel_to_yaml.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -244,19 +243,19 @@
     <list>
       <item itemvalue="Python.main skip" />
       <item itemvalue="Python.ef load" />
+      <item itemvalue="Python.analysis" />
       <item itemvalue="Python.main (1)" />
       <item itemvalue="Python.ef" />
       <item itemvalue="Python.get_ESG" />
-      <item itemvalue="Python.excel_to_yaml" />
       <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.analysis" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.ef" />
         <item itemvalue="Python.get_ESG" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.excel_to_yaml" />
       </list>
     </recent_temporary>
   </component>
@@ -286,30 +285,6 @@
       <workItem from="1755826444400" duration="2318000" />
       <workItem from="1757262020047" duration="8057000" />
       <workItem from="1758956379677" duration="185949000" />
-    </task>
-    <task id="LOCAL-00001" summary="init">
-      <option name="closed" value="true" />
-      <created>1742199202532</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1742199202532</updated>
-    </task>
-    <task id="LOCAL-00002" summary="init">
-      <option name="closed" value="true" />
-      <created>1742199389854</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1742199389854</updated>
-    </task>
-    <task id="LOCAL-00003" summary="add Objects Stock &amp; Deal">
-      <option name="closed" value="true" />
-      <created>1742994796662</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1742994796662</updated>
     </task>
     <task id="LOCAL-00004" summary="* Init SQL/Refinitive Handler&#10;* Rebuild main function">
       <option name="closed" value="true" />
@@ -679,7 +654,31 @@
       <option name="project" value="LOCAL" />
       <updated>1762609893760</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="* Add Status Quo">
+      <option name="closed" value="true" />
+      <created>1768151898404</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1768151898404</updated>
+    </task>
+    <task id="LOCAL-00051" summary="* Add Status Quo">
+      <option name="closed" value="true" />
+      <created>1768152242396</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1768152242396</updated>
+    </task>
+    <task id="LOCAL-00052" summary="* Add Status Quo">
+      <option name="closed" value="true" />
+      <created>1768152565227</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1768152565227</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +696,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="* Add skip mode to skip the sql import part manually" />
     <MESSAGE value="* Fix Date for deal" />
     <MESSAGE value="* Created function to get Intervals from sql" />
     <MESSAGE value="* Refine Dates to export" />
@@ -722,14 +720,17 @@
     <MESSAGE value="* Refine" />
     <MESSAGE value="* Add Regression Code" />
     <MESSAGE value="* Add Monte_Carlo_Portfolio Idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Add Monte_Carlo_Portfolio Idea" />
+    <MESSAGE value="* Add Status Quo" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Add Status Quo" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$analysis.coverage" NAME="analysis Coverage Results" MODIFIED="1768152571213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1751017686038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1762631551014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1768139396940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$excel_to_yaml.coverage" NAME="excel_to_yaml Coverage Results" MODIFIED="1750958253438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef.coverage" NAME="ef Coverage Results" MODIFIED="1761488728825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Efficient_Frontier" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ticker.coverage" NAME="get_ticker Coverage Results" MODIFIED="1750957828433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$gergoe.coverage" NAME="gergoe Coverage Results" MODIFIED="1762704307188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Gergoe" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$get_ESG.coverage" NAME="get_ESG Coverage Results" MODIFIED="1757262331117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main_skip.coverage" NAME="main skip Coverage Results" MODIFIED="1755078568743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$ef_load.coverage" NAME="ef load Coverage Results" MODIFIED="1759339314245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />

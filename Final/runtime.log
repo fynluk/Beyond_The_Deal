@@ -1,0 +1,7 @@
+2026-01-11 18:36:40,361 INFO Connect to Refnitiv
+2026-01-11 18:36:40,687 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2026-01-11 18:36:40,690 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2026-01-11 18:36:40,690 INFO Get Tickers from Index
+2026-01-11 18:36:42,200 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-01-11 18:36:42,223 INFO Get Data from Refinitiv
+2026-01-11 18:36:51,111 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
