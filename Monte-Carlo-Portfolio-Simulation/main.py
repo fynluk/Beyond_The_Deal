@@ -284,7 +284,7 @@ def main():
     clean_prices, clean_esg = clean_data(prices, esg, tickers_to_remove)
     plot_equity_return_esg(clean_prices, clean_esg)
     pivot1, pivot2, returns = calculate_returns(clean_prices, freq='W')
-    portfolio_results = monte_carlo_portfolios(returns, esg, num_portfolios=100000, rand_seed=1337, max_workers=8)
+    portfolio_results = monte_carlo_portfolios(returns, esg, num_portfolios=10000, rand_seed=1337, max_workers=8)
     plot_portfolio_return_esg(portfolio_results)
     plot_portfolio_heatmap(portfolio_results)
     plot_portfolio_3d(portfolio_results)
