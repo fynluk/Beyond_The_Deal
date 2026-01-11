@@ -107,13 +107,18 @@ def get_data(config: RunConfig, universe: set, frq: str):
     prices_pivot = prices.dropna().pivot(index="Date", columns="Instrument", values="Price Close")
     return prices_pivot, latest_esg
 
+def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
+    #TODO Hier müssen jetzt die Daten der ganzen Ticker aus config.instruments_to_clean rausgenommen und bereinigt werden
+    #TODO tbd, ob auch Top 10 Returns/Verluste rausgenommen werden sollten
+    pass
+
 def main():
     config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
     refinitiv_session()
     universe, df_universe = get_universe(config)
     prices5Y, esg5Y = get_data(config, universe, "M")
     prices2Y, esg2Y = get_data(config, universe, "W")
-    print(config.instruments_to_clean)
+    clean_prices5Y, clean_esg5Y, clean_prices2Y, clean_esg2Y = clean_data(config, prices5Y, esg5Y, prices2Y, esg2Y)
 
     logging.info("Save data to csv")
     dataframes_to_save = [
