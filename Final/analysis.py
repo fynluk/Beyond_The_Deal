@@ -22,8 +22,8 @@ class RunConfig:
 
     def add_instruments_to_clean(self, new_instruments):
         for inst in new_instruments:
-            if inst not in self.instruments:
-                self.instruments.append(inst)
+            if inst not in self.instruments_to_clean:
+                self.instruments_to_clean.append(inst)
 
 
 def refinitiv_session():
@@ -67,7 +67,7 @@ def get_data(config: RunConfig, universe: set, frq: str):
         logging.error("Invalid frq")
         exit(1)
 
-    if True:
+    try:
         prices = ld.get_data(
             universe=universe,
             fields=["TR.PriceClose","TR.PriceClose.date"],
@@ -86,22 +86,26 @@ def get_data(config: RunConfig, universe: set, frq: str):
         )
         prices.columns = ["Instrument", "Price Close", "Date"]
         esg.columns = ["Instrument", "ESG Score", "Date"]
+    except Exception as ex:
+        logging.error(ex)
+        logging.error("Failed to get Data from Refinitiv")
+        exit(1)
 
-        mask_na = esg["Date"].isna() | esg["ESG Score"].isna()
-        instruments_dropped = esg.loc[mask_na, "Instrument"].unique()
-        config.add_instruments_to_clean(instruments_dropped)
+    mask_na = esg["Date"].isna() | esg["ESG Score"].isna()
+    instruments_dropped = esg.loc[mask_na, "Instrument"].unique()
+    config.add_instruments_to_clean(instruments_dropped)
 
-        esg_dropped = esg.dropna()
-        esg_dropped["Date"] = pd.to_datetime(esg_dropped["Date"])
-        latest_esg = (
-            esg_dropped
-            .loc[esg_dropped.groupby("Instrument")["Date"].idxmax()]
-            .sort_values("Instrument")
-            .reset_index(drop=True)
-        )
+    esg_dropped = esg.dropna().copy()
+    esg_dropped["Date"] = pd.to_datetime(esg_dropped["Date"])
+    latest_esg = (
+        esg_dropped
+        .loc[esg_dropped.groupby("Instrument")["Date"].idxmax()]
+        .sort_values("Instrument")
+        .reset_index(drop=True)
+    )
 
-        prices_pivot = prices.dropna().pivot(index="Date", columns="Instrument", values="Price Close")
-        return prices_pivot, latest_esg
+    prices_pivot = prices.dropna().pivot(index="Date", columns="Instrument", values="Price Close")
+    return prices_pivot, latest_esg
 
 def main():
     config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
