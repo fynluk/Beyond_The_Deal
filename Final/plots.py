@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
@@ -47,6 +48,11 @@ risk_A, return_A = risks[0], returns[0]
 risk_B, return_B = risks[1], returns[1]
 
 # ======================
+# Ordner für Plots
+# ======================
+os.makedirs("Plots", exist_ok=True)
+
+# ======================
 # Grafik 1: Efficient Frontier
 # ======================
 plt.figure(figsize=(7, 5))
@@ -79,6 +85,7 @@ plt.gca().xaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 
 plt.grid(True, color=grid_color)
+plt.savefig("Plots/efficient_frontier.png", dpi=500, bbox_inches="tight")
 plt.show()
 
 # ======================
@@ -141,4 +148,5 @@ plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 
 plt.grid(True, color=grid_color)
 plt.legend()
+plt.savefig("Plots/efficient_frontier_cml.png", dpi=500, bbox_inches="tight")
 plt.show()
