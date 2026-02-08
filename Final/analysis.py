@@ -107,7 +107,10 @@ def get_data(config: RunConfig, universe: set, frq: str):
         .sort_values("Instrument")
         .reset_index(drop=True)
     )
-    prices_pivot = prices.dropna().pivot(index="Date", columns="Instrument", values="Price Close")
+
+    prices_clean = prices.dropna(subset=["Price Close", "Date"])
+    prices_clean2 = prices_clean.dropna().groupby(["Date", "Instrument"]).mean().reset_index()
+    prices_pivot = prices_clean2.dropna().pivot(index="Date", columns="Instrument", values="Price Close")
     return prices_pivot, latest_esg
 
 def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
@@ -130,7 +133,6 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
     to_clean2Y.extend(list(instruments_esg.symmetric_difference(instruments_prices)))
     to_clean2Y.extend(list(instruments_prices.symmetric_difference(instruments_esg)))
 
-
     prices2Y_filtered = prices2Y.drop(columns=to_clean2Y)
     prices5Y_filtered = prices5Y.drop(columns=to_clean5Y)
 
@@ -150,7 +152,6 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
         ~esg5Y_filtered["Instrument"].isin(new)
     ].reset_index(drop=True)
 
-
     return prices5Y_filtered2, esg5Y_filtered2, prices2Y_filtered, esg2Y_filtered
 
 def expected_returns(prices: pd.DataFrame, freq: str):
@@ -165,7 +166,8 @@ def expected_returns(prices: pd.DataFrame, freq: str):
         logging.error("Invalid freq")
         exit(1)
 
-    returns = prices.pct_change()
+    na_counts = prices.isna().sum()
+    returns = prices.pct_change(fill_method=None)
     mu = returns.mean() * scale
 
     return mu
@@ -179,7 +181,7 @@ def cov_matrix(prices: pd.DataFrame, freq: str):
         logging.error("Invalid freq")
         exit(1)
 
-    returns = prices.pct_change()
+    returns = prices.pct_change(fill_method=None)
     cov = returns.cov() * scale
 
     return cov
@@ -195,6 +197,7 @@ def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, port
         cov = cov_matrix(prices_filtered, freq)
         frontier = compute_efficient_frontier(returns, cov, portfolios, t)
         frontiers[f"ESG >= {t}"] = frontier
+
     return frontiers
 
 
@@ -257,6 +260,7 @@ def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
 
     # Sortieren nach Return
     frontier_df = pd.DataFrame(frontier_points).sort_values(by='Return').reset_index(drop=True)
+
     return frontier_df
 
 
@@ -284,8 +288,8 @@ def plot_frontiers(frontiers):
 
 
 def main():
-    config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
-    #config = RunConfig(universe="0#.STOXX", endDate="2025-12-31")  # TODO Bug beheben
+    #config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
+    config = RunConfig(universe="0#.STOXX", endDate="2025-12-31")  # TODO Bug beheben
 
     # Flag: True = gespeicherte DataFrames + config laden, False = neu abrufen
     use_saved_data = True
