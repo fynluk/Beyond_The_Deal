@@ -1,5 +1,7 @@
 import logging
 import lseg.data as ld
+import os
+import pickle
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
@@ -103,7 +105,6 @@ def get_data(config: RunConfig, universe: set, frq: str):
         .sort_values("Instrument")
         .reset_index(drop=True)
     )
-
     prices_pivot = prices.dropna().pivot(index="Date", columns="Instrument", values="Price Close")
     return prices_pivot, latest_esg
 
@@ -111,21 +112,29 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
     #TODO tbd, ob auch Top 10 Returns/Verluste rausgenommen werden sollten
 
    # 1. Alle Ticker entfernen, die NA Werte beinhalten
-    prices2Y_filtered = prices2Y.drop(
-        columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
-    prices5Y_filtered = prices5Y.drop(
-        columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
+    #prices2Y_filtered = prices2Y.drop(
+    #    columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
+    #prices5Y_filtered = prices5Y.drop(
+    #    columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
+    prices2Y_filtered = prices2Y.drop(columns=config.instruments_to_clean)
+    prices5Y_filtered = prices5Y.drop(columns=config.instruments_to_clean)
 
+    display(esg2Y)
     esg2Y_filtered = esg2Y.loc[
         ~esg2Y["Instrument"].isin(config.instruments_to_clean)
     ].reset_index(drop=True)
+    display(len(config.instruments_to_clean))
+    display(esg2Y_filtered)
     esg5Y_filtered = esg5Y.loc[
         ~esg2Y["Instrument"].isin(config.instruments_to_clean)
     ].reset_index(drop=True)
 
     return prices5Y_filtered, esg5Y_filtered, prices2Y_filtered, esg2Y_filtered
 
-def cagr(prices: pd.DataFrame, freq: str):
+def expected_returns(prices: pd.DataFrame, freq: str):
+    # Berechnung der wöchentlichen/monatlichen durchschnittlichen Returns
+    # inklusive einer Hochrechnung auf einen jährlichen Return
+
     if freq == "W":
         scale = 52
     elif freq == "M":
@@ -134,25 +143,104 @@ def cagr(prices: pd.DataFrame, freq: str):
         logging.error("Invalid freq")
         exit(1)
 
-    n_periods = prices.shape[0] - 1
-    n_years = n_periods / scale
+    returns = prices.pct_change()
+    mu = returns.mean() * scale
 
-    cagr = (prices.iloc[-1] / prices.iloc[0]) ** (1 / n_years) - 1
-    display(cagr)
+    return mu
 
-    return cagr
+def cov_matrix(prices: pd.DataFrame, freq: str):
+    if freq == "W":
+        scale = 52
+    elif freq == "M":
+        scale = 12
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+
+    returns = prices.pct_change()
+    cov = returns.cov() * scale
+
+    return cov
+
+
+def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str):
+    frontiers = {}
+    thresholds=[25,50,75]
+
+    for t in thresholds:
+        prices_filtered, esg_filtered = filter_universe(prices, esg, t)
+        returns = expected_returns(prices_filtered, freq)
+        cov = cov_matrix(prices_filtered, freq)
+
+        exit(1)
+
+
+def filter_universe(prices: pd.DataFrame, esg: pd.DataFrame, t: int):
+    instruments_below_X = esg[esg['ESG Score'] < t]['Instrument']
+    instruments_list = instruments_below_X.tolist()
+    instruments_list.append("A.N")
+    display(instruments_list)
+    prices_filtered = prices.drop(
+        columns=[c for c in prices.columns if c in instruments_list])
+    esg_filtered = esg.loc[
+        ~esg["Instrument"].isin(instruments_list)
+    ].reset_index(drop=True)
+    #display(prices_filtered)
+    #display(esg_filtered)
+
+    return prices_filtered, esg_filtered
+
+
 
 
 
 def main():
     config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
-    refinitiv_session()
-    universe, df_universe = get_universe(config)
-    prices2Y, esg2Y = get_data(config, universe, "W")
-    prices5Y, esg5Y = get_data(config, universe, "M")
+    #config = RunConfig(universe="0#.STOXX", endDate="2025-12-31")  # TODO Bug beheben
+
+    # Flag: True = gespeicherte DataFrames laden, False = neu abrufen
+    use_saved_data = False
+
+    data_folder = "DataFrames"
+    os.makedirs(data_folder, exist_ok=True)
+
+    if use_saved_data:
+        # Lade alle DataFrames
+        with open(os.path.join(data_folder, "prices2Y.pkl"), "rb") as f:
+            prices2Y = pickle.load(f)
+        with open(os.path.join(data_folder, "esg2Y.pkl"), "rb") as f:
+            esg2Y = pickle.load(f)
+        with open(os.path.join(data_folder, "prices5Y.pkl"), "rb") as f:
+            prices5Y = pickle.load(f)
+        with open(os.path.join(data_folder, "esg5Y.pkl"), "rb") as f:
+            esg5Y = pickle.load(f)
+        with open(os.path.join(data_folder, "df_universe.pkl"), "rb") as f:
+            df_universe = pickle.load(f)
+    else:
+        refinitiv_session()
+        universe, df_universe = get_universe(config)
+        prices2Y, esg2Y = get_data(config, universe, "W")
+        prices5Y, esg5Y = get_data(config, universe, "M")
+
+        # Speichern
+        with open(os.path.join(data_folder, "prices2Y.pkl"), "wb") as f:
+            pickle.dump(prices2Y, f)
+        with open(os.path.join(data_folder, "esg2Y.pkl"), "wb") as f:
+            pickle.dump(esg2Y, f)
+        with open(os.path.join(data_folder, "prices5Y.pkl"), "wb") as f:
+            pickle.dump(prices5Y, f)
+        with open(os.path.join(data_folder, "esg5Y.pkl"), "wb") as f:
+            pickle.dump(esg5Y, f)
+        with open(os.path.join(data_folder, "df_universe.pkl"), "wb") as f:
+            pickle.dump(df_universe, f)
+
     clean_prices5Y, clean_esg5Y, clean_prices2Y, clean_esg2Y = clean_data(config, prices5Y, esg5Y, prices2Y, esg2Y)
-    cagr2Y = cagr(prices2Y, freq="W")
-    cagr5Y = cagr(prices5Y, freq="M")
+    returns2Y = expected_returns(clean_prices2Y, freq="W")
+    returns5Y = expected_returns(clean_prices5Y, freq="M")
+    cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
+    cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
+
+    efficient_frontiers(prices2Y, esg2Y, "W")
 
 
     logging.info("Save data to csv")
@@ -166,8 +254,10 @@ def main():
         ('07-ESG5Y_cleaned', clean_esg5Y),
         ('08-Prices2Y_cleaned', clean_prices2Y),
         ('09-ESG2Y_cleaned', clean_esg2Y),
-        ('10-CAGR5Y', cagr5Y),
-        ('11-CAGR2Y', cagr2Y),
+        ('10-Returns5Y', returns5Y),
+        ('11-Returns2Y', returns2Y),
+        ('12-CovMatrix5Y', cov_matrix5Y),
+        ('13-CovMatrix2Y', cov_matrix2Y),
     ]
 
     # Speichern als CSV
