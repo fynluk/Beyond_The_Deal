@@ -108,9 +108,22 @@ def get_data(config: RunConfig, universe: set, frq: str):
     return prices_pivot, latest_esg
 
 def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
-    #TODO Hier müssen jetzt die Daten der ganzen Ticker aus config.instruments_to_clean rausgenommen und bereinigt werden
     #TODO tbd, ob auch Top 10 Returns/Verluste rausgenommen werden sollten
-    pass
+
+   # 1. Alle Ticker entfernen, die NA Werte beinhalten
+    prices2Y_filtered = prices2Y.drop(
+        columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
+    prices5Y_filtered = prices5Y.drop(
+        columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
+
+    esg2Y_filtered = esg2Y.loc[
+        ~esg2Y["Instrument"].isin(config.instruments_to_clean)
+    ].reset_index(drop=True)
+    esg5Y_filtered = esg5Y.loc[
+        ~esg2Y["Instrument"].isin(config.instruments_to_clean)
+    ].reset_index(drop=True)
+
+    return prices5Y_filtered, esg5Y_filtered, prices2Y_filtered, esg2Y_filtered
 
 def main():
     config = RunConfig(universe="0#.SPX", endDate="2025-12-31")

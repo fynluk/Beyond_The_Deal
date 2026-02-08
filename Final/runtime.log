@@ -1,14 +1,13 @@
-2026-01-11 18:38:16,326 INFO Connect to Refnitiv
-2026-01-11 18:38:16,611 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
-2026-01-11 18:38:16,612 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
-2026-01-11 18:38:16,613 INFO Get Tickers from Index
-2026-01-11 18:38:17,662 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-01-11 18:38:17,677 INFO Get Data from Refinitiv
-2026-01-11 18:38:26,559 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-01-11 18:38:39,957 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-01-11 18:38:47,796 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-01-11 18:38:47,967 INFO Get Data from Refinitiv
-2026-01-11 18:38:56,826 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-01-11 18:39:09,832 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-01-11 18:39:23,290 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-01-11 18:39:23,451 INFO Save data to csv
+2026-02-08 16:25:55,146 INFO Connect to Refnitiv
+2026-02-08 16:25:55,482 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2026-02-08 16:25:55,487 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2026-02-08 16:25:55,488 INFO Get Tickers from Index
+2026-02-08 16:25:57,038 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 16:25:57,059 INFO Get Data from Refinitiv
+2026-02-08 16:26:05,886 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 16:26:18,050 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 16:26:26,157 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 16:26:26,338 INFO Get Data from Refinitiv
+2026-02-08 16:26:35,232 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 16:26:49,265 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 16:27:01,248 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
