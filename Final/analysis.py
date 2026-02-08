@@ -125,13 +125,32 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
 
     return prices5Y_filtered, esg5Y_filtered, prices2Y_filtered, esg2Y_filtered
 
+def annual_returns(prices: pd.DataFrame, freq: str):
+    if freq == "W":
+        scale = 52
+    elif freq == "M":
+        scale = 12
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+
+    log_returns = np.log(prices) / prices.shift(1)
+    returns = log_returns.mean() * scale
+
+    return returns
+
+
+
 def main():
     config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
     refinitiv_session()
     universe, df_universe = get_universe(config)
-    prices5Y, esg5Y = get_data(config, universe, "M")
     prices2Y, esg2Y = get_data(config, universe, "W")
+    prices5Y, esg5Y = get_data(config, universe, "M")
     clean_prices5Y, clean_esg5Y, clean_prices2Y, clean_esg2Y = clean_data(config, prices5Y, esg5Y, prices2Y, esg2Y)
+    returns2Y = annual_returns(prices2Y, freq="W")
+    returns5Y = annual_returns(prices5Y, freq="M")
+
 
     logging.info("Save data to csv")
     dataframes_to_save = [
@@ -140,6 +159,12 @@ def main():
         ('03-ESG5Y', esg5Y),
         ('04-Prices2Y', prices2Y),
         ('05-ESG2Y', esg2Y),
+        ('06-Prices5Y_cleaned', clean_prices5Y),
+        ('07-ESG5Y_cleaned', clean_esg5Y),
+        ('08-Prices2Y_cleaned', clean_prices2Y),
+        ('09-ESG2Y_cleaned', clean_esg2Y),
+        ('10-Returns5Y', returns5Y),
+        ('11-Returns5Y_cleaned', returns2Y),
     ]
 
     # Speichern als CSV
