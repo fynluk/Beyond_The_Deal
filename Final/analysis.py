@@ -198,14 +198,11 @@ def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str):
 def filter_universe(prices: pd.DataFrame, esg: pd.DataFrame, t: int):
     instruments_below_X = esg[esg['ESG Score'] < t]['Instrument']
     instruments_list = instruments_below_X.tolist()
-    #display(instruments_list)
     prices_filtered = prices.drop(
         columns=[c for c in prices.columns if c in instruments_list])
     esg_filtered = esg.loc[
         ~esg["Instrument"].isin(instruments_list)
     ].reset_index(drop=True)
-    #display(prices_filtered)
-    #display(esg_filtered)
 
     return prices_filtered, esg_filtered
 
@@ -263,7 +260,7 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    #efficient_frontiers(prices2Y, esg2Y, "W")
+    efficient_frontiers(clean_prices5Y, clean_esg5Y, "W")
 
 
     logging.info("Save data to csv")
