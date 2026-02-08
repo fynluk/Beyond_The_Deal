@@ -337,7 +337,7 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "M", portfolios=10)
+    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "M", portfolios=25)
     plot_frontiers(frontiers2Y)
 
 
