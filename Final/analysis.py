@@ -193,7 +193,7 @@ def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, port
         prices_filtered, esg_filtered = filter_universe(prices, esg, t)
         returns = expected_returns(prices_filtered, freq)
         cov = cov_matrix(prices_filtered, freq)
-        frontier = compute_efficient_frontier(returns, cov, t, portfolios)
+        frontier = compute_efficient_frontier(returns, cov, portfolios, t)
         frontiers[f"ESG >= {t}"] = frontier
     return frontiers
 
@@ -333,8 +333,8 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "W", portfolios=10)
-    plot_frontiers(frontiers5Y)
+    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=10)
+    plot_frontiers(frontiers2Y)
 
 
     logging.info("Save data to csv")
