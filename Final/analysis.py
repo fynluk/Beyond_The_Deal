@@ -125,7 +125,7 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
 
     return prices5Y_filtered, esg5Y_filtered, prices2Y_filtered, esg2Y_filtered
 
-def annual_returns(prices: pd.DataFrame, freq: str):
+def cagr(prices: pd.DataFrame, freq: str):
     if freq == "W":
         scale = 52
     elif freq == "M":
@@ -134,10 +134,13 @@ def annual_returns(prices: pd.DataFrame, freq: str):
         logging.error("Invalid freq")
         exit(1)
 
-    log_returns = np.log(prices) / prices.shift(1)
-    returns = log_returns.mean() * scale
+    n_periods = prices.shape[0] - 1
+    n_years = n_periods / scale
 
-    return returns
+    cagr = (prices.iloc[-1] / prices.iloc[0]) ** (1 / n_years) - 1
+    display(cagr)
+
+    return cagr
 
 
 
@@ -148,8 +151,8 @@ def main():
     prices2Y, esg2Y = get_data(config, universe, "W")
     prices5Y, esg5Y = get_data(config, universe, "M")
     clean_prices5Y, clean_esg5Y, clean_prices2Y, clean_esg2Y = clean_data(config, prices5Y, esg5Y, prices2Y, esg2Y)
-    returns2Y = annual_returns(prices2Y, freq="W")
-    returns5Y = annual_returns(prices5Y, freq="M")
+    cagr2Y = cagr(prices2Y, freq="W")
+    cagr5Y = cagr(prices5Y, freq="M")
 
 
     logging.info("Save data to csv")
@@ -163,8 +166,8 @@ def main():
         ('07-ESG5Y_cleaned', clean_esg5Y),
         ('08-Prices2Y_cleaned', clean_prices2Y),
         ('09-ESG2Y_cleaned', clean_esg2Y),
-        ('10-Returns5Y', returns5Y),
-        ('11-Returns5Y_cleaned', returns2Y),
+        ('10-CAGR5Y', cagr5Y),
+        ('11-CAGR2Y', cagr2Y),
     ]
 
     # Speichern als CSV

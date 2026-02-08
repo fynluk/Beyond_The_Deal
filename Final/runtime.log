@@ -1,13 +1,12 @@
-2026-02-08 16:25:55,146 INFO Connect to Refnitiv
-2026-02-08 16:25:55,482 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
-2026-02-08 16:25:55,487 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
-2026-02-08 16:25:55,488 INFO Get Tickers from Index
-2026-02-08 16:25:57,038 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-08 16:25:57,059 INFO Get Data from Refinitiv
-2026-02-08 16:26:05,886 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-08 16:26:18,050 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-08 16:26:26,157 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-08 16:26:26,338 INFO Get Data from Refinitiv
-2026-02-08 16:26:35,232 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-08 16:26:49,265 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-08 16:27:01,248 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 17:13:06,503 INFO Connect to Refnitiv
+2026-02-08 17:13:06,845 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2026-02-08 17:13:06,848 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2026-02-08 17:13:06,849 INFO Get Tickers from Index
+2026-02-08 17:13:08,498 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 17:13:08,521 INFO Get Data from Refinitiv
+2026-02-08 17:13:16,894 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 17:13:29,778 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 17:13:29,925 INFO Get Data from Refinitiv
+2026-02-08 17:13:38,840 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 17:13:50,223 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-08 17:13:57,748 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
