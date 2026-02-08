@@ -189,21 +189,21 @@ def cov_matrix(prices: pd.DataFrame, freq: str):
 
 def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, portfolios):
     frontiers = {}
-    thresholds=[25,50,75]
+    thresholds=[100,90,80,70]
 
     for t in thresholds:
         prices_filtered, esg_filtered = filter_universe(prices, esg, t)
         returns = expected_returns(prices_filtered, freq)
         cov = cov_matrix(prices_filtered, freq)
         frontier = compute_efficient_frontier(returns, cov, portfolios, t)
-        frontiers[f"ESG >= {t}"] = frontier
+        frontiers[f"ESG <= {t}"] = frontier
 
     return frontiers
 
 
 def filter_universe(prices: pd.DataFrame, esg: pd.DataFrame, t: int):
-    instruments_below_X = esg[esg['ESG Score'] < t]['Instrument']
-    instruments_list = instruments_below_X.tolist()
+    instruments_above_X = esg[esg['ESG Score'] > t]['Instrument']
+    instruments_list = instruments_above_X.tolist()
     prices_filtered = prices.drop(
         columns=[c for c in prices.columns if c in instruments_list])
     esg_filtered = esg.loc[
@@ -259,7 +259,7 @@ def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
                 frontier_points.append(result)
 
     # Sortieren nach Return
-    frontier_df = pd.DataFrame(frontier_points).sort_values(by='Return').reset_index(drop=True)
+    frontier_df = pd.DataFrame(frontier_points)
 
     return frontier_df
 
@@ -337,7 +337,7 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=10)
+    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "M", portfolios=10)
     plot_frontiers(frontiers2Y)
 
 
