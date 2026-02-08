@@ -116,20 +116,40 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
     #    columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
     #prices5Y_filtered = prices5Y.drop(
     #    columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
-    prices2Y_filtered = prices2Y.drop(columns=config.instruments_to_clean)
-    prices5Y_filtered = prices5Y.drop(columns=config.instruments_to_clean)
+    to_clean5Y = config.instruments_to_clean
+    instruments_esg = set(esg5Y["Instrument"])
+    instruments_prices = set(prices5Y.columns)
+    to_clean5Y.extend(list(instruments_esg.symmetric_difference(instruments_prices)))
+    to_clean5Y.extend(list(instruments_prices.symmetric_difference(instruments_esg)))
 
-    display(esg2Y)
+    to_clean2Y = config.instruments_to_clean
+    instruments_esg = set(esg2Y["Instrument"])
+    instruments_prices = set(prices2Y.columns)
+    to_clean2Y.extend(list(instruments_esg.symmetric_difference(instruments_prices)))
+    to_clean2Y.extend(list(instruments_prices.symmetric_difference(instruments_esg)))
+
+
+    prices2Y_filtered = prices2Y.drop(columns=to_clean2Y)
+    prices5Y_filtered = prices5Y.drop(columns=to_clean5Y)
+
     esg2Y_filtered = esg2Y.loc[
-        ~esg2Y["Instrument"].isin(config.instruments_to_clean)
+        ~esg2Y["Instrument"].isin(to_clean2Y)
     ].reset_index(drop=True)
-    display(len(config.instruments_to_clean))
-    display(esg2Y_filtered)
     esg5Y_filtered = esg5Y.loc[
-        ~esg2Y["Instrument"].isin(config.instruments_to_clean)
+        ~esg2Y["Instrument"].isin(to_clean5Y)
     ].reset_index(drop=True)
 
-    return prices5Y_filtered, esg5Y_filtered, prices2Y_filtered, esg2Y_filtered
+    esg_inst = set(esg5Y_filtered["Instrument"])
+    pri_inst = set(prices5Y_filtered.columns)
+    new = list(esg_inst.symmetric_difference(pri_inst))
+    new.extend(pri_inst.symmetric_difference(esg_inst))
+    prices5Y_filtered2 = prices5Y_filtered.drop(columns=new, errors="ignore")
+    esg5Y_filtered2 = esg5Y_filtered.loc[
+        ~esg5Y_filtered["Instrument"].isin(new)
+    ].reset_index(drop=True)
+
+
+    return prices5Y_filtered2, esg5Y_filtered2, prices2Y_filtered, esg2Y_filtered
 
 def expected_returns(prices: pd.DataFrame, freq: str):
     # Berechnung der wöchentlichen/monatlichen durchschnittlichen Returns
@@ -178,8 +198,7 @@ def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str):
 def filter_universe(prices: pd.DataFrame, esg: pd.DataFrame, t: int):
     instruments_below_X = esg[esg['ESG Score'] < t]['Instrument']
     instruments_list = instruments_below_X.tolist()
-    instruments_list.append("A.N")
-    display(instruments_list)
+    #display(instruments_list)
     prices_filtered = prices.drop(
         columns=[c for c in prices.columns if c in instruments_list])
     esg_filtered = esg.loc[
@@ -198,14 +217,16 @@ def main():
     config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
     #config = RunConfig(universe="0#.STOXX", endDate="2025-12-31")  # TODO Bug beheben
 
-    # Flag: True = gespeicherte DataFrames laden, False = neu abrufen
-    use_saved_data = False
+    # Flag: True = gespeicherte DataFrames + config laden, False = neu abrufen
+    use_saved_data = True
 
-    data_folder = "DataFrames"
+    data_folder = "DataFrame"
     os.makedirs(data_folder, exist_ok=True)
 
     if use_saved_data:
-        # Lade alle DataFrames
+        # Lade alle DataFrames + config
+        with open(os.path.join(data_folder, "config.pkl"), "rb") as f:
+            config = pickle.load(f)
         with open(os.path.join(data_folder, "prices2Y.pkl"), "rb") as f:
             prices2Y = pickle.load(f)
         with open(os.path.join(data_folder, "esg2Y.pkl"), "rb") as f:
@@ -222,7 +243,9 @@ def main():
         prices2Y, esg2Y = get_data(config, universe, "W")
         prices5Y, esg5Y = get_data(config, universe, "M")
 
-        # Speichern
+        # Speichern aller Objekte
+        with open(os.path.join(data_folder, "config.pkl"), "wb") as f:
+            pickle.dump(config, f)
         with open(os.path.join(data_folder, "prices2Y.pkl"), "wb") as f:
             pickle.dump(prices2Y, f)
         with open(os.path.join(data_folder, "esg2Y.pkl"), "wb") as f:
@@ -240,7 +263,7 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    efficient_frontiers(prices2Y, esg2Y, "W")
+    #efficient_frontiers(prices2Y, esg2Y, "W")
 
 
     logging.info("Save data to csv")
