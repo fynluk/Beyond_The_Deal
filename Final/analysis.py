@@ -4,7 +4,9 @@ import os
 import pickle
 import numpy as np
 import pandas as pd
+from scipy.optimize import minimize
 from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm.contrib.concurrent import process_map
 from functools import partial
 from IPython.core.display_functions import display
@@ -183,7 +185,7 @@ def cov_matrix(prices: pd.DataFrame, freq: str):
     return cov
 
 
-def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str):
+def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, portfolios):
     frontiers = {}
     thresholds=[25,50,75]
 
@@ -191,8 +193,9 @@ def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str):
         prices_filtered, esg_filtered = filter_universe(prices, esg, t)
         returns = expected_returns(prices_filtered, freq)
         cov = cov_matrix(prices_filtered, freq)
-
-        exit(1)
+        frontier = compute_efficient_frontier(returns, cov, t, portfolios)
+        frontiers[f"ESG >= {t}"] = frontier
+    return frontiers
 
 
 def filter_universe(prices: pd.DataFrame, esg: pd.DataFrame, t: int):
@@ -207,7 +210,77 @@ def filter_universe(prices: pd.DataFrame, esg: pd.DataFrame, t: int):
     return prices_filtered, esg_filtered
 
 
+def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
+    mu = np.array(mu)
+    cov_matrix = np.array(cov_matrix)
+    n_assets = len(mu)
 
+    # Portfolio-Risiko-Funktion
+    def portfolio_risk(weights):
+        return np.sqrt(weights.T @ cov_matrix @ weights)
+
+    # Constraints: Summe der Gewichte = 1, Portfolio-Return = target_return
+    def get_constraints(target_return):
+        constraints = [
+            {'type': 'eq', 'fun': lambda w: np.sum(w) - 1},  # Summe=1
+            {'type': 'eq', 'fun': lambda w: w @ mu - target_return}  # Zielrendite
+        ]
+        return constraints
+
+    bounds = [(0, 0.5) for _ in range(n_assets)]
+    target_returns = np.linspace(mu.min(), mu.max(), portfolios)
+    x0 = np.repeat(1 / n_assets, n_assets)
+
+    frontier_points = []
+
+    # Optimierung für ein einzelnes Ziel
+    def optimize_target(r_target):
+        cons = get_constraints(r_target)
+        res = minimize(portfolio_risk, x0, method='SLSQP', bounds=bounds, constraints=cons)
+        if res.success:
+            return {
+                'Return': float(r_target),
+                'Risk': float(portfolio_risk(res.x)),
+                'Weights': res.x
+            }
+        else:
+            logging.error(f"Optimization failed for target return {r_target:.4f}")
+            return None
+
+    # Multithreading
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(optimize_target, r): r for r in target_returns}
+        for f in tqdm(as_completed(futures), total=len(futures), desc=f"Calculating Efficient Frontier for threshold {t}"):
+            result = f.result()
+            if result is not None:
+                frontier_points.append(result)
+
+    # Sortieren nach Return
+    frontier_df = pd.DataFrame(frontier_points).sort_values(by='Return').reset_index(drop=True)
+    return frontier_df
+
+
+def plot_frontiers(frontiers):
+    plt.figure(figsize=(12, 8))
+
+    n = len(frontiers)
+    cmap = plt.get_cmap("viridis")  # Colormap holen
+    colors = cmap(np.linspace(0, 1, n))
+
+    for color, (esg_border, frontier_df) in zip(colors, sorted(frontiers.items())):
+        plt.plot(frontier_df['Risk'], frontier_df['Return'], label=esg_border, color=color)
+
+    plt.xlabel("Risk (Volatility)")
+    plt.ylabel("Expected Return")
+    plt.title("Markowitz Efficient Frontiers für verschiedene ESG-Borders")
+    plt.legend()
+    plt.grid(True)
+
+    plt.show()
+    # Plot speichern
+    #output_path = outputfile + "/" + name + "/" + "frontiers.png"
+    #plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
 
 def main():
@@ -260,7 +333,8 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    efficient_frontiers(clean_prices5Y, clean_esg5Y, "W")
+    frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "W", portfolios=10)
+    plot_frontiers(frontiers5Y)
 
 
     logging.info("Save data to csv")
