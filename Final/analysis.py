@@ -258,8 +258,7 @@ def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
             if result is not None:
                 frontier_points.append(result)
 
-    # Sortieren nach Return
-    frontier_df = pd.DataFrame(frontier_points)
+    frontier_df = pd.DataFrame(frontier_points).sort_values(by='Return').reset_index(drop=True)
 
     return frontier_df
 
