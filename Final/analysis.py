@@ -20,10 +20,11 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 class RunConfig:
-    def __init__(self, universe: str, endDate: str, riskFreeRate: float):
+    def __init__(self, universe: str, endDate: str, riskFreeRate2Y: float, riskFreeRate5Y: float):
         self.universe = universe
         self.endDate = endDate
-        self.riskFreeRate = riskFreeRate
+        self.riskFreeRate2Y = riskFreeRate2Y
+        self.riskFreeRate5Y = riskFreeRate5Y
         self.instruments_to_clean = []
 
     def add_instruments_to_clean(self, new_instruments):
@@ -298,7 +299,7 @@ def plot_frontiers(frontiers):
     plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
 
-def capital_market_line(config, frontiers: dict):
+def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     frontier_color = (0 / 255, 39 / 255, 80 / 255)
     cml_color = (245 / 255, 158 / 255, 0 / 255)
@@ -306,6 +307,14 @@ def capital_market_line(config, frontiers: dict):
     type = 0
 
     #rf = config.riskFreeRate
+    if freq == "W":
+        rf = config.riskFreeRate2Y
+    elif freq == "M":
+        rf = config.riskFreeRate5Y
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+
     rf = 0.03               # TODO einmal neu durchlaufen lassen, so dass config geladen wird
 
     output = {}
@@ -356,7 +365,7 @@ def capital_market_line(config, frontiers: dict):
 
 def main():
     #config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
-    config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate=0.03)
+    config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate2Y=0.02062, riskFreeRate5Y=0.02350)
 
     # Flag: True = gespeicherte DataFrames + config laden, False = neu abrufen
     use_saved_data = True
@@ -404,10 +413,12 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=10)
-    cml_output2Y = capital_market_line(config, frontiers2Y)
-    display(cml_output2Y)
+    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=100)
     plot_frontiers(frontiers2Y)
+    cml_output2Y = capital_market_line(config, frontiers2Y, "W")
+    frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=100)
+    plot_frontiers(frontiers5Y)
+    cml_output5Y = capital_market_line(config, frontiers5Y, "M")
 
 
     logging.info("Save data to csv")
@@ -425,6 +436,10 @@ def main():
         ('11-Returns2Y', returns2Y),
         ('12-CovMatrix5Y', cov_matrix5Y),
         ('13-CovMatrix2Y', cov_matrix2Y),
+        ('14-Frontiers2Y', frontiers2Y),
+        ('15-Frontiers5Y', frontiers5Y),
+        ('16-Sharpe2Y', cml_output2Y),
+        ('17-Sharpe5Y', cml_output5Y),
     ]
 
     # Speichern als CSV
