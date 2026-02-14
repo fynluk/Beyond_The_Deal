@@ -1,15 +1,7 @@
-2026-02-09 08:46:00,194 ERROR Optimization failed for target return -0.0644
-2026-02-09 08:51:21,677 ERROR Optimization failed for target return 0.2263
-2026-02-09 08:53:27,180 ERROR Optimization failed for target return -0.1409
-2026-02-09 08:58:57,145 ERROR Optimization failed for target return 0.2263
-2026-02-09 08:59:38,796 ERROR Optimization failed for target return -0.1409
-2026-02-09 09:02:36,412 ERROR Optimization failed for target return -0.1409
-2026-02-09 09:04:03,245 ERROR Optimization failed for target return 0.2110
-2026-02-09 09:04:35,858 ERROR Optimization failed for target return 0.2263
-2026-02-09 09:04:43,747 ERROR Optimization failed for target return 0.1957
-2026-02-09 09:05:32,280 ERROR Optimization failed for target return 0.1957
-2026-02-09 09:05:33,391 ERROR Optimization failed for target return -0.1256
-2026-02-09 09:05:43,025 ERROR Optimization failed for target return 0.2110
-2026-02-09 09:05:47,911 ERROR Optimization failed for target return -0.1409
-2026-02-09 09:05:55,712 ERROR Optimization failed for target return 0.2263
-2026-02-09 09:05:55,919 INFO Save data to csv
+2026-02-14 16:04:53,267 ERROR Optimization failed for target return 0.9807
+2026-02-14 16:07:38,885 ERROR Optimization failed for target return -0.6107
+2026-02-14 16:08:02,145 ERROR Optimization failed for target return -0.6107
+2026-02-14 16:08:02,425 ERROR Optimization failed for target return 0.9807
+2026-02-14 16:08:03,043 ERROR Optimization failed for target return 0.9807
+2026-02-14 16:08:03,096 ERROR Optimization failed for target return -0.6107
+2026-02-14 16:08:03,531 INFO Save data to csv

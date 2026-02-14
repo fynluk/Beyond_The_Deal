@@ -5,6 +5,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
+from matplotlib.ticker import PercentFormatter
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm.contrib.concurrent import process_map
@@ -19,9 +20,10 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 class RunConfig:
-    def __init__(self, universe: str, endDate: str):
+    def __init__(self, universe: str, endDate: str, riskFreeRate: float):
         self.universe = universe
         self.endDate = endDate
+        self.riskFreeRate = riskFreeRate
         self.instruments_to_clean = []
 
     def add_instruments_to_clean(self, new_instruments):
@@ -189,7 +191,7 @@ def cov_matrix(prices: pd.DataFrame, freq: str):
 
 def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, portfolios):
     frontiers = {}
-    thresholds=[100,90,80,70]
+    thresholds=[85,70,55]
 
     for t in thresholds:
         prices_filtered, esg_filtered = filter_universe(prices, esg, t)
@@ -264,18 +266,28 @@ def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
 
 
 def plot_frontiers(frontiers):
+    grid_color = (236 / 255, 237 / 255, 239 / 255)
+    frontier_color = (0 / 255, 39 / 255, 80 / 255)
     plt.figure(figsize=(12, 8))
 
-    n = len(frontiers)
-    cmap = plt.get_cmap("viridis")  # Colormap holen
-    colors = cmap(np.linspace(0, 1, n))
+    linestyles = [":", "--", "-"]
+    for i, ((esg_border, frontier_df)) in enumerate(sorted(frontiers.items())):
+        plt.plot(
+            frontier_df["Risk"],
+            frontier_df["Return"],
+            label=esg_border,
+            color=frontier_color,
+            linestyle=linestyles[i],
+            linewidth=2
+        )
 
-    for color, (esg_border, frontier_df) in zip(colors, sorted(frontiers.items())):
-        plt.plot(frontier_df['Risk'], frontier_df['Return'], label=esg_border, color=color)
+    plt.gca().xaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+    plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 
-    plt.xlabel("Risk (Volatility)")
+    plt.grid(True, color=grid_color)
+
+    plt.xlabel("Risk")
     plt.ylabel("Expected Return")
-    plt.title("Markowitz Efficient Frontiers für verschiedene ESG-Borders")
     plt.legend()
     plt.grid(True)
 
@@ -286,9 +298,65 @@ def plot_frontiers(frontiers):
     plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
 
 
+def capital_market_line(config, frontiers: dict):
+    grid_color = (236 / 255, 237 / 255, 239 / 255)
+    frontier_color = (0 / 255, 39 / 255, 80 / 255)
+    cml_color = (245 / 255, 158 / 255, 0 / 255)
+    linestyles = ["-", "--", ":"]
+    type = 0
+
+    #rf = config.riskFreeRate
+    rf = 0.03               # TODO einmal neu durchlaufen lassen, so dass config geladen wird
+
+    output = {}
+    plt.figure(figsize=(12, 8))
+
+    for name, df in frontiers.items():
+        returns = df["Return"].values
+        risk = df["Risk"].values
+
+        # ---- Sharpe Ratio ----
+        sharpe = (returns - rf) / risk
+
+        df["Sharpe"] = sharpe  # optional speichern
+
+        # Tangency Portfolio
+        max_idx = np.argmax(sharpe)
+
+        tangency_return = returns[max_idx]
+        tangency_risk = risk[max_idx]
+        max_sharpe = sharpe[max_idx]
+        output[name] = {(max_sharpe, tangency_return, tangency_risk)}
+
+        # ---- Frontier plot ----
+        plt.plot(risk, returns, label=f"{name} Frontier", color=frontier_color, linestyle=linestyles[type])
+
+        # ---- Capital Market Line ----
+        sigma_range = np.linspace(0, max(risk) * 1.2, 100)
+        cml = rf + max_sharpe * sigma_range
+
+        plt.plot(sigma_range, cml, linestyle=linestyles[type], label=f"{name} CML", color=cml_color)
+        type = type + 1
+
+    # Risk-free Punkt
+    plt.scatter(0, rf, marker="x", s=100, color=cml_color)
+
+    plt.gca().xaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+    plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+
+    plt.grid(True, color=grid_color)
+    plt.xlabel("Risk")
+    plt.ylabel("Expected Return")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    return pd.DataFrame.from_dict(output, orient="index")
+
+
 def main():
     #config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
-    config = RunConfig(universe="0#.STOXX", endDate="2025-12-31")  # TODO Bug beheben
+    config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate=0.03)
 
     # Flag: True = gespeicherte DataFrames + config laden, False = neu abrufen
     use_saved_data = True
@@ -336,7 +404,9 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "M", portfolios=25)
+    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=10)
+    cml_output2Y = capital_market_line(config, frontiers2Y)
+    display(cml_output2Y)
     plot_frontiers(frontiers2Y)
 
 
