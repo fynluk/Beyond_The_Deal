@@ -221,7 +221,7 @@ def cov_matrix(prices: pd.DataFrame, freq: str):
     return cov
 
 
-def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, portfolios):
+def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, portfolios: int):
     frontiers = {}
     thresholds=[85,70,55]
 
@@ -396,6 +396,11 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
     return pd.DataFrame.from_dict(output, orient="index")
 
 
+def monte_carlo_portfolio(returns: pd.DataFrame, esg : pd.DataFrame, portfolios: int, seed: int):
+    # TODO start hier
+    pass
+
+
 def main():
     #config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
     config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate2Y=0.02062, riskFreeRate5Y=0.02350)
@@ -448,13 +453,12 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=5)
+    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=100)
     plot_frontiers(frontiers2Y)
     cml_output2Y = capital_market_line(config, frontiers2Y, "W")
-    frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=5)
+    frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=100)
     plot_frontiers(frontiers5Y)
     cml_output5Y = capital_market_line(config, frontiers5Y, "M")
-
 
     logging.info("Save data to csv")
     dataframes_to_save = [
@@ -477,9 +481,14 @@ def main():
         ('17-Sharpe5Y', cml_output5Y),
     ]
 
+    #MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, 10000, 21010012202)
+    #MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, 10000, 79433970801)
+
+
     # Speichern als CSV
     for name, df in dataframes_to_save:
         df.to_csv(f'Data/{name}.csv', index=True)
+
     ld.close_session()
 
 if __name__ == '__main__':

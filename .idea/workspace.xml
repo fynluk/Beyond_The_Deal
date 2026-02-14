@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Status Quo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Data/06-Prices5Y_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Data/06-Prices5Y_cleaned.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Data/07-ESG5Y_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Data/07-ESG5Y_cleaned.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Data/10-Returns5Y.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Data/10-Returns5Y.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Data/12-CovMatrix5Y.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Data/12-CovMatrix5Y.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/runtime.log" beforeDir="false" afterPath="$PROJECT_DIR$/Final/runtime.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,15 +287,7 @@
       <workItem from="1755826444400" duration="2318000" />
       <workItem from="1757262020047" duration="8057000" />
       <workItem from="1758956379677" duration="185949000" />
-      <workItem from="1769680011140" duration="64884000" />
-    </task>
-    <task id="LOCAL-00029" summary="* Add Deals from 2010 to 2020&#10;* Add old Deals as Backup file">
-      <option name="closed" value="true" />
-      <created>1750965545958</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1750965545958</updated>
+      <workItem from="1769680011140" duration="65190000" />
     </task>
     <task id="LOCAL-00030" summary="* Create Script that builds deals.yaml from a excel file">
       <option name="closed" value="true" />
@@ -687,7 +673,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771087463488</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="* Add Status Quo">
+      <option name="closed" value="true" />
+      <created>1771090561438</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1771090561438</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
