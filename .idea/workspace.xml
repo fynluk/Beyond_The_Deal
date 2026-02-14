@@ -7,7 +7,6 @@
     <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Status Quo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/runtime.log" beforeDir="false" afterPath="$PROJECT_DIR$/Final/runtime.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,15 +288,7 @@
       <workItem from="1755826444400" duration="2318000" />
       <workItem from="1757262020047" duration="8057000" />
       <workItem from="1758956379677" duration="185949000" />
-      <workItem from="1769680011140" duration="59228000" />
-    </task>
-    <task id="LOCAL-00026" summary="* Created Skeleton for Monte-Carlo-Simulation">
-      <option name="closed" value="true" />
-      <created>1746372143624</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1746372143624</updated>
+      <workItem from="1769680011140" duration="60407000" />
     </task>
     <task id="LOCAL-00027" summary="* Housekeeping">
       <option name="closed" value="true" />
@@ -683,7 +674,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770624417816</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="* Add Status Quo">
+      <option name="closed" value="true" />
+      <created>1771081830468</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1771081830468</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -430,6 +430,7 @@ def main():
     # Speichern als CSV
     for name, df in dataframes_to_save:
         df.to_csv(f'Data/{name}.csv', index=True)
+    ld.close_session()
 
 if __name__ == '__main__':
     pd.set_option('future.no_silent_downcasting', True)
