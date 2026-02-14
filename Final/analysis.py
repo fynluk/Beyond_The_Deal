@@ -143,7 +143,7 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
         ~esg2Y["Instrument"].isin(to_clean2Y)
     ].reset_index(drop=True)
     esg5Y_filtered = esg5Y.loc[
-        ~esg2Y["Instrument"].isin(to_clean5Y)
+        ~esg5Y["Instrument"].isin(to_clean5Y)
     ].reset_index(drop=True)
 
     esg_inst = set(esg5Y_filtered["Instrument"])
@@ -156,6 +156,37 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
     ].reset_index(drop=True)
 
     return prices5Y_filtered2, esg5Y_filtered2, prices2Y_filtered, esg2Y_filtered
+
+
+def plot_esg_distribution(esg_df):
+    grid_color = (236 / 255, 237 / 255, 239 / 255)
+
+    esg_values = esg_df["ESG Score"]
+
+    # 5er-Bins von 0 bis 100
+    bins = np.arange(0, 105, 5)
+
+    # Farbe (0,39,80)
+    base_color = (0/255, 39/255, 80/255)
+
+    plt.figure(figsize=(12, 8))
+    plt.gca().set_axisbelow(True)
+
+    plt.hist(
+        esg_values,
+        bins=bins,
+        color=base_color,
+        edgecolor="black"
+    )
+
+    plt.xticks(np.arange(0, 105, 5))
+    plt.xlabel("ESG Score")
+    plt.ylabel("Number of Assets")
+    plt.grid(True, color=grid_color)
+
+    plt.grid(True)
+    plt.show()
+
 
 def expected_returns(prices: pd.DataFrame, freq: str):
     # Berechnung der wöchentlichen/monatlichen durchschnittlichen Returns
@@ -308,9 +339,11 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
 
     #rf = config.riskFreeRate
     if freq == "W":
-        rf = config.riskFreeRate2Y
+        #rf = config.riskFreeRate2Y
+        pass
     elif freq == "M":
-        rf = config.riskFreeRate5Y
+        #rf = config.riskFreeRate5Y
+        pass
     else:
         logging.error("Invalid freq")
         exit(1)
@@ -408,15 +441,17 @@ def main():
             pickle.dump(df_universe, f)
 
     clean_prices5Y, clean_esg5Y, clean_prices2Y, clean_esg2Y = clean_data(config, prices5Y, esg5Y, prices2Y, esg2Y)
+    plot_esg_distribution(clean_esg2Y)
+    plot_esg_distribution(clean_esg5Y)
     returns2Y = expected_returns(clean_prices2Y, freq="W")
     returns5Y = expected_returns(clean_prices5Y, freq="M")
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=100)
+    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=5)
     plot_frontiers(frontiers2Y)
     cml_output2Y = capital_market_line(config, frontiers2Y, "W")
-    frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=100)
+    frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=5)
     plot_frontiers(frontiers5Y)
     cml_output5Y = capital_market_line(config, frontiers5Y, "M")
 
@@ -436,8 +471,8 @@ def main():
         ('11-Returns2Y', returns2Y),
         ('12-CovMatrix5Y', cov_matrix5Y),
         ('13-CovMatrix2Y', cov_matrix2Y),
-        ('14-Frontiers2Y', frontiers2Y),
-        ('15-Frontiers5Y', frontiers5Y),
+        ('14-Frontiers2Y', pd.concat(frontiers2Y, names=["Frontier"])),
+        ('15-Frontiers5Y', pd.concat(frontiers5Y, names=["Frontier"])),
         ('16-Sharpe2Y', cml_output2Y),
         ('17-Sharpe5Y', cml_output5Y),
     ]

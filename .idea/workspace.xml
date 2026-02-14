@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Status Quo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/Data/06-Prices5Y_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Data/06-Prices5Y_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/Data/07-ESG5Y_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Data/07-ESG5Y_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/Data/10-Returns5Y.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Data/10-Returns5Y.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/Data/12-CovMatrix5Y.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Data/12-CovMatrix5Y.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/runtime.log" beforeDir="false" afterPath="$PROJECT_DIR$/Final/runtime.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,15 +293,7 @@
       <workItem from="1755826444400" duration="2318000" />
       <workItem from="1757262020047" duration="8057000" />
       <workItem from="1758956379677" duration="185949000" />
-      <workItem from="1769680011140" duration="61469000" />
-    </task>
-    <task id="LOCAL-00028" summary="* Add IMAA Statistic&#10;* Create Plot of Statistic">
-      <option name="closed" value="true" />
-      <created>1748089037394</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1748089037394</updated>
+      <workItem from="1769680011140" duration="64884000" />
     </task>
     <task id="LOCAL-00029" summary="* Add Deals from 2010 to 2020&#10;* Add old Deals as Backup file">
       <option name="closed" value="true" />
@@ -682,7 +679,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771083004334</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="* Add Status Quo">
+      <option name="closed" value="true" />
+      <created>1771087463488</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1771087463488</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +734,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$plots.coverage" NAME="plots Coverage Results" MODIFIED="1770464084842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final" />
-    <SUITE FILE_PATH="coverage/Beyond_The_Deal$analysis.coverage" NAME="analysis Coverage Results" MODIFIED="1771081461026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final" />
+    <SUITE FILE_PATH="coverage/Beyond_The_Deal$analysis.coverage" NAME="analysis Coverage Results" MODIFIED="1771090134588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Final" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main.coverage" NAME="main Coverage Results" MODIFIED="1751017686038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1768139396940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Monte-Carlo-Portfolio-Simulation" />
     <SUITE FILE_PATH="coverage/Beyond_The_Deal$excel_to_yaml.coverage" NAME="excel_to_yaml Coverage Results" MODIFIED="1750958253438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
