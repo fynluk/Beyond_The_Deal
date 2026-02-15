@@ -397,8 +397,41 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
 
 
 def monte_carlo_portfolio(returns: pd.DataFrame, esg : pd.DataFrame, portfolios: int, seed: int):
-    # TODO start hier
-    pass
+    np.random.seed(seed)
+
+    # Gemeinsame Instrumente
+    common_assets = returns.index.intersection(esg["Instrument"])
+
+    returns = returns.loc[common_assets].values
+    esg = (
+        esg.set_index("Instrument")
+        .loc[common_assets]["ESG Score"]
+        .values
+    )
+
+    n_assets = len(common_assets)
+
+    portfolio_results = []
+
+    for _ in range(portfolios):
+        # Zufällige Gewichte (Long-only)
+        weights = np.random.random(n_assets)
+        weights /= np.sum(weights)
+
+        # Portfolio Return
+        port_return = np.dot(weights, returns)
+
+        # Gewichteter ESG Score
+        port_esg = np.dot(weights, esg)
+
+        portfolio_results.append([port_return, port_esg, weights])
+
+    portfolio_df = pd.DataFrame(
+        portfolio_results,
+        columns=["Return", "ESG Score", "Weights"]
+    )
+
+    return portfolio_df
 
 
 def main():
@@ -446,13 +479,14 @@ def main():
             pickle.dump(df_universe, f)
 
     clean_prices5Y, clean_esg5Y, clean_prices2Y, clean_esg2Y = clean_data(config, prices5Y, esg5Y, prices2Y, esg2Y)
-    plot_esg_distribution(clean_esg2Y)
-    plot_esg_distribution(clean_esg5Y)
+    #plot_esg_distribution(clean_esg2Y)
+    #plot_esg_distribution(clean_esg5Y)
     returns2Y = expected_returns(clean_prices2Y, freq="W")
     returns5Y = expected_returns(clean_prices5Y, freq="M")
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
+    """
     frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=100)
     plot_frontiers(frontiers2Y)
     cml_output2Y = capital_market_line(config, frontiers2Y, "W")
@@ -480,9 +514,10 @@ def main():
         ('16-Sharpe2Y', cml_output2Y),
         ('17-Sharpe5Y', cml_output5Y),
     ]
-
-    #MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, 10000, 21010012202)
-    #MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, 10000, 79433970801)
+    """
+    MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, 10000, 81541)
+    display(MCportfolios2Y)
+    #MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, 10000, 45768)
 
 
     # Speichern als CSV
