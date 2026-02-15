@@ -1,14 +1,66 @@
-2026-02-15 15:49:19,220 INFO Connect to Refnitiv
-2026-02-15 15:49:19,505 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
-2026-02-15 15:49:19,507 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
-2026-02-15 15:49:19,507 INFO Get Tickers from Index
-2026-02-15 15:49:21,273 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-15 15:49:21,298 INFO Get Data from Refinitiv
-2026-02-15 15:49:30,165 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-15 15:49:42,404 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-15 15:49:57,860 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-15 15:49:58,070 INFO Get Data from Refinitiv
-2026-02-15 15:50:06,968 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-15 15:50:18,447 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-15 15:50:27,161 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
-2026-02-15 15:50:28,330 INFO Calculating efficient frontiers
+2026-02-15 15:56:57,731 INFO Connect to Refnitiv
+2026-02-15 15:56:58,010 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2026-02-15 15:56:58,012 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2026-02-15 15:56:58,012 INFO Get Tickers from Index
+2026-02-15 15:56:59,940 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:56:59,957 INFO Get Data from Refinitiv
+2026-02-15 15:57:08,806 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:57:21,016 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:57:35,744 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:57:35,947 INFO Get Data from Refinitiv
+2026-02-15 15:57:44,793 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:57:55,150 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:58:05,872 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:58:14,775 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:58:16,080 INFO Calculating efficient frontiers
+2026-02-15 16:04:22,445 ERROR Optimization failed for target return -0.6107
+2026-02-15 16:05:51,058 ERROR Optimization failed for target return -0.5946
+2026-02-15 16:11:49,682 ERROR Optimization failed for target return -0.5625
+2026-02-15 16:11:52,438 ERROR Optimization failed for target return -0.5786
+2026-02-15 16:17:32,714 ERROR Optimization failed for target return 0.9807
+2026-02-15 16:18:12,257 ERROR Optimization failed for target return -0.5303
+2026-02-15 16:18:24,227 ERROR Optimization failed for target return -0.5625
+2026-02-15 16:18:27,282 ERROR Optimization failed for target return -0.5946
+2026-02-15 16:18:30,084 ERROR Optimization failed for target return -0.5786
+2026-02-15 16:18:31,665 ERROR Optimization failed for target return -0.5464
+2026-02-15 16:18:57,887 ERROR Optimization failed for target return -0.6107
+2026-02-15 16:20:44,808 ERROR Optimization failed for target return 0.8521
+2026-02-15 16:20:51,695 ERROR Optimization failed for target return 0.9164
+2026-02-15 16:20:52,890 ERROR Optimization failed for target return 0.9003
+2026-02-15 16:20:57,799 ERROR Optimization failed for target return 0.9646
+2026-02-15 16:20:58,945 ERROR Optimization failed for target return 0.8682
+2026-02-15 16:21:02,803 ERROR Optimization failed for target return 0.8842
+2026-02-15 16:21:09,937 ERROR Optimization failed for target return 0.9807
+2026-02-15 16:21:12,225 ERROR Optimization failed for target return 0.9485
+2026-02-15 16:21:14,604 ERROR Optimization failed for target return 0.9325
+2026-02-15 16:21:14,841 ERROR Optimization failed for target return -0.4982
+2026-02-15 16:21:15,779 ERROR Optimization failed for target return -0.5143
+2026-02-15 16:21:16,216 ERROR Optimization failed for target return -0.5303
+2026-02-15 16:21:16,520 ERROR Optimization failed for target return -0.6107
+2026-02-15 16:21:16,563 ERROR Optimization failed for target return -0.5946
+2026-02-15 16:21:16,697 ERROR Optimization failed for target return -0.5786
+2026-02-15 16:21:17,658 ERROR Optimization failed for target return -0.5464
+2026-02-15 16:21:18,668 ERROR Optimization failed for target return -0.5625
+2026-02-15 16:21:20,153 ERROR Optimization failed for target return 0.8360
+2026-02-15 16:21:20,736 ERROR Optimization failed for target return 0.8682
+2026-02-15 16:21:20,762 ERROR Optimization failed for target return 0.8521
+2026-02-15 16:21:21,222 ERROR Optimization failed for target return 0.9003
+2026-02-15 16:21:21,236 ERROR Optimization failed for target return 0.8842
+2026-02-15 16:21:21,291 ERROR Optimization failed for target return 0.9646
+2026-02-15 16:21:21,325 ERROR Optimization failed for target return 0.9325
+2026-02-15 16:21:21,468 ERROR Optimization failed for target return 0.9164
+2026-02-15 16:21:21,525 ERROR Optimization failed for target return 0.9485
+2026-02-15 16:21:21,555 ERROR Optimization failed for target return 0.9807
+2026-02-15 16:21:21,556 INFO Calculating efficient frontiers
+2026-02-15 16:22:15,642 ERROR Optimization failed for target return -0.2744
+2026-02-15 16:26:33,867 ERROR Optimization failed for target return -0.2936
+2026-02-15 16:29:46,551 ERROR Optimization failed for target return -0.2840
+2026-02-15 16:39:59,639 ERROR Optimization failed for target return 0.6392
+2026-02-15 16:40:27,646 ERROR Optimization failed for target return 0.6585
+2026-02-15 16:40:51,477 ERROR Optimization failed for target return 0.6488
+2026-02-15 16:40:57,650 ERROR Optimization failed for target return -0.2167
+2026-02-15 16:44:41,987 ERROR Optimization failed for target return 0.5871
+2026-02-15 16:44:44,397 ERROR Optimization failed for target return -0.2058
+2026-02-15 16:44:46,898 ERROR Optimization failed for target return -0.2118
+2026-02-15 16:45:15,365 ERROR Optimization failed for target return 0.3855
+2026-02-15 16:46:06,836 INFO Save data to csv

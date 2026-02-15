@@ -296,9 +296,12 @@ def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
             return None
 
     # Multithreading
+    frontier_points = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        for result in tqdm(executor.map(optimize_target, target_returns), total=len(target_returns),
-                           desc=f"Calculating Efficient Frontier for threshold {t}"):
+        futures = [executor.submit(optimize_target, r_target) for r_target in target_returns]
+        for f in tqdm(as_completed(futures), total=len(futures),
+                      desc=f"Calculating Efficient Frontier for threshold {t}"):
+            result = f.result()
             if result is not None:
                 frontier_points.append(result)
 
