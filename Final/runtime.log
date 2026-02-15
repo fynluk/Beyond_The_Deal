@@ -1,0 +1,29 @@
+2026-02-15 15:18:49,345 INFO Connect to Refnitiv
+2026-02-15 15:18:51,290 INFO HTTP Request: GET http://localhost:9000/api/status "HTTP/1.1 200 OK"
+2026-02-15 15:18:51,357 INFO HTTP Request: POST http://localhost:9000/api/handshake "HTTP/1.1 200 OK"
+2026-02-15 15:18:51,358 INFO Get Tickers from Index
+2026-02-15 15:18:54,265 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:18:54,281 INFO Get Data from Refinitiv
+2026-02-15 15:19:03,190 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:19:20,222 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:19:34,979 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:19:35,192 INFO Get Data from Refinitiv
+2026-02-15 15:19:44,065 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:19:59,477 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:20:16,422 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:20:25,669 INFO HTTP Request: POST http://localhost:9000/api/udf "HTTP/1.1 200 OK"
+2026-02-15 15:20:38,833 ERROR Optimization failed for target return 0.9807
+2026-02-15 15:21:50,198 ERROR Optimization failed for target return -0.6107
+2026-02-15 15:22:08,555 ERROR Optimization failed for target return -0.6107
+2026-02-15 15:22:09,603 ERROR Optimization failed for target return 0.9807
+2026-02-15 15:22:10,016 ERROR Optimization failed for target return -0.6107
+2026-02-15 15:22:10,126 ERROR Optimization failed for target return 0.9807
+2026-02-15 15:24:14,018 ERROR Optimization failed for target return -0.2936
+2026-02-15 15:24:16,931 ERROR Optimization failed for target return 0.6585
+2026-02-15 15:24:19,515 ERROR Optimization failed for target return -0.2167
+2026-02-15 15:24:21,894 ERROR Optimization failed for target return 0.5871
+2026-02-15 15:24:27,588 ERROR Optimization failed for target return -0.2118
+2026-02-15 15:24:28,559 ERROR Optimization failed for target return 0.3855
+2026-02-15 15:24:46,798 INFO Save data to csv
+2026-02-15 15:27:27,525 INFO Closing session
+2026-02-15 15:27:27,528 INFO Session is closed

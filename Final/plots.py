@@ -85,7 +85,7 @@ plt.gca().xaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 
 plt.grid(True, color=grid_color)
-plt.savefig("Plots/efficient_frontier.png", dpi=500, bbox_inches="tight")
+plt.savefig("Plots/00-1-efficient_frontier.png", dpi=500, bbox_inches="tight")
 plt.show()
 
 # ======================
@@ -148,5 +148,5 @@ plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 
 plt.grid(True, color=grid_color)
 plt.legend()
-plt.savefig("Plots/efficient_frontier_cml.png", dpi=500, bbox_inches="tight")
+plt.savefig("Plots/00-2-efficient_frontier_cml.png", dpi=500, bbox_inches="tight")
 plt.show()

@@ -159,7 +159,7 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
     return prices5Y_filtered2, esg5Y_filtered2, prices2Y_filtered, esg2Y_filtered
 
 
-def plot_esg_distribution(esg_df):
+def plot_esg_distribution(esg_df, freq):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
 
     esg_values = esg_df["ESG Score"]
@@ -186,7 +186,15 @@ def plot_esg_distribution(esg_df):
     plt.grid(True, color=grid_color)
 
     plt.grid(True)
+    if freq == "W":
+        plt.savefig("Plots/01-Distribution2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/02-Distribution5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
     plt.show()
+    plt.close()
 
 
 def expected_returns(prices: pd.DataFrame, freq: str):
@@ -298,7 +306,7 @@ def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
     return frontier_df
 
 
-def plot_frontiers(frontiers):
+def plot_frontiers(frontiers, freq):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     frontier_color = (0 / 255, 39 / 255, 80 / 255)
     plt.figure(figsize=(12, 8))
@@ -325,10 +333,14 @@ def plot_frontiers(frontiers):
     plt.grid(True)
 
     plt.show()
-    # Plot speichern
-    #output_path = outputfile + "/" + name + "/" + "frontiers.png"
-    #plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close()  # Speicher freigeben, falls du viele Plots erzeugst
+    if freq == "W":
+        plt.savefig("Plots/03-EffFrontier2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/04-EffFrontier5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+    plt.close()
 
 
 def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
@@ -340,16 +352,12 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
 
     #rf = config.riskFreeRate
     if freq == "W":
-        #rf = config.riskFreeRate2Y
-        pass
+        rf = config.riskFreeRate2Y
     elif freq == "M":
-        #rf = config.riskFreeRate5Y
-        pass
+        rf = config.riskFreeRate5Y
     else:
         logging.error("Invalid freq")
         exit(1)
-
-    rf = 0.03               # TODO einmal neu durchlaufen lassen, so dass config geladen wird
 
     output = {}
     plt.figure(figsize=(12, 8))
@@ -392,7 +400,15 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
     plt.ylabel("Expected Return")
     plt.legend()
     plt.grid(True)
+    if freq == "W":
+        plt.savefig("Plots/05-CML2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/06-CML5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
     plt.show()
+    plt.close()
 
     return pd.DataFrame.from_dict(output, orient="index")
 
@@ -462,7 +478,7 @@ def multiregression(portfolios: pd.DataFrame):
     return results
 
 
-def plot_regression_summary(model, filename="regression_summary.png"):
+def plot_regression_summary(model, freq):
     summary_text = model.summary().as_text()
 
     fig = plt.figure(figsize=(12, 10))
@@ -473,16 +489,22 @@ def plot_regression_summary(model, filename="regression_summary.png"):
 
     plt.axis('off')
     plt.tight_layout()
+    if freq == "W":
+        plt.savefig("Plots/07-Regression2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/08-Regression5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
     plt.show()
     plt.close()
 
 
 def main():
-    #config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
     config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate2Y=0.02062, riskFreeRate5Y=0.02350)
 
     # Flag: True = gespeicherte DataFrames + config laden, False = neu abrufen
-    use_saved_data = True
+    use_saved_data = False
 
     data_folder = "DataFrame"
     os.makedirs(data_folder, exist_ok=True)
@@ -522,27 +544,38 @@ def main():
             pickle.dump(df_universe, f)
 
     clean_prices5Y, clean_esg5Y, clean_prices2Y, clean_esg2Y = clean_data(config, prices5Y, esg5Y, prices2Y, esg2Y)
-    #plot_esg_distribution(clean_esg2Y)
-    #plot_esg_distribution(clean_esg5Y)
+    plot_esg_distribution(clean_esg2Y, "W")
+    plot_esg_distribution(clean_esg5Y, "M")
     returns2Y = expected_returns(clean_prices2Y, freq="W")
     returns5Y = expected_returns(clean_prices5Y, freq="M")
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=100)
-    plot_frontiers(frontiers2Y)
+    if use_saved_data:
+        with open(os.path.join(data_folder, "frontiers2Y.pkl"), "rb") as f:
+            frontiers2Y = pickle.load(f)
+        with open(os.path.join(data_folder, "frontiers5Y.pkl"), "rb") as f:
+            frontiers5Y = pickle.load(f)
+    else:
+        frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=5)
+        frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=5)
+
+        with open(os.path.join(data_folder, "frontiers2Y.pkl"), "wb") as f:
+            pickle.dump(frontiers2Y, f)
+        with open(os.path.join(data_folder, "frontiers5Y.pkl"), "wb") as f:
+            pickle.dump(frontiers5Y, f)
+
+    plot_frontiers(frontiers2Y, "W")
+    plot_frontiers(frontiers5Y, "M")
     cml_output2Y = capital_market_line(config, frontiers2Y, "W")
-    frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=100)
-    plot_frontiers(frontiers5Y)
     cml_output5Y = capital_market_line(config, frontiers5Y, "M")
 
     MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, cov_matrix2Y, 50000, 81541)
     MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, cov_matrix5Y, 50000, 45768)
     regression2Y = multiregression(MCportfolios2Y)
     regression5Y = multiregression(MCportfolios5Y)
-    plot_regression_summary(regression2Y)
-    plot_regression_summary(regression5Y)
-    exit(1)
+    plot_regression_summary(regression2Y, "W")
+    plot_regression_summary(regression5Y, "M")
 
     logging.info("Save data to csv")
     dataframes_to_save = [
