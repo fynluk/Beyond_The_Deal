@@ -328,12 +328,16 @@ def plot_frontiers(frontiers, freq):
 
     plt.gca().xaxis.set_major_formatter(PercentFormatter(1, decimals=0))
     plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+    plt.xlim(0, 0.4)
+    plt.ylim(-0.5, 1.0)
+    plt.xticks(np.arange(0, 0.41, 0.1))
+    plt.yticks(np.arange(-0.5, 1.01, 0.25))
 
     plt.grid(True, color=grid_color)
 
     plt.xlabel("Risk")
     plt.ylabel("Expected Return")
-    plt.legend()
+    plt.legend(loc="upper left")
     plt.grid(True)
 
     plt.show()
@@ -394,15 +398,19 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
         type = type + 1
 
     # Risk-free Punkt
-    plt.scatter(0, rf, marker="x", s=100, color=cml_color)
+    #plt.scatter(0, rf, marker="x", s=100, color=cml_color)
 
     plt.gca().xaxis.set_major_formatter(PercentFormatter(1, decimals=0))
     plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+    plt.xlim(0, 0.4)
+    plt.ylim(-0.5, 1.0)
+    plt.xticks(np.arange(0, 0.41, 0.1))
+    plt.yticks(np.arange(-0.5, 1.01, 0.25))
 
     plt.grid(True, color=grid_color)
     plt.xlabel("Risk")
     plt.ylabel("Expected Return")
-    plt.legend()
+    plt.legend(loc="upper left")
     plt.grid(True)
     if freq == "W":
         plt.savefig("Plots/05-CML2Y.png", dpi=300, bbox_inches='tight')
@@ -508,7 +516,7 @@ def main():
     config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate2Y=0.02062, riskFreeRate5Y=0.02350)
 
     # Flag: True = gespeicherte DataFrames + config laden, False = neu abrufen
-    use_saved_data = False
+    use_saved_data = True
 
     data_folder = "DataFrame"
     os.makedirs(data_folder, exist_ok=True)
