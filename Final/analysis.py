@@ -529,13 +529,20 @@ def main():
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
-    """
     frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=100)
     plot_frontiers(frontiers2Y)
     cml_output2Y = capital_market_line(config, frontiers2Y, "W")
     frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=100)
     plot_frontiers(frontiers5Y)
     cml_output5Y = capital_market_line(config, frontiers5Y, "M")
+
+    MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, cov_matrix2Y, 50000, 81541)
+    MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, cov_matrix5Y, 50000, 45768)
+    regression2Y = multiregression(MCportfolios2Y)
+    regression5Y = multiregression(MCportfolios5Y)
+    plot_regression_summary(regression2Y)
+    plot_regression_summary(regression5Y)
+    exit(1)
 
     logging.info("Save data to csv")
     dataframes_to_save = [
@@ -556,15 +563,9 @@ def main():
         ('15-Frontiers5Y', pd.concat(frontiers5Y, names=["Frontier"])),
         ('16-Sharpe2Y', cml_output2Y),
         ('17-Sharpe5Y', cml_output5Y),
+        ('18-MC-Portfolios2Y', MCportfolios2Y),
+        ('19-MC-Portfolios5Y', MCportfolios5Y)
     ]
-    """
-    MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, cov_matrix2Y, 50000, 81541)
-    MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, cov_matrix5Y, 50000, 45768)
-    regression2Y = multiregression(MCportfolios2Y)
-    regression5Y = multiregression(MCportfolios5Y)
-    plot_regression_summary(regression2Y)
-    plot_regression_summary(regression5Y)
-    exit(1)
 
     # Speichern als CSV
     for name, df in dataframes_to_save:
