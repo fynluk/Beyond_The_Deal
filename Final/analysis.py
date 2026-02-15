@@ -462,6 +462,21 @@ def multiregression(portfolios: pd.DataFrame):
     return results
 
 
+def plot_regression_summary(model, filename="regression_summary.png"):
+    summary_text = model.summary().as_text()
+
+    fig = plt.figure(figsize=(12, 10))
+    plt.text(0.01, 0.99, summary_text,
+             fontsize=18,
+             verticalalignment='top',
+             family='monospace')
+
+    plt.axis('off')
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
 def main():
     #config = RunConfig(universe="0#.SPX", endDate="2025-12-31")
     config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate2Y=0.02062, riskFreeRate5Y=0.02350)
@@ -544,10 +559,11 @@ def main():
     ]
     """
     MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, cov_matrix2Y, 50000, 81541)
-    regression2Y = multiregression(MCportfolios2Y)
     MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, cov_matrix5Y, 50000, 45768)
+    regression2Y = multiregression(MCportfolios2Y)
     regression5Y = multiregression(MCportfolios5Y)
-    print(regression5Y.summary())
+    plot_regression_summary(regression2Y)
+    plot_regression_summary(regression5Y)
     exit(1)
 
     # Speichern als CSV
