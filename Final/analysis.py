@@ -18,6 +18,7 @@ from scipy.stats import linregress
 import plotly.graph_objects as go
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import statsmodels.api as sm
 
 class RunConfig:
     def __init__(self, universe: str, endDate: str, riskFreeRate2Y: float, riskFreeRate5Y: float):
@@ -396,7 +397,7 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
     return pd.DataFrame.from_dict(output, orient="index")
 
 
-def monte_carlo_portfolio(returns: pd.DataFrame, esg : pd.DataFrame, portfolios: int, seed: int):
+def monte_carlo_portfolio(returns: pd.DataFrame, esg: pd.DataFrame, cov_matrix: pd.DataFrame, portfolios: int, seed: int):
     np.random.seed(seed)
 
     # Gemeinsame Instrumente
@@ -408,6 +409,8 @@ def monte_carlo_portfolio(returns: pd.DataFrame, esg : pd.DataFrame, portfolios:
         .loc[common_assets]["ESG Score"]
         .values
     )
+
+    cov_matrix = cov_matrix.loc[common_assets, common_assets].values
 
     n_assets = len(common_assets)
 
@@ -421,17 +424,42 @@ def monte_carlo_portfolio(returns: pd.DataFrame, esg : pd.DataFrame, portfolios:
         # Portfolio Return
         port_return = np.dot(weights, returns)
 
+        # Portfolio Risiko (Std Dev)
+        port_risk = np.sqrt(
+            np.dot(weights.T, np.dot(cov_matrix, weights))
+        )
+
         # Gewichteter ESG Score
         port_esg = np.dot(weights, esg)
 
-        portfolio_results.append([port_return, port_esg, weights])
+        portfolio_results.append(
+            [port_return, port_esg, port_risk, weights]
+        )
 
     portfolio_df = pd.DataFrame(
         portfolio_results,
-        columns=["Return", "ESG Score", "Weights"]
+        columns=["Return", "ESG Score", "Risk", "Weights"]
     )
 
     return portfolio_df
+
+
+def multiregression(portfolios: pd.DataFrame):
+    # Dependent Variable
+    y = portfolios["Return"]
+
+    # Independent Variables
+    X = portfolios[["ESG Score", "Risk"]]
+
+    # Konstante hinzufügen
+    X = sm.add_constant(X)
+
+    # OLS
+    model = sm.OLS(y, X)
+
+    results = model.fit(cov_type="HC3")  # White-robust
+
+    return results
 
 
 def main():
@@ -515,10 +543,12 @@ def main():
         ('17-Sharpe5Y', cml_output5Y),
     ]
     """
-    MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, 10000, 81541)
-    display(MCportfolios2Y)
-    #MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, 10000, 45768)
-
+    MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, cov_matrix2Y, 50000, 81541)
+    regression2Y = multiregression(MCportfolios2Y)
+    MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, cov_matrix5Y, 50000, 45768)
+    regression5Y = multiregression(MCportfolios5Y)
+    print(regression5Y.summary())
+    exit(1)
 
     # Speichern als CSV
     for name, df in dataframes_to_save:
