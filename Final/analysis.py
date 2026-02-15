@@ -557,8 +557,8 @@ def main():
         with open(os.path.join(data_folder, "frontiers5Y.pkl"), "rb") as f:
             frontiers5Y = pickle.load(f)
     else:
-        frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=5)
-        frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=5)
+        frontiers2Y = efficient_frontiers(clean_prices2Y, clean_esg2Y, "W", portfolios=100)
+        frontiers5Y = efficient_frontiers(clean_prices5Y, clean_esg5Y, "M", portfolios=100)
 
         with open(os.path.join(data_folder, "frontiers2Y.pkl"), "wb") as f:
             pickle.dump(frontiers2Y, f)
@@ -570,8 +570,8 @@ def main():
     cml_output2Y = capital_market_line(config, frontiers2Y, "W")
     cml_output5Y = capital_market_line(config, frontiers5Y, "M")
 
-    MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, cov_matrix2Y, 50000, 81541)
-    MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, cov_matrix5Y, 50000, 45768)
+    MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, cov_matrix2Y, 100000, 81541)
+    MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, cov_matrix5Y, 100000, 45768)
     regression2Y = multiregression(MCportfolios2Y)
     regression5Y = multiregression(MCportfolios5Y)
     plot_regression_summary(regression2Y, "W")
