@@ -18,6 +18,7 @@ from scipy.stats import linregress
 import plotly.graph_objects as go
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from concurrent.futures import ProcessPoolExecutor
 import statsmodels.api as sm
 
 class RunConfig:
@@ -231,6 +232,7 @@ def cov_matrix(prices: pd.DataFrame, freq: str):
 
 
 def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, portfolios: int):
+    logging.info("Calculating efficient frontiers")
     frontiers = {}
     thresholds=[85,70,55]
 
@@ -295,9 +297,8 @@ def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
 
     # Multithreading
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(optimize_target, r): r for r in target_returns}
-        for f in tqdm(as_completed(futures), total=len(futures), desc=f"Calculating Efficient Frontier for threshold {t}"):
-            result = f.result()
+        for result in tqdm(executor.map(optimize_target, target_returns), total=len(target_returns),
+                           desc=f"Calculating Efficient Frontier for threshold {t}"):
             if result is not None:
                 frontier_points.append(result)
 

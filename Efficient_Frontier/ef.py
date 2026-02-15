@@ -16,6 +16,7 @@ from scipy.optimize import minimize
 from Efficient_Frontier import regression
 
 
+
 def open_ld():
     try:
         ld.open_session()
