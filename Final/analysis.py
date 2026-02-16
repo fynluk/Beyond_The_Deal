@@ -20,6 +20,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from concurrent.futures import ProcessPoolExecutor
 import statsmodels.api as sm
+from scipy.stats import norm
 
 class RunConfig:
     def __init__(self, universe: str, endDate: str, riskFreeRate2Y: float, riskFreeRate5Y: float):
@@ -181,9 +182,11 @@ def plot_esg_distribution(esg_df, freq):
         edgecolor="black"
     )
 
-    plt.xticks(np.arange(0, 105, 5))
-    plt.xlabel("ESG Score")
-    plt.ylabel("Number of Assets")
+    plt.xticks(np.arange(0, 105, 5), fontsize=14)
+    plt.ylim(0, 120)
+    plt.yticks(np.arange(0, 121, 20), fontsize=14)
+    plt.xlabel("ESG Score", fontsize=16)
+    plt.ylabel("Number of Assets", fontsize=16)
     plt.grid(True, color=grid_color)
 
     plt.grid(True)
@@ -229,6 +232,51 @@ def cov_matrix(prices: pd.DataFrame, freq: str):
     cov = returns.cov() * scale
 
     return cov
+
+def plot_return_distribution(returns, bins, freq):
+    grid_color = (236 / 255, 237 / 255, 239 / 255)
+    bar_color = (0 / 255, 39 / 255, 80 / 255)
+    norm_color = (245 / 255, 158 / 255, 0 / 255)
+
+    plt.figure(figsize=(12, 8))
+    plt.gca().set_axisbelow(True)
+
+    # Histogramm
+    plt.hist(returns, bins=bins, density=True, alpha=1, label="Return Distribution", color=bar_color)
+
+    # Mittelwert
+    mean = returns.mean()
+    plt.axvline(mean, linestyle="--", linewidth=2, label=f"Mean = {mean:.2%}")
+
+    # Normalverteilung
+    x = np.linspace(returns.min(), returns.max(), 500)
+    plt.plot(x, norm.pdf(x, mean, returns.std()), linewidth=2, label="Normal Distribution", color=norm_color)
+
+    # Titel & Labels
+    plt.xlabel("Return", fontsize=16)
+    plt.ylabel("Density", fontsize=16)
+
+    # Tick-Größe
+    plt.xticks(np.arange(-1.0, 1.01, 0.2), fontsize=14)
+    plt.ylim(0, 4)
+    plt.yticks(np.arange(0, 4, 0.5), fontsize=14)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
+
+    # Legende oben links
+    plt.legend(loc="upper left", fontsize=14)
+
+    plt.grid(True, color=grid_color)
+    plt.tight_layout()
+    if freq == "W":
+        plt.savefig("Plots/03-Distribution2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/04-Distribution5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+    plt.show()
+    plt.close()
 
 
 def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, portfolios: int):
@@ -342,9 +390,9 @@ def plot_frontiers(frontiers, freq):
 
     plt.show()
     if freq == "W":
-        plt.savefig("Plots/03-EffFrontier2Y.png", dpi=300, bbox_inches='tight')
+        plt.savefig("Plots/05-EffFrontier2Y.png", dpi=300, bbox_inches='tight')
     elif freq == "M":
-        plt.savefig("Plots/04-EffFrontier5Y.png", dpi=300, bbox_inches='tight')
+        plt.savefig("Plots/06-EffFrontier5Y.png", dpi=300, bbox_inches='tight')
     else:
         logging.error("Invalid freq")
         exit(1)
@@ -413,9 +461,9 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
     plt.legend(loc="upper left")
     plt.grid(True)
     if freq == "W":
-        plt.savefig("Plots/05-CML2Y.png", dpi=300, bbox_inches='tight')
+        plt.savefig("Plots/07-CML2Y.png", dpi=300, bbox_inches='tight')
     elif freq == "M":
-        plt.savefig("Plots/06-CML5Y.png", dpi=300, bbox_inches='tight')
+        plt.savefig("Plots/08-CML5Y.png", dpi=300, bbox_inches='tight')
     else:
         logging.error("Invalid freq")
         exit(1)
@@ -502,9 +550,9 @@ def plot_regression_summary(model, freq):
     plt.axis('off')
     plt.tight_layout()
     if freq == "W":
-        plt.savefig("Plots/07-Regression2Y.png", dpi=300, bbox_inches='tight')
+        plt.savefig("Plots/09-Regression2Y.png", dpi=300, bbox_inches='tight')
     elif freq == "M":
-        plt.savefig("Plots/08-Regression5Y.png", dpi=300, bbox_inches='tight')
+        plt.savefig("Plots/10-Regression5Y.png", dpi=300, bbox_inches='tight')
     else:
         logging.error("Invalid freq")
         exit(1)
@@ -560,6 +608,8 @@ def main():
     plot_esg_distribution(clean_esg5Y, "M")
     returns2Y = expected_returns(clean_prices2Y, freq="W")
     returns5Y = expected_returns(clean_prices5Y, freq="M")
+    plot_return_distribution(returns2Y, 40, "W")
+    plot_return_distribution(returns5Y, 40, "M")
     cov_matrix2Y = cov_matrix(clean_prices2Y, freq="W")
     cov_matrix5Y = cov_matrix(clean_prices5Y, freq="M")
 
