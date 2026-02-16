@@ -679,8 +679,6 @@ def plot_partial_regression(model, freq):
 
 
 def plot_regression_surface_3d(model, portfolios, freq):
-    from mpl_toolkits.mplot3d import Axes3D
-
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     surface_color = (0 / 255, 39 / 255, 80 / 255)
 
@@ -698,7 +696,7 @@ def plot_regression_surface_3d(model, portfolios, freq):
 
     ESG_grid, Risk_grid = np.meshgrid(esg_vals, risk_vals)
 
-    # Regressionsfläche berechnen
+    # Regressionsfläche
     Return_grid = (
         beta_0
         + beta_esg * ESG_grid
@@ -718,29 +716,185 @@ def plot_regression_surface_3d(model, portfolios, freq):
         edgecolor='none'
     )
 
-    # Labels
-    ax.set_xlabel("ESG Score", fontsize=16, labelpad=15)
-    ax.set_ylabel("Risk", fontsize=16, labelpad=15)
-    ax.set_zlabel("Expected Return", fontsize=16, labelpad=15)
+    # ---------- Labels ----------
+    ax.set_xlabel("ESG Score", fontsize=16, labelpad=20)
+    ax.set_ylabel("Risk", fontsize=16, labelpad=20)
+    ax.invert_yaxis()
+    ax.set_zlabel("Expected Return", fontsize=16, labelpad=25)
 
-    # Tick-Größe
-    ax.tick_params(axis='both', labelsize=14)
+    # ---------- Prozentformat ----------
+    ax.yaxis.set_major_formatter(PercentFormatter(1, decimals=1))
+    ax.zaxis.set_major_formatter(PercentFormatter(1, decimals=1))
+
+    # ---------- Tick Größe ----------
+    ax.tick_params(axis='x', labelsize=14)
+    ax.tick_params(axis='y', labelsize=14)
     ax.tick_params(axis='z', labelsize=14)
 
-    # Dezentes Grid
+    # ---------- Grid Styling ----------
     ax.xaxis._axinfo["grid"]["color"] = grid_color
     ax.yaxis._axinfo["grid"]["color"] = grid_color
     ax.zaxis._axinfo["grid"]["color"] = grid_color
 
-    # Optional: bessere Perspektive
+    # Perspektive
     ax.view_init(elev=25, azim=135)
 
-    plt.tight_layout()
+    # Wichtig bei 3D (statt tight_layout)
+    plt.subplots_adjust(left=0.05, right=0.95, bottom=0.05, top=0.95)
 
     if freq == "W":
         plt.savefig("Plots/13-RegressionSurface2Y.png", dpi=300, bbox_inches='tight')
     elif freq == "M":
         plt.savefig("Plots/14-RegressionSurface5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+
+    plt.show()
+    plt.close()
+
+
+def plot_mc_risk_return(portfolios: pd.DataFrame, freq: str):
+    grid_color = (236 / 255, 237 / 255, 239 / 255)
+    point_color = (0 / 255, 39 / 255, 80 / 255)
+    line_color = (245 / 255, 158 / 255, 0 / 255)
+
+    plt.figure(figsize=(12, 8))
+    plt.gca().set_axisbelow(True)
+
+    x = portfolios["Risk"].values
+    y = portfolios["Return"].values
+
+    # Scatter
+    plt.scatter(
+        x,
+        y,
+        alpha=0.3,
+        s=5,
+        color=point_color
+    )
+
+    # ----- Regression -----
+    slope, intercept = np.polyfit(x, y, 1)
+    y_pred = slope * x + intercept
+
+    # R² berechnen
+    ss_res = np.sum((y - y_pred) ** 2)
+    ss_tot = np.sum((y - np.mean(y)) ** 2)
+    r_squared = 1 - ss_res / ss_tot
+
+    x_line = np.linspace(x.min(), x.max(), 200)
+    y_line = slope * x_line + intercept
+
+    plt.plot(
+        x_line,
+        y_line,
+        color=line_color,
+        linewidth=2
+    )
+
+    # Textbox
+    plt.text(
+        0.05, 0.95,
+        f"Slope = {slope:.4f}\nR² = {r_squared:.4f}",
+        transform=plt.gca().transAxes,
+        verticalalignment='top',
+        fontsize=12
+    )
+
+    # Formatierung
+    plt.gca().xaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+    plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+
+    plt.xlim(0.1, 0.2)
+    plt.ylim(0, 0.2)
+
+    plt.xticks(np.arange(0.1, 0.21, 0.02), fontsize=14)
+    plt.yticks(np.arange(0, 0.21, 0.05), fontsize=14)
+
+    plt.xlabel("Risk", fontsize=16)
+    plt.ylabel("Expected Return", fontsize=16)
+
+    plt.grid(True, color=grid_color)
+
+    if freq == "W":
+        plt.savefig("Plots/15-MC-RiskReturn-2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/16-MC-RiskReturn-5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+
+    plt.show()
+    plt.close()
+
+
+def plot_mc_esg_return(portfolios: pd.DataFrame, freq: str):
+    grid_color = (236 / 255, 237 / 255, 239 / 255)
+    point_color = (0 / 255, 39 / 255, 80 / 255)
+    line_color = (245 / 255, 158 / 255, 0 / 255)
+
+    plt.figure(figsize=(12, 8))
+    plt.gca().set_axisbelow(True)
+
+    x = portfolios["ESG Score"].values
+    y = portfolios["Return"].values
+
+    # Scatter
+    plt.scatter(
+        x,
+        y,
+        alpha=0.3,
+        s=5,
+        color=point_color
+    )
+
+    # ----- Regression -----
+    slope, intercept = np.polyfit(x, y, 1)
+    y_pred = slope * x + intercept
+
+    # R² berechnen
+    ss_res = np.sum((y - y_pred) ** 2)
+    ss_tot = np.sum((y - np.mean(y)) ** 2)
+    r_squared = 1 - ss_res / ss_tot
+
+    x_line = np.linspace(x.min(), x.max(), 200)
+    y_line = slope * x_line + intercept
+
+    plt.plot(
+        x_line,
+        y_line,
+        color=line_color,
+        linewidth=2
+    )
+
+    # Textbox
+    plt.text(
+        0.05, 0.95,
+        f"Slope = {slope:.6f}\nR² = {r_squared:.4f}",
+        transform=plt.gca().transAxes,
+        verticalalignment='top',
+        fontsize=12
+    )
+
+    # Formatierung
+    plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+
+    plt.ylim(0, 0.20)
+    plt.yticks(np.arange(0, 0.21, 0.05), fontsize=14)
+
+    plt.xlim(65, 75)
+    plt.xticks(np.arange(65, 75.01, 2), fontsize=14)
+
+    plt.xlabel("ESG Score", fontsize=16)
+    plt.ylabel("Expected Return", fontsize=16)
+
+    plt.grid(True, color=grid_color)
+
+    if freq == "W":
+        plt.savefig("Plots/17-MC-ESGReturn-2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/18-MC-ESGReturn-5Y.png", dpi=300, bbox_inches='tight')
     else:
         logging.error("Invalid freq")
         exit(1)
@@ -821,8 +975,8 @@ def main():
     cml_output2Y = capital_market_line(config, frontiers2Y, "W")
     cml_output5Y = capital_market_line(config, frontiers5Y, "M")
 
-    MCportfolios2Y = monte_carlo_portfolio(returns2Y, esg2Y, cov_matrix2Y, 100000, 81541)
-    MCportfolios5Y = monte_carlo_portfolio(returns5Y, esg5Y, cov_matrix5Y, 100000, 45768)
+    MCportfolios2Y = monte_carlo_portfolio(returns2Y, clean_esg2Y, cov_matrix2Y, 100000, 45768)
+    MCportfolios5Y = monte_carlo_portfolio(returns5Y, clean_esg5Y, cov_matrix5Y, 100000, 44227)
     regression2Y = multiregression(MCportfolios2Y)
     regression5Y = multiregression(MCportfolios5Y)
     plot_regression_summary(regression2Y, "W")
@@ -831,6 +985,11 @@ def main():
     plot_partial_regression(regression5Y, "M")
     plot_regression_surface_3d(regression2Y, MCportfolios2Y, "W")
     plot_regression_surface_3d(regression5Y, MCportfolios5Y, "M")
+    plot_mc_risk_return(MCportfolios2Y, "W")
+    plot_mc_risk_return(MCportfolios5Y, "M")
+    plot_mc_esg_return(MCportfolios2Y, "W")
+    plot_mc_esg_return(MCportfolios5Y, "M")
+
 
     logging.info("Save data to csv")
     dataframes_to_save = [
