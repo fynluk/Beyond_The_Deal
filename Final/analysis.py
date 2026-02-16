@@ -409,9 +409,9 @@ def plot_frontiers(frontiers, freq):
 
     plt.grid(True, color=grid_color)
 
-    plt.xlabel("Risk")
-    plt.ylabel("Expected Return")
-    plt.legend(loc="upper left")
+    plt.xlabel("Risk", fontsize=16)
+    plt.ylabel("Expected Return", fontsize=16)
+    plt.legend(loc="upper left", fontsize=14)
     plt.grid(True)
 
     if freq == "W":
@@ -481,10 +481,27 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
     plt.xticks(np.arange(0, 0.41, 0.1))
     plt.yticks(np.arange(-0.5, 1.01, 0.25))
 
+    # ---- Risk-free Rate als zusätzlicher Y-Tick ----
+    current_yticks = plt.gca().get_yticks()
+
+    # Falls rf noch nicht als Tick existiert → hinzufügen
+    if not np.isclose(current_yticks, rf).any():
+        new_yticks = np.append(current_yticks, rf)
+    else:
+        new_yticks = current_yticks
+
+    plt.yticks(new_yticks)
+
+    # Ticklabels einfärben
+    for tick, label in zip(plt.gca().get_yticks(), plt.gca().get_yticklabels()):
+        if np.isclose(tick, rf):
+            label.set_color(cml_color)
+            label.set_fontweight("bold")
+
     plt.grid(True, color=grid_color)
-    plt.xlabel("Risk")
-    plt.ylabel("Expected Return")
-    plt.legend(loc="upper left")
+    plt.xlabel("Risk", fontsize=16)
+    plt.ylabel("Expected Return", fontsize=16)
+    plt.legend(loc="upper left", fontsize=14)
     plt.grid(True)
     if freq == "W":
         plt.savefig("Plots/07-CML2Y.png", dpi=300, bbox_inches='tight')
