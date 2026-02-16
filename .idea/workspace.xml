@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Status Quo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/09-Regression2Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/09-Regression2Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/10-Regression5Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/10-Regression5Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/11-PartialRegression2Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/11-PartialRegression2Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/12-PartialRegression5Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/12-PartialRegression5Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/13-RegressionSurface2Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/13-RegressionSurface2Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/14-RegressionSurface5Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/14-RegressionSurface5Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/runtime.log" beforeDir="false" afterPath="$PROJECT_DIR$/Final/runtime.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,15 +287,7 @@
       <workItem from="1755826444400" duration="2318000" />
       <workItem from="1757262020047" duration="8057000" />
       <workItem from="1758956379677" duration="185949000" />
-      <workItem from="1769680011140" duration="98520000" />
-    </task>
-    <task id="LOCAL-00046" summary="* Refine">
-      <option name="closed" value="true" />
-      <created>1760285911704</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1760285911704</updated>
+      <workItem from="1769680011140" duration="102040000" />
     </task>
     <task id="LOCAL-00047" summary="* Refine">
       <option name="closed" value="true" />
@@ -689,7 +673,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771253635362</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="* Add Status Quo">
+      <option name="closed" value="true" />
+      <created>1771258542513</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1771258542514</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
