@@ -20,7 +20,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from concurrent.futures import ProcessPoolExecutor
 import statsmodels.api as sm
-from scipy.stats import norm
+from scipy.stats import norm, jarque_bera
 
 class RunConfig:
     def __init__(self, universe: str, endDate: str, riskFreeRate2Y: float, riskFreeRate5Y: float):
@@ -182,6 +182,15 @@ def plot_esg_distribution(esg_df, freq):
         edgecolor="black"
     )
 
+    # Durchschnitt berechnen
+    mean = esg_values.mean()
+
+    # Durchschnittslinie einzeichnen
+    plt.axvline(mean,
+                linestyle="--",
+                linewidth=2,
+                label=f"Mean = {mean: .1f}")
+
     plt.xticks(np.arange(0, 105, 5), fontsize=14)
     plt.ylim(0, 120)
     plt.yticks(np.arange(0, 121, 20), fontsize=14)
@@ -189,6 +198,7 @@ def plot_esg_distribution(esg_df, freq):
     plt.ylabel("Number of Assets", fontsize=16)
     plt.grid(True, color=grid_color)
 
+    plt.legend(loc="upper left", fontsize=14)
     plt.grid(True)
     if freq == "W":
         plt.savefig("Plots/01-Distribution2Y.png", dpi=300, bbox_inches='tight')
@@ -251,6 +261,22 @@ def plot_return_distribution(returns, bins, freq):
     # Normalverteilung
     x = np.linspace(returns.min(), returns.max(), 500)
     plt.plot(x, norm.pdf(x, mean, returns.std()), linewidth=2, label="Normal Distribution", color=norm_color)
+
+    # -------- Normalitätstest --------
+    jb_stat, jb_pvalue = jarque_bera(returns)
+
+    if jb_pvalue < 0.05:
+        normal_text = "Not normally distributed"
+    else:
+        normal_text = "Cannot reject normality"
+
+    # Textbox im Plot
+    plt.text(0.98, 0.95,
+             f"Jarque-Bera p-value = {jb_pvalue:.2e}\n{normal_text}",
+             transform=plt.gca().transAxes,
+             verticalalignment='top',
+             horizontalalignment='right',
+             fontsize=12)
 
     # Titel & Labels
     plt.xlabel("Return", fontsize=16)
