@@ -414,7 +414,6 @@ def plot_frontiers(frontiers, freq):
     plt.legend(loc="upper left")
     plt.grid(True)
 
-    plt.show()
     if freq == "W":
         plt.savefig("Plots/05-EffFrontier2Y.png", dpi=300, bbox_inches='tight')
     elif freq == "M":
@@ -422,6 +421,7 @@ def plot_frontiers(frontiers, freq):
     else:
         logging.error("Invalid freq")
         exit(1)
+    plt.show()
     plt.close()
 
 

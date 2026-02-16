@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Status Quo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/01-Distribution2Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/01-Distribution2Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/02-Distribution5Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/02-Distribution5Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/03-Distribution2Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/03-Distribution2Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/Plots/04-Distribution5Y.png" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Plots/04-Distribution5Y.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/analysis.py" afterDir="false" />
-    </list>
+    <list default="true" id="b87fe7b5-e8cf-4e2d-b021-1f5ea2b85134" name="Changes" comment="* Add Status Quo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -292,15 +285,7 @@
       <workItem from="1755826444400" duration="2318000" />
       <workItem from="1757262020047" duration="8057000" />
       <workItem from="1758956379677" duration="185949000" />
-      <workItem from="1769680011140" duration="89901000" />
-    </task>
-    <task id="LOCAL-00042" summary="* Clean Code">
-      <option name="closed" value="true" />
-      <created>1760200708552</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1760200708552</updated>
+      <workItem from="1769680011140" duration="90296000" />
     </task>
     <task id="LOCAL-00043" summary="* Clean Code">
       <option name="closed" value="true" />
@@ -686,7 +671,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771245279985</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="* Add Status Quo">
+      <option name="closed" value="true" />
+      <created>1771248703122</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1771248703122</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
