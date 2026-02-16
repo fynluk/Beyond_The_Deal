@@ -20,6 +20,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from concurrent.futures import ProcessPoolExecutor
 import statsmodels.api as sm
+import statsmodels.graphics.regressionplots as smg
 from scipy.stats import norm, jarque_bera
 
 class RunConfig:
@@ -603,6 +604,151 @@ def plot_regression_summary(model, freq):
     plt.close()
 
 
+def plot_partial_regression(model, freq):
+    grid_color = (236 / 255, 237 / 255, 239 / 255)
+    point_color = (0 / 255, 39 / 255, 80 / 255)
+    line_color = (245 / 255, 158 / 255, 0 / 255)
+
+    y = model.model.endog
+    X = model.model.exog
+    var_names = model.model.exog_names
+
+    # Indizes bestimmen
+    idx_esg = var_names.index("ESG Score")
+    idx_risk = var_names.index("Risk")
+
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+    for ax, idx, name in zip(
+        axes,
+        [idx_esg, idx_risk],
+        ["ESG Score", "Risk"]
+    ):
+
+        # Residuen von Y auf andere Variablen
+        other_idx = [i for i in range(X.shape[1]) if i != idx and var_names[i] != "const"]
+
+        X_other = X[:, other_idx]
+        X_target = X[:, idx]
+
+        # Y ~ andere Variablen
+        beta_y = np.linalg.lstsq(X_other, y, rcond=None)[0]
+        resid_y = y - X_other @ beta_y
+
+        # X_target ~ andere Variablen
+        beta_x = np.linalg.lstsq(X_other, X_target, rcond=None)[0]
+        resid_x = X_target - X_other @ beta_x
+
+        # Scatter
+        ax.scatter(resid_x, resid_y, alpha=0.4, color=point_color)
+
+        # Regressionslinie
+        slope, intercept = np.polyfit(resid_x, resid_y, 1)
+        x_vals = np.linspace(resid_x.min(), resid_x.max(), 100)
+        ax.plot(x_vals, slope * x_vals + intercept,
+                color=line_color,
+                linewidth=2)
+
+        # Slope im Plot anzeigen
+        ax.text(
+            0.05, 0.90,
+            f"Slope = {slope:.4f}",
+            transform=ax.transAxes,
+            fontsize=12,
+            verticalalignment="top"
+        )
+
+        ax.set_xlabel(f"{name} (partialled out)", fontsize=16)
+        ax.set_ylabel("Return (partialled out)", fontsize=16)
+
+        ax.grid(True, color=grid_color)
+        ax.tick_params(labelsize=14)
+
+    plt.tight_layout()
+
+    if freq == "W":
+        plt.savefig("Plots/11-PartialRegression2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/12-PartialRegression5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+
+    plt.show()
+    plt.close()
+
+
+def plot_regression_surface_3d(model, portfolios, freq):
+    from mpl_toolkits.mplot3d import Axes3D
+
+    grid_color = (236 / 255, 237 / 255, 239 / 255)
+    surface_color = (0 / 255, 39 / 255, 80 / 255)
+
+    # Regressionskoeffizienten
+    beta_0 = model.params["const"]
+    beta_esg = model.params["ESG Score"]
+    beta_risk = model.params["Risk"]
+
+    # Wertebereiche definieren
+    esg_vals = np.linspace(portfolios["ESG Score"].min(),
+                           portfolios["ESG Score"].max(), 50)
+
+    risk_vals = np.linspace(portfolios["Risk"].min(),
+                            portfolios["Risk"].max(), 50)
+
+    ESG_grid, Risk_grid = np.meshgrid(esg_vals, risk_vals)
+
+    # Regressionsfläche berechnen
+    Return_grid = (
+        beta_0
+        + beta_esg * ESG_grid
+        + beta_risk * Risk_grid
+    )
+
+    # Plot
+    fig = plt.figure(figsize=(12, 8))
+    ax = fig.add_subplot(111, projection='3d')
+
+    ax.plot_surface(
+        ESG_grid,
+        Risk_grid,
+        Return_grid,
+        color=surface_color,
+        alpha=0.9,
+        edgecolor='none'
+    )
+
+    # Labels
+    ax.set_xlabel("ESG Score", fontsize=16, labelpad=15)
+    ax.set_ylabel("Risk", fontsize=16, labelpad=15)
+    ax.set_zlabel("Expected Return", fontsize=16, labelpad=15)
+
+    # Tick-Größe
+    ax.tick_params(axis='both', labelsize=14)
+    ax.tick_params(axis='z', labelsize=14)
+
+    # Dezentes Grid
+    ax.xaxis._axinfo["grid"]["color"] = grid_color
+    ax.yaxis._axinfo["grid"]["color"] = grid_color
+    ax.zaxis._axinfo["grid"]["color"] = grid_color
+
+    # Optional: bessere Perspektive
+    ax.view_init(elev=25, azim=135)
+
+    plt.tight_layout()
+
+    if freq == "W":
+        plt.savefig("Plots/13-RegressionSurface2Y.png", dpi=300, bbox_inches='tight')
+    elif freq == "M":
+        plt.savefig("Plots/14-RegressionSurface5Y.png", dpi=300, bbox_inches='tight')
+    else:
+        logging.error("Invalid freq")
+        exit(1)
+
+    plt.show()
+    plt.close()
+
+
 def main():
     config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate2Y=0.02062, riskFreeRate5Y=0.02350)
 
@@ -681,6 +827,10 @@ def main():
     regression5Y = multiregression(MCportfolios5Y)
     plot_regression_summary(regression2Y, "W")
     plot_regression_summary(regression5Y, "M")
+    plot_partial_regression(regression2Y, "W")
+    plot_partial_regression(regression5Y, "M")
+    plot_regression_surface_3d(regression2Y, MCportfolios2Y, "W")
+    plot_regression_surface_3d(regression5Y, MCportfolios5Y, "M")
 
     logging.info("Save data to csv")
     dataframes_to_save = [
