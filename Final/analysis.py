@@ -213,6 +213,11 @@ def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
     return prices5Y_filtered2, esg5Y_filtered2, prices2Y_filtered, esg2Y_filtered
 
 
+# ------------------------------------------------------------
+# Erzeugung von Abbildungen
+# ------------------------------------------------------------
+# Hier werden keine Berechnungen durchgeführt, sondern nur Ergebnisse und Werte grafisch dargestellt
+# ------------------------------------------------------------
 def plot_esg_distribution(esg_df, freq):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
 
@@ -317,6 +322,12 @@ def cov_matrix(prices: pd.DataFrame, freq: str):
 
     return cov
 
+
+# ------------------------------------------------------------
+# Erzeugung von Abbildungen
+# ------------------------------------------------------------
+# Hier werden keine Berechnungen durchgeführt, sondern nur Ergebnisse und Werte grafisch dargestellt
+# ------------------------------------------------------------
 def plot_return_distribution(returns, bins, freq):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     bar_color = (0 / 255, 39 / 255, 80 / 255)
@@ -458,6 +469,11 @@ def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
     return frontier_df
 
 
+# ------------------------------------------------------------
+# Erzeugung von Abbildungen
+# ------------------------------------------------------------
+# Hier werden keine Berechnungen durchgeführt, sondern nur Ergebnisse und Werte grafisch dargestellt
+# ------------------------------------------------------------
 def plot_frontiers(frontiers, freq):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     frontier_color = (0 / 255, 39 / 255, 80 / 255)
@@ -655,6 +671,11 @@ def multiregression(portfolios: pd.DataFrame):
     return results
 
 
+# ------------------------------------------------------------
+# Erzeugung von Abbildungen
+# ------------------------------------------------------------
+# Hier werden keine Berechnungen durchgeführt, sondern nur Ergebnisse und Werte grafisch dargestellt
+# ------------------------------------------------------------
 def plot_regression_summary(model, freq):
     summary_text = model.summary().as_text()
 
@@ -677,6 +698,11 @@ def plot_regression_summary(model, freq):
     plt.close()
 
 
+# ------------------------------------------------------------
+# Erzeugung von Abbildungen
+# ------------------------------------------------------------
+# Hier werden keine Berechnungen durchgeführt, sondern nur Ergebnisse und Werte grafisch dargestellt
+# ------------------------------------------------------------
 def plot_partial_regression(model, freq):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     point_color = (0 / 255, 39 / 255, 80 / 255)
@@ -751,6 +777,11 @@ def plot_partial_regression(model, freq):
     plt.close()
 
 
+# ------------------------------------------------------------
+# Erzeugung von Abbildungen
+# ------------------------------------------------------------
+# Hier werden keine Berechnungen durchgeführt, sondern nur Ergebnisse und Werte grafisch dargestellt
+# ------------------------------------------------------------
 def plot_regression_surface_3d(model, portfolios, freq):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     surface_color = (0 / 255, 39 / 255, 80 / 255)
@@ -827,6 +858,11 @@ def plot_regression_surface_3d(model, portfolios, freq):
     plt.close()
 
 
+# ------------------------------------------------------------
+# Erzeugung von Abbildungen
+# ------------------------------------------------------------
+# Hier werden keine Berechnungen durchgeführt, sondern nur Ergebnisse und Werte grafisch dargestellt
+# ------------------------------------------------------------
 def plot_mc_risk_return(portfolios: pd.DataFrame, freq: str):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     point_color = (0 / 255, 39 / 255, 80 / 255)
@@ -902,6 +938,11 @@ def plot_mc_risk_return(portfolios: pd.DataFrame, freq: str):
     plt.close()
 
 
+# ------------------------------------------------------------
+# Erzeugung von Abbildungen
+# ------------------------------------------------------------
+# Hier werden keine Berechnungen durchgeführt, sondern nur Ergebnisse und Werte grafisch dargestellt
+# ------------------------------------------------------------
 def plot_mc_esg_return(portfolios: pd.DataFrame, freq: str):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     point_color = (0 / 255, 39 / 255, 80 / 255)
@@ -976,14 +1017,23 @@ def plot_mc_esg_return(portfolios: pd.DataFrame, freq: str):
     plt.close()
 
 
+# ------------------------------------------------------------
+# HAUPTPROGRAMM
+# ------------------------------------------------------------
+# Ablauf:
+#
+# 1. Konfiguration festlegen
+# 2. Daten laden oder abrufen
+# 3. Daten bereinigen
+# 4. Renditen & Kovarianzen berechnen
+# 5. Effiziente Frontiers bestimmen
+# 6. Capital Market Line berechnen
+# 7. Monte-Carlo-Simulation durchführen
+# 8. Multiple Regression berechnen
+# 9. Alle zentralen DataFrames als CSV speichern
+#
+# ------------------------------------------------------------
 def main():
-    """
-    Die main() Funktion ist der Startpunkt des Programms. Hier findet die Steuerung statt und es wird definiert,
-    welche Aufgabe (wird hier als Funktion bezeichnet) wann durchgeführt wird.
-
-
-
-    """
     config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate2Y=0.02062, riskFreeRate5Y=0.02350)
 
     # Flag: True = gespeicherte DataFrames + config laden, False = neu abrufen
