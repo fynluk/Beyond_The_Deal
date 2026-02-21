@@ -896,6 +896,13 @@ def plot_mc_esg_return(portfolios: pd.DataFrame, freq: str):
 
 
 def main():
+    """
+    Die main() Funktion ist der Startpunkt des Programms. Hier findet die Steuerung statt und es wird definiert,
+    welche Aufgabe (wird hier als Funktion bezeichnet) wann durchgeführt wird.
+
+
+
+    """
     config = RunConfig(universe="0#.STOXX", endDate="2025-12-31", riskFreeRate2Y=0.02062, riskFreeRate5Y=0.02350)
 
     # Flag: True = gespeicherte DataFrames + config laden, False = neu abrufen
