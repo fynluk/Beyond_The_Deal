@@ -31,8 +31,8 @@ def get_data(tickers):
             fields=["TR.TRESGScore.date", "TR.TotalReturn1Wk", "TR.TRESGScore", "TR.GovernancePillarScore", "TR.EnvironmentPillarScore", "TR.SocialPillarScore"],
             parameters={
                 "Frq": "W",
-                "SDate": "2023-01-01",
-                "EDate": "2024-12-31"
+                "SDate": "2022-01-01",
+                "EDate": "2022-12-31"
             }
         )
         latest = data.sort_values("Date").iloc[[-1]]

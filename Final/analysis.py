@@ -806,10 +806,10 @@ def plot_mc_risk_return(portfolios: pd.DataFrame, freq: str):
     plt.gca().xaxis.set_major_formatter(PercentFormatter(1, decimals=0))
     plt.gca().yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 
-    plt.xlim(0.1, 0.2)
+    plt.xlim(0.11, 0.15)
     plt.ylim(0, 0.2)
 
-    plt.xticks(np.arange(0.1, 0.21, 0.02), fontsize=14)
+    plt.xticks(np.arange(0.11, 0.15, 0.01), fontsize=14)
     plt.yticks(np.arange(0, 0.21, 0.05), fontsize=14)
 
     plt.xlabel("Risk", fontsize=16)
@@ -883,8 +883,8 @@ def plot_mc_esg_return(portfolios: pd.DataFrame, freq: str):
     plt.ylim(0, 0.20)
     plt.yticks(np.arange(0, 0.21, 0.05), fontsize=14)
 
-    plt.xlim(65, 75)
-    plt.xticks(np.arange(65, 75.01, 2), fontsize=14)
+    plt.xlim(66, 73)
+    plt.xticks(np.arange(66, 73, 1), fontsize=14)
 
     plt.xlabel("ESG Score", fontsize=16)
     plt.ylabel("Expected Return", fontsize=16)
