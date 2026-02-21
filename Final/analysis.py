@@ -15,6 +15,15 @@ from dateutil.relativedelta import relativedelta
 import statsmodels.api as sm
 from scipy.stats import norm, jarque_bera
 
+# ------------------------------------------------------------
+# KONFIGURATIONSKLASSE
+# ------------------------------------------------------------
+# Diese Klasse speichert alle globalen Parameter eines Programmlaufs:
+# - Indexuniversum (z.B. STOXX Europe 600)
+# - Enddatum der Analyse
+# - Risikofreie Zinssätze (2 Jahre / 5 Jahre)
+# - Liste von Instrumenten, die aufgrund fehlerhafter Daten entfernt werden müssen
+# ------------------------------------------------------------
 class RunConfig:
     def __init__(self, universe: str, endDate: str, riskFreeRate2Y: float, riskFreeRate5Y: float):
         self.universe = universe
@@ -29,6 +38,12 @@ class RunConfig:
                 self.instruments_to_clean.append(inst)
 
 
+# ------------------------------------------------------------
+# HERSTELLEN DER DATENVERBINDUNG
+# ------------------------------------------------------------
+# Baut eine Verbindung zur Refinitiv auf.
+# Falls keine Verbindung möglich ist, wird das Programm beendet.
+# ------------------------------------------------------------
 def refinitiv_session():
     logging.info("Connect to Refnitiv")
     config = ld.get_config()
@@ -41,6 +56,15 @@ def refinitiv_session():
         logging.error("Failed to connect to Refnitiv")
         exit(1)
 
+
+# ------------------------------------------------------------
+# EINLESEN DES INDEX-UNIVERSUMS
+# ------------------------------------------------------------
+# Lädt alle im Index enthaltenen Assets (RICs).
+# Rückgabe:
+# - Menge aller Instrumente (für Datenabfrage)
+# - DataFrame mit Universum (wird später als 01-Universe.csv gespeichert)
+# ------------------------------------------------------------
 def get_universe(config: RunConfig):
     logging.info("Get Tickers from Index")
     try:
@@ -56,6 +80,28 @@ def get_universe(config: RunConfig):
         logging.error("Failed to get Tickers from Index")
         exit(1)
 
+
+# ------------------------------------------------------------
+# DATENABRUF (PREISE + ESG)
+# ------------------------------------------------------------
+# Lädt:
+# - historische Schlusskurse
+# - ESG Scores
+#
+# Zeitraum:
+# - 2 Jahre bei wöchentlicher Frequenz
+# - 5 Jahre bei monatlicher Frequenz
+#
+# Rückgabe:
+# - Pivotierte Preismatrix (Datum x Instrument)
+# - ESG Score je Instrument
+#
+# Diese Daten werden später gespeichert als:
+# 02-Prices5Y.csv
+# 03-ESG5Y.csv
+# 04-Prices2Y.csv
+# 05-ESG2Y.csv
+# ------------------------------------------------------------
 def get_data(config: RunConfig, universe: set, frq: str):
     logging.info("Get Data from Refinitiv")
 
@@ -94,6 +140,7 @@ def get_data(config: RunConfig, universe: set, frq: str):
         logging.error("Failed to get Data from Refinitiv")
         exit(1)
 
+    # Hier werden bereits N/A Werte bereinigt und fehlerhafte Datenpunkte entfernt
     mask_na = esg["Date"].isna() | esg["ESG Score"].isna()
     instruments_dropped = esg.loc[mask_na, "Instrument"].unique()
     config.add_instruments_to_clean(instruments_dropped)
@@ -107,19 +154,31 @@ def get_data(config: RunConfig, universe: set, frq: str):
         .reset_index(drop=True)
     )
 
+    # Hier findet die Pivotisierung statt
     prices_clean = prices.dropna(subset=["Price Close", "Date"])
     prices_clean2 = prices_clean.dropna().groupby(["Date", "Instrument"]).mean().reset_index()
     prices_pivot = prices_clean2.dropna().pivot(index="Date", columns="Instrument", values="Price Close")
     return prices_pivot, latest_esg
 
-def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
-    #TODO tbd, ob auch Top 10 Returns/Verluste rausgenommen werden sollten
 
-   # 1. Alle Ticker entfernen, die NA Werte beinhalten
-    #prices2Y_filtered = prices2Y.drop(
-    #    columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
-    #prices5Y_filtered = prices5Y.drop(
-    #    columns=[c for c in prices2Y.columns if c in config.instruments_to_clean])
+# ------------------------------------------------------------
+# DATENBEREINIGUNG
+# ------------------------------------------------------------
+# Entfernt:
+# - Assets mit fehlenden ESG-Werten
+# - Assets, die weitere fehlerhafte Datenpunkte haben
+# - Assets, so dass beide Listen (ESG und historische Daten) die gleichen Assets enthalten
+#
+# Rückgabe:
+# Bereinigte Preis- und ESG-Daten.
+#
+# Diese werden später gespeichert als:
+# 06-Prices5Y_cleaned.csv
+# 07-ESG5Y_cleaned.csv
+# 08-Prices2Y_cleaned.csv
+# 09-ESG2Y_cleaned.csv
+# ------------------------------------------------------------
+def clean_data(config: RunConfig, prices5Y, esg5Y, prices2Y, esg2Y):
     to_clean5Y = config.instruments_to_clean
     instruments_esg = set(esg5Y["Instrument"])
     instruments_prices = set(prices5Y.columns)
@@ -204,6 +263,17 @@ def plot_esg_distribution(esg_df, freq):
     plt.close()
 
 
+# ------------------------------------------------------------
+# ERWARTETE RENDITEN
+# ------------------------------------------------------------
+# Berechnet:
+# - periodische Renditen
+# - annualisierte Durchschnittsrendite je Titel
+#
+# Speicherung als:
+# 10-Returns5Y.csv
+# 11-Returns2Y.csv
+# ------------------------------------------------------------
 def expected_returns(prices: pd.DataFrame, freq: str):
     # Berechnung der wöchentlichen/monatlichen durchschnittlichen Returns
     # inklusive einer Hochrechnung auf einen jährlichen Return
