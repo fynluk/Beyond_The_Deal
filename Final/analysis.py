@@ -292,6 +292,17 @@ def expected_returns(prices: pd.DataFrame, freq: str):
 
     return mu
 
+
+# ------------------------------------------------------------
+# KOVARIANZMATRIX
+# ------------------------------------------------------------
+# Berechnet:
+# - annualisierte Kovarianzmatrix der Renditen
+#
+# Speicherung als:
+# 12-CovMatrix5Y.csv
+# 13-CovMatrix2Y.csv
+# ------------------------------------------------------------
 def cov_matrix(prices: pd.DataFrame, freq: str):
     if freq == "W":
         scale = 52
