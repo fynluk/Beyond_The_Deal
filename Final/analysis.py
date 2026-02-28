@@ -389,7 +389,19 @@ def plot_return_distribution(returns, bins, freq):
     plt.show()
     plt.close()
 
-
+# ------------------------------------------------------------
+# EFFICIENT FRONTIER
+# ------------------------------------------------------------
+# Für verschiedene ESG-Schwellen (85,70,55):
+# - Ausschluss von Unternehmen oberhalb der Schwelle über die Funktion filter_universe()
+# - Berechnung der returns und covariance-matrix für das gefilterte asset universe
+# - Optimierung minimaler Varianz für Zielrenditen über die Funktion über die Funktion compute_efficient_frontier()
+#
+# Speicherung als:
+# 14-Frontiers2Y.csv
+# 15-Frontiers5Y.csv
+# ------------------------------------------------------------
+# (Berechnung erfolgt mittels quadratischer Optimierung unter Nebenbedingungen)
 def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, portfolios: int):
     logging.info("Calculating efficient frontiers")
     frontiers = {}
@@ -404,7 +416,12 @@ def efficient_frontiers(prices: pd.DataFrame, esg: pd.DataFrame, freq: str, port
 
     return frontiers
 
-
+# ------------------------------------------------------------
+# FILTER UNIVERSE
+# ------------------------------------------------------------
+# Filtert alle Assets raus, die nicht zu der threshold passen.
+#
+# ------------------------------------------------------------
 def filter_universe(prices: pd.DataFrame, esg: pd.DataFrame, t: int):
     instruments_above_X = esg[esg['ESG Score'] > t]['Instrument']
     instruments_list = instruments_above_X.tolist()
@@ -416,7 +433,19 @@ def filter_universe(prices: pd.DataFrame, esg: pd.DataFrame, t: int):
 
     return prices_filtered, esg_filtered
 
-
+# ------------------------------------------------------------
+# COMPUTE EFFICIENT FRONTIER
+# ------------------------------------------------------------
+# Hier wird die Frontier berechnet nach folgenden Schema:
+# 1. Zunächst werden die Restiktionen festgelegt (jedes Gewicht zwischen 0 und 50% + Summe = 100%)
+# 2. Um die Frontier bestimmen zu können, werden 100 portfolios mit einer Zielrendite bestimmt
+# 3. Für die Zielrendite wird dann ein Minimierungsalgorythmus ausgeführt
+#
+# Disclaimer: Die Funktion sieht kompliziert aus. Das liegt daran, dass ich die Funktion auf mehrere Prozessorkerne
+# verlagert habe, da die Ausführungszeit sonst über 10 Stunden gewesen wäre. So habe ich die Laufzeit auf
+# 2 Stunden reduzieren können.
+# Bei Fragen stehe ich natürlich jederzeit zur Verfügung!
+# ------------------------------------------------------------
 def compute_efficient_frontier(mu, cov_matrix, portfolios, t, max_workers=10):
     mu = np.array(mu)
     cov_matrix = np.array(cov_matrix)
@@ -514,7 +543,17 @@ def plot_frontiers(frontiers, freq):
     plt.show()
     plt.close()
 
-
+# ------------------------------------------------------------
+# CAPITAL MARKET LINE
+# ------------------------------------------------------------
+# Berechnet:
+# - Sharpe Ratio
+# - Tangency Portfolio
+#
+# Speicherung als:
+# 16-Sharpe2Y.csv
+# 17-Sharpe5Y.csv
+# ------------------------------------------------------------
 def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
     grid_color = (236 / 255, 237 / 255, 239 / 255)
     frontier_color = (0 / 255, 39 / 255, 80 / 255)
@@ -571,17 +610,6 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
     plt.xticks(np.arange(0, 0.41, 0.1))
     plt.yticks(np.arange(-0.5, 1.01, 0.25))
 
-    # ---- Risk-free Rate als zusätzlicher Y-Tick ----
-    current_yticks = plt.gca().get_yticks()
-
-    # Falls rf noch nicht als Tick existiert → hinzufügen
-    if not np.isclose(current_yticks, rf).any():
-        new_yticks = np.append(current_yticks, rf)
-    else:
-        new_yticks = current_yticks
-
-    plt.yticks(new_yticks)
-
     # Ticklabels einfärben
     for tick, label in zip(plt.gca().get_yticks(), plt.gca().get_yticklabels()):
         if np.isclose(tick, rf):
@@ -605,7 +633,19 @@ def capital_market_line(config: RunConfig, frontiers: dict, freq: str):
 
     return pd.DataFrame.from_dict(output, orient="index")
 
-
+# ------------------------------------------------------------
+# MONTE CARLO SIMULATION
+# ------------------------------------------------------------
+# Simuliert 100.000 zufällige Portfolios:
+# - zufällige Long-Only Gewichtung
+# - Portfolio-Rendite
+# - Portfolio-Risiko
+# - gewichteter ESG Score
+#
+# Speicherung als:
+# 18-MC-Portfolios2Y.csv
+# 19-MC-Portfolios5Y.csv
+# ------------------------------------------------------------
 def monte_carlo_portfolio(returns: pd.DataFrame, esg: pd.DataFrame, cov_matrix: pd.DataFrame, portfolios: int, seed: int):
     np.random.seed(seed)
 
@@ -652,7 +692,16 @@ def monte_carlo_portfolio(returns: pd.DataFrame, esg: pd.DataFrame, cov_matrix: 
 
     return portfolio_df
 
-
+# ------------------------------------------------------------
+# MULTIPLE REGRESSION
+# ------------------------------------------------------------
+# Regressionsmodell:
+#
+# Return = β0 + β1 * ESG + β2 * Risk + Fehlerterm
+#
+# Ergebnisse erscheinen:
+# - grafisch in der Thesis (Plot)
+# ------------------------------------------------------------
 def multiregression(portfolios: pd.DataFrame):
     # Dependent Variable
     y = portfolios["Return"]
